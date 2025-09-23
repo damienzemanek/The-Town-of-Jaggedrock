@@ -36,7 +36,7 @@ public class Look : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0, xRot, 0);
         //print(Controls.head);
-        Controls.head.transform.rotation = Quaternion.Euler(yRot, xRot, 0);
+        Controls.headDirection.transform.rotation = Quaternion.Euler(yRot, xRot, 0);
 
     }
 }

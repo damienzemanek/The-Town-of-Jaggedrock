@@ -10,7 +10,8 @@ public class EntityControls : MonoBehaviour
 
     IA_PLAYER IA;
 
-    [field:SerializeField] public GameObject head { get; private set; }
+    [field: SerializeField] public GameObject headDirection { get; private set; }
+    [field:SerializeField] public GameObject bodyDirection { get; private set; }
 
     public InputAction ia_move;
     public Func<Vector2> move;

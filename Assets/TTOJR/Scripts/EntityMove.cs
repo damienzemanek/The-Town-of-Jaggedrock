@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 [RequireComponent(typeof(EntityControls))]
@@ -8,12 +9,17 @@ public class EntityMove : MonoBehaviour
     [SerializeField] float speedMultiplier; float origSpeed;
     [SerializeField] float maxVel;
 
+    [Button]
+    void UpdateOrigSpeed()
+    {
+        origSpeed = speedMultiplier;
+    }
 
     private void Awake()
     {
         if(rb == null) rb = GetComponent<Rigidbody>();
         if (Controls == null) Debug.LogError("No Controls found");
-        origSpeed = speedMultiplier;
+        UpdateOrigSpeed();
         rb.maxLinearVelocity = maxVel;
         rb.maxAngularVelocity = maxVel;
     }
@@ -38,19 +44,19 @@ public class EntityMove : MonoBehaviour
         if (moveInput.x != 0)
         {
             if (moveInput.x > 0.5)
-                rb.AddForce(Controls.head.transform.right * speedMultiplier);
+                rb.AddForce(Controls.bodyDirection.transform.right * speedMultiplier * 100);
             if (moveInput.x < 0.5)
-                rb.AddForce(-Controls.head.transform.right * speedMultiplier);
+                rb.AddForce(-Controls.bodyDirection.transform.right * speedMultiplier * 100);
         }
         if (moveInput.y != 0)
         {
             if (moveInput.y > 0.5)
-                rb.AddForce(Controls.head.transform.forward * speedMultiplier);
+                rb.AddForce(Controls.bodyDirection.transform.forward * speedMultiplier * 100);
             if (moveInput.y < 0.5)
-                rb.AddForce(-Controls.head.transform.forward * speedMultiplier);
+                rb.AddForce(-Controls.bodyDirection.transform.forward * speedMultiplier * 100);
         }
 
-        print(rb.linearVelocity);
+        //print(rb.linearVelocity);
 
     }
 
