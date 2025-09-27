@@ -1,10 +1,11 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using DependencyInjection;
 
 [RequireComponent(typeof(EntityControls))]
 public class EntityMove : MonoBehaviour
 {
-    public EntityControls Controls { get => EntityControls.Instance; }
+    [Inject] EntityControls Controls;
     Rigidbody rb;
     [SerializeField] float speedMultiplier; float origSpeed;
     [SerializeField] float maxVel;

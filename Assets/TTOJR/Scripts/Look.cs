@@ -1,10 +1,10 @@
 using UnityEngine;
+using DependencyInjection;
 
 [RequireComponent(typeof(EntityControls))]
 public class Look : MonoBehaviour
 {
-    public EntityControls Controls { get => EntityControls.Instance; }
-
+    [Inject] EntityControls controls;
     [SerializeField] float xSens, ySens;
     [SerializeField] float lookX, lookY, xRot, yRot;
 
@@ -22,7 +22,7 @@ public class Look : MonoBehaviour
 
     void MouseLook()
     {
-        Vector2 mouseInput = Controls.look.Invoke();
+        Vector2 mouseInput = controls.look.Invoke();
 
 
         lookX = mouseInput.x * (xSens / 5);
@@ -36,7 +36,7 @@ public class Look : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0, xRot, 0);
         //print(Controls.head);
-        Controls.headDirection.transform.rotation = Quaternion.Euler(yRot, xRot, 0);
+        controls.headDirection.transform.rotation = Quaternion.Euler(yRot, xRot, 0);
 
     }
 }

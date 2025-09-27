@@ -13,3 +13,17 @@ MonoBehaviour:
   m_Name: Towels
   m_EditorClassIdentifier: 
   Name: Towels
+  icon: {fileID: 21300000, guid: 9b8aca84f8869e446a5ab44b450ffb0c, type: 3}
+  stateAndFunctionality:
+    rid: 9200141061183504511
+  references:
+    version: 2
+    RefIds:
+    - rid: 9200141061183504511
+      type: {class: Placing, ns: , asm: Assembly-CSharp}
+      data:
+        <functionality>k__BackingField:
+          rid: 9200141061183504512
+    - rid: 9200141061183504512
+      type: {class: Placeable, ns: , asm: Assembly-CSharp}
+      data: 
