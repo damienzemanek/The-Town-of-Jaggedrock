@@ -1,4 +1,5 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 
@@ -8,21 +9,24 @@ public class Item : ScriptableObject
 {
     public string Name;
     public Sprite icon;
-    [SerializeReference] public IState stateAndFunctionality;
+    [ShowInInspector] [SerializeReference] public IState stateAndFunctionality;
 
 
 }
 
-public abstract class UseFunctionality 
+[Serializable]
+public abstract class UseFunctionality<T>
 {
-    public abstract void Use();
+    public abstract void Use(T data);
 }
 
-class Placeable : UseFunctionality
+[Serializable]
+class Place : UseFunctionality<CanPlace.Data>
 {
-    public override void Use()
+    public override void Use(CanPlace.Data data)
     {
-
+        if (!data.canPlace) return;
+        Debug.Log($"PLacing Item {data.objectToPlace.name} ");
     }
 }
 

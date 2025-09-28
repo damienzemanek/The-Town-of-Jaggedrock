@@ -15,10 +15,12 @@ public class Inventory : MonoBehaviour, IDependencyProvider
     [BoxGroup(group: "Runtime")][SerializeField] float dist;
     [BoxGroup(group: "Runtime")][SerializeField] GameObject displayPickup;
     [BoxGroup(group: "Runtime")][SerializeField] List<Item> pickedUpItems;
+    [BoxGroup(group: "Runtime")][SerializeField] int selectItem;
     [BoxGroup(group: "Runtime")][SerializeField] Pickup potentialItem;
     [BoxGroup(group: "Runtime")][SerializeField] bool canPickup;
 
     [Inject] EntityControls controls;
+    [Inject] StateAgent agent;
 
     [BoxGroup(group: "UI")] [field: SerializeField] public GameObject gridParent { get; private set; }
     [BoxGroup(group: "UI")] [field: SerializeField] public GameObject inventorySlotPrefab { get; private set; }
@@ -40,8 +42,6 @@ public class Inventory : MonoBehaviour, IDependencyProvider
         {
             controls.intentoryNums[i] += SelectItem;
         }
-
-
     }
 
     private void OnDisable()
@@ -86,14 +86,54 @@ public class Inventory : MonoBehaviour, IDependencyProvider
 
     void Interact()
     {
+        Place();
+        Pickup();
+    }
+
+    void Pickup()
+    {
         if (!canPickup) return;
         Item newItem = potentialItem.item;
         pickedUpItems.Add(newItem);
         int newIndex = pickedUpItems.IndexOf(newItem);
         SetDisplayItem(newItem, newIndex);
+        if (pickedUpItems.Count == 1)
+            SelectItem(newIndex);
         potentialItem.PickedUp();
+    }
+
+    void Place()
+    {
+        Item itemBeingPlaced = null;
+        IState state = null;
+
+        if (pickedUpItems.Count > selectItem)
+            itemBeingPlaced = pickedUpItems[selectItem];
+        else return;
+        print("Inv: has an item that can be selected");
+
+        if (itemBeingPlaced != null)
+        {
+            state = agent.GetState(itemBeingPlaced.stateAndFunctionality);
+            print($"Selected state: {state}");
+        }
+        else return;
+
+        print("Inv: has a state that coincides with a selectable item");
+
+
+        if (state != null)
+        {
+            print("Inv: state is not null");
+            TryUseItem(pickedUpItems[selectItem], state.GetDataValue());
+        }
+        else return;
+
+        print("Inv: can select item");
+
 
     }
+
 
     void CreateInventorySlots()
     {
@@ -112,6 +152,7 @@ public class Inventory : MonoBehaviour, IDependencyProvider
     void DisplayItem(int i)
     {
         gridParent.transform.GetChild(i).GetComponent<InventorySlot>().Select();
+        selectItem = i;
     }
 
     void SelectItem(int num)
@@ -127,4 +168,19 @@ public class Inventory : MonoBehaviour, IDependencyProvider
         .ToList()
         .ForEach(s => s.Unselect());
     }
+
+    void TryUseItem(Item item, object data)
+    {
+        print("Inv: Trying to use item");
+        if(agent.hashStates.TryGetValue(item.stateAndFunctionality, out IState state))
+        {
+            print($"Inv: Using item {item}, data {data}");
+            state.Use(data);
+        }
+        else
+            Debug.Log("Item failed use");
+
+    }
+
+
 }
