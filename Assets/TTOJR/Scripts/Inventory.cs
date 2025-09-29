@@ -5,6 +5,7 @@ using DependencyInjection;
 using NUnit.Framework;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor.Drawers;
+using Sirenix.Utilities;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -22,23 +23,23 @@ public class Inventory : MonoBehaviour, IDependencyProvider
     [Inject] EntityControls controls;
     [Inject] StateAgent agent;
 
-    [BoxGroup(group: "UI")] [field: SerializeField] public GameObject gridParent { get; private set; }
-    [BoxGroup(group: "UI")] [field: SerializeField] public GameObject inventorySlotPrefab { get; private set; }
-    [BoxGroup(group: "UI")] [field: SerializeField] public Sprite emptyIcon { get; private set; }
+    [BoxGroup(group: "UI")][field: SerializeField] public GameObject gridParent { get; private set; }
+    [BoxGroup(group: "UI")][field: SerializeField] public GameObject inventorySlotPrefab { get; private set; }
+    [BoxGroup(group: "UI")][field: SerializeField] public Sprite emptyIcon { get; private set; }
     [Provide] public Sprite ProvideEmptyIcon()
     {
         return emptyIcon;
     }
 
-    [BoxGroup(group: "UI")] [SerializeField] int slotCount;
+    [BoxGroup(group: "UI")][SerializeField] int slotCount;
 
-   
+
 
     private void OnEnable()
     {
         controls.interact += Interact;
-        
-        for(int i = 0; i < EntityControls.INVENTORY_NUMS; i++)
+
+        for (int i = 0; i < EntityControls.INVENTORY_NUMS; i++)
         {
             controls.intentoryNums[i] += SelectItem;
         }
@@ -99,6 +100,17 @@ public class Inventory : MonoBehaviour, IDependencyProvider
         SetDisplayItem(newItem, newIndex);
         if (pickedUpItems.Count == 1)
             SelectItem(newIndex);
+
+        print("Inv: Pciking up item");
+        var data = newItem.stateAndFunctionality.GetDataValue();
+
+        if (data is Uses)
+            SetStates_ThatHaveUses();
+        if (data is RequiredItem)
+            SetStates_ThatRequireItems(newItem);
+
+
+
         potentialItem.PickedUp();
     }
 
@@ -115,7 +127,7 @@ public class Inventory : MonoBehaviour, IDependencyProvider
         if (itemBeingPlaced != null)
         {
             state = agent.GetState(itemBeingPlaced.stateAndFunctionality);
-            print($"Selected state: {state}");
+            print($"Inv: Selected state: {state}");
         }
         else return;
 
@@ -131,6 +143,35 @@ public class Inventory : MonoBehaviour, IDependencyProvider
 
         print("Inv: can select item");
 
+
+    }
+
+    void SetStates_ThatHaveUses()
+    {
+        print("Inv: Updating item with uses");
+
+        var agentStates_CanPlace_SameObject = agent.hashStates
+            .Where(s => s.GetDataValue() is Uses u)
+            .ForEach(s =>
+            {
+                var agentData = (Uses)s.GetDataValue();
+                agentData.UsesInit();
+            });
+    }
+
+    void SetStates_ThatRequireItems(Item newItem)
+    {
+        print("Inv: Updating item that require items");
+
+        var agentStates_CanPlace_SameObject = agent.hashStates
+            .Where(s => s.GetDataValue() is RequiredItem r
+             && ReferenceEquals(r.requiredItem, newItem))
+            .ForEach(s =>
+            {
+                RequiredItem r = (RequiredItem)s.GetDataValue();
+                r.SetHasRequiredItem(true);
+                print("Inv: Update success");
+            });
 
     }
 

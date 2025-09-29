@@ -23,10 +23,36 @@ public abstract class UseFunctionality<T>
 [Serializable]
 class Place : UseFunctionality<CanPlace.Data>
 {
-    public override void Use(CanPlace.Data data)
+    public override void Use(CanPlace.Data agentData)
     {
-        if (!data.canPlace) return;
-        Debug.Log($"PLacing Item {data.objectToPlace.name} ");
+        if (agentData.usedUp) return;
+        if (!agentData.canPlace || !agentData.hasRequiredItem) return;
+        Debug.Log($"Item: Placing Item {agentData.objectToPlace.name} ");
+
+        agentData.Use();
+        GameObject spawned = UnityEngine.Object.Instantiate(
+            agentData.objectToPlace,
+            agentData.placeLocation.position,
+            Quaternion.identity,
+            agentData.placeLocation
+            );
+        
     }
 }
+
+[Serializable]
+class Spray : UseFunctionality<CanSpray.Data>
+{
+    public override void Use(CanSpray.Data agentData)
+    {
+        if (!agentData.canSpray || !agentData.hasRequiredItem) return;
+        Debug.Log($"Item: Spraying Item {agentData} ");
+
+        if (agentData.sprayDestination.preventContact) return;
+        agentData.sprayDestination.MakeContact();
+
+    }
+}
+
+
 

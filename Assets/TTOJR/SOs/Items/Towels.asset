@@ -24,5 +24,6 @@ MonoBehaviour:
       data:
         <data>k__BackingField:
           canPlace: 0
+          hasObject: 0
           placeLocation: {fileID: 0}
-          objectToPlace: {fileID: 0}
+          objectToPlace: {fileID: 6080151802301790228, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}

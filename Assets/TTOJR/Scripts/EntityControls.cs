@@ -42,7 +42,7 @@ public class EntityControls : MonoBehaviour, IDependencyProvider
 
     private void OnEnable()
     {
-        print("on enable");
+        //print("on enable");
         ia_move = IA.Player.Move;
         ia_move.Enable();
         move = () => ia_move.ReadValue<Vector2>();
