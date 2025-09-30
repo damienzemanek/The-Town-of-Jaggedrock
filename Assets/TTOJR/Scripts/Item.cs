@@ -17,42 +17,56 @@ public class Item : ScriptableObject
 [Serializable]
 public abstract class UseFunctionality<T>
 {
-    public abstract void Use(T data);
+    public abstract bool Use(T data, Action callback = null);
 }
 
 [Serializable]
 class Place : UseFunctionality<CanPlace.Data>
 {
-    public override void Use(CanPlace.Data agentData)
+    public override bool Use(CanPlace.Data agentData, Action cb)
     {
-        if (agentData.usedUp) return;
-        if (!agentData.canPlace || !agentData.hasRequiredItem) return;
-        Debug.Log($"Item: Placing Item {agentData.objectToPlace.name} ");
+        if (agentData.usedUp) return false;
+        if (!agentData.canPlace || !agentData.hasRequiredItem) return false;
+        Debug.Log($"Item: Placing Item {agentData.objectToPlace.name}, callback {cb} ");
 
-        agentData.Use();
+        agentData.Use( agentData.requiredItem, cb);
+
         GameObject spawned = UnityEngine.Object.Instantiate(
             agentData.objectToPlace,
             agentData.placeLocation.position,
             Quaternion.identity,
             agentData.placeLocation
             );
-        
+
+        return true;
     }
 }
 
 [Serializable]
 class Spray : UseFunctionality<CanSpray.Data>
 {
-    public override void Use(CanSpray.Data agentData)
+    public override bool Use(CanSpray.Data agentData, Action cb)
     {
-        if (!agentData.canSpray || !agentData.hasRequiredItem) return;
+        if (!agentData.canSpray || !agentData.hasRequiredItem) return false;
         Debug.Log($"Item: Spraying Item {agentData} ");
 
-        if (agentData.sprayDestination.preventContact) return;
+        if (agentData.sprayDestination.preventContact) return false;
         agentData.sprayDestination.MakeContact();
+
+        return true;
 
     }
 }
 
+[Serializable]
+class Unlock : UseFunctionality<CanUnlock.Data>
+{
+    public override bool Use(CanUnlock.Data agentData, Action cb)
+    {
+        if (!agentData.hasRequiredItem) return false;
+        Debug.Log($"Item: Spraying Item {agentData} ");
 
+        return true;
 
+    }
+}

@@ -216,12 +216,23 @@ public class Inventory : MonoBehaviour, IDependencyProvider
         if(agent.hashStates.TryGetValue(item.stateAndFunctionality, out IState state))
         {
             print($"Inv: Using item {item}, data {data}");
-            state.Use(data);
+            state.Use(data, this, RemoveCurrentSelectedItem);
         }
         else
             Debug.Log("Item failed use");
 
     }
 
+    public void RemoveItem(Item item)
+    {
+        pickedUpItems.Remove(item);
+    }
+
+    void RemoveCurrentSelectedItem()
+    {
+        pickedUpItems.Remove(pickedUpItems[selectItem]);
+        gridParent.transform.GetChild(selectItem).GetComponent<InventorySlot>().ResetSlot();
+
+    }
 
 }

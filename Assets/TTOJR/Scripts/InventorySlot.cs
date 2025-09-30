@@ -28,6 +28,12 @@ public class InventorySlot : RuntimeInjectableMonoBehaviour
         displayIcon.sprite = item.icon;
     }
 
+    public void ResetSlot()
+    {
+        myItem = null;
+        displayIcon.sprite = emptyIcon;
+    }
+
     public void Select()
     {
         selectedIndicator.SetActive(true);

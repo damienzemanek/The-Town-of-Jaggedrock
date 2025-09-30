@@ -22,7 +22,7 @@ public class LocationalDetector<T> : Detector
 
     protected void OnTriggerEnter(Collider other)
     {
-        if (!onEnter) return;
+        if (!onEnter || enterState == null) return;
         print("Detector: Can Place Enter Check");
         var newData = (T)enterState.GetDataValue();
         UpdateStateData(other, newData);
@@ -30,14 +30,14 @@ public class LocationalDetector<T> : Detector
 
     protected void OnTriggerStay(Collider other)
     {
-        if (!onStay) return;
+        if (!onStay || stayState == null) return;
         var newData = (T)stayState.GetDataValue();
         UpdateStateData(other, newData);
     }
 
     protected void OnTriggerExit(Collider other)
     {
-        if (!onExit) return;
+        if (!onExit || exitState == null) return;
         var newData = (T)exitState.GetDataValue();
         UpdateStateData(other, newData);
     }

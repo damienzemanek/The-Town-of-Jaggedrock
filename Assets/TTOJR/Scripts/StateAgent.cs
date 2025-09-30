@@ -42,7 +42,8 @@ public class StateAgent : MonoBehaviour, IDependencyProvider
 [field: Serializable]
 public interface IState
 {
-    public void Use(object obj);
+    public StateAgent agent { get; set; }
+    public void Use(object obj, Inventory inv, Action callback = null);
     public void ChangeDataValue(object val);
     public object GetDataValue();
 }
@@ -50,8 +51,9 @@ public interface IState
 [Serializable]
 public abstract class State<T> : IState
 {
+    public StateAgent agent { get; set; }
     [field: SerializeField] public abstract UseFunctionality<T> functionality { get; }
-    public void Use(object obj) => functionality.Use((T)obj);
+    public void Use(object obj, Inventory inv, Action callback = null) => functionality.Use((T)obj, callback);
     [field: SerializeField] protected virtual T data { get; set; }
     public void ChangeDataValue(object val) => ChangeDataValue((T)val);
     public void ChangeDataValue(T val) => data = val;
@@ -76,7 +78,16 @@ public abstract class Uses : RequiredItem
     [field: SerializeField] public virtual bool usedUp { get; set; }
     [field: SerializeField] public virtual int uses { get; set; }
     [field: SerializeField] public virtual int initialUses { get; set; }
-    public virtual void Use() { uses--; if (uses <= 0) RunOutOfUses(); }
+    public virtual void Use(Item itemBeingUsed, Action callback = null)
+    {
+        Debug.Log($"StateAgent: Uses item used, current uses: {uses}.");
+        uses--;
+        if (uses <= 0)
+        {
+            RunOutOfUses();
+            callback?.Invoke();
+        }
+    }
     public virtual void RunOutOfUses() { usedUp = true; }
     public virtual void UsesInit() { uses = initialUses; usedUp = false; }
 }
@@ -124,6 +135,24 @@ public class CanSpray : State<CanSpray.Data>, IState
         public override void SetHasRequiredItem(bool val) => hasRequiredItem = val;
         public void SetCanSpray(bool val) => canSpray = val;
         public void SetSprayLocation(Destination val) => sprayDestination = val;
+    }
+
+}
+
+[Serializable]
+public class CanUnlock : State<CanUnlock.Data>, IState
+{
+    Unlock _functionality = new Unlock();
+    [field: SerializeField] public override UseFunctionality<Data> functionality { get => _functionality; }
+
+    [Serializable]
+    public class Data : RequiredItem
+    {
+        [field: SerializeField] public HashSet<int> keyNumbers { get; set; }
+        public override bool hasRequiredItem { get; set; }
+        public override Item requiredItem { get; set; }
+
+        public override void SetHasRequiredItem(bool val) => hasRequiredItem = val;
     }
 
 }
