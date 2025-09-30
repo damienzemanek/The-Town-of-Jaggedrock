@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class CanPlaceDetector : LocationalDetector<CanPlace.Data>
+public class CanPlaceDetector : StateChangeDetector<CanPlace.Data>
 {
     protected override void UpdateStateData(Collider other, CanPlace.Data newData)
     {

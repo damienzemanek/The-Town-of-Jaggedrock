@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class CanSprayDetector : LocationalDetector<CanSpray.Data>
+public class CanSprayDetector : StateChangeDetector<CanSpray.Data>
 {
     protected override void UpdateStateData(Collider other, CanSpray.Data newData)
     {
