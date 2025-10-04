@@ -14,16 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Towels
   icon: {fileID: 21300000, guid: 9b8aca84f8869e446a5ab44b450ffb0c, type: 3}
-  stateAndFunctionality:
-    rid: 9200141061183504607
+  functionality:
+    rid: 5167628849117397098
   references:
     version: 2
     RefIds:
-    - rid: 9200141061183504607
-      type: {class: CanPlace, ns: , asm: Assembly-CSharp}
+    - rid: 5167628849117397098
+      type: {class: Placeable, ns: , asm: Assembly-CSharp}
       data:
+        <variations>k__BackingField:
+        - rid: 5167628879241412726
+        - rid: 5167628879241412728
         <data>k__BackingField:
-          canPlace: 0
-          hasObject: 0
-          placeLocation: {fileID: 0}
-          objectToPlace: {fileID: 6080151802301790228, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
+          rid: 5167628849117397100
+    - rid: 5167628849117397100
+      type: {class: Placeable/Data, ns: , asm: Assembly-CSharp}
+      data:
+        placeLocation: {fileID: 0}
+        objectToPlace: {fileID: 6080151802301790228, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
+    - rid: 5167628879241412726
+      type: {class: RequiredItem, ns: , asm: Assembly-CSharp}
+      data:
+        <hasRequiredItem>k__BackingField: 0
+        <requiredItem>k__BackingField: {fileID: 11400000}
+    - rid: 5167628879241412728
+      type: {class: Uses, ns: , asm: Assembly-CSharp}
+      data:
+        <usedUp>k__BackingField: 0
+        <uses>k__BackingField: 1
+        <initialUses>k__BackingField: 1

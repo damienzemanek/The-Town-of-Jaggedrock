@@ -9,19 +9,19 @@ using Sirenix.Utilities;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[RequireComponent(typeof(Interactor))]
 public class Inventory : MonoBehaviour, IDependencyProvider
 {
-    [BoxGroup(group: "Runtime")][SerializeField] Camera cam;
-    [BoxGroup(group: "Runtime")][SerializeField] LayerMask itemMask;
-    [BoxGroup(group: "Runtime")][SerializeField] float dist;
+    [Inject] MainCamera cam;
+    [BoxGroup(group: "Runtime")][field: SerializeReference] public List<Item> pickedUpItems { get; set; }
+
     [BoxGroup(group: "Runtime")][SerializeField] GameObject displayPickup;
-    [BoxGroup(group: "Runtime")][SerializeField] List<Item> pickedUpItems;
     [BoxGroup(group: "Runtime")][SerializeField] int selectItem;
     [BoxGroup(group: "Runtime")][SerializeField] Pickup potentialItem;
-    [BoxGroup(group: "Runtime")][SerializeField] bool canPickup;
+    [BoxGroup(group: "Runtime")][SerializeField] public bool canPickup { get; private set; }
 
     [Inject] EntityControls controls;
-    [Inject] StateAgent agent;
+    Interactor interactor;
 
     [BoxGroup(group: "UI")][field: SerializeField] public GameObject gridParent { get; private set; }
     [BoxGroup(group: "UI")][field: SerializeField] public GameObject inventorySlotPrefab { get; private set; }
@@ -33,7 +33,10 @@ public class Inventory : MonoBehaviour, IDependencyProvider
 
     [BoxGroup(group: "UI")][SerializeField] int slotCount;
 
-
+    private void Awake()
+    {
+        interactor = GetComponent<Interactor>();
+    }
 
     private void OnEnable()
     {
@@ -43,11 +46,17 @@ public class Inventory : MonoBehaviour, IDependencyProvider
         {
             controls.intentoryNums[i] += SelectItem;
         }
+
+        interactor.RaycasterEvent += PickupRaycast;
+        interactor.FailedRaycast += PickupRaycastFailed;
     }
 
     private void OnDisable()
     {
         controls.interact -= Interact;
+
+        interactor.RaycasterEvent -= PickupRaycast;
+        interactor.FailedRaycast -= PickupRaycastFailed;
     }
 
     private void Start()
@@ -58,123 +67,63 @@ public class Inventory : MonoBehaviour, IDependencyProvider
         CreateInventorySlots();
     }
 
-    private void Update()
+    void PickupRaycast(Ray ray, RaycastHit hit)
     {
-        PickupRaycast();
+        if (!hit.transform.gameObject.GetComponent<Pickup>()) return;
+        //print("Pickup raycast");
+        Debug.DrawLine(ray.origin, hit.point, Color.green);
+        TogglePickup(true);
+        potentialItem = hit.transform.gameObject.GetComponent<Pickup>();
     }
 
-    void PickupRaycast()
+    void PickupRaycastFailed()
     {
-        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
-        if (Physics.Raycast(ray, out RaycastHit hit, dist, itemMask))
-        {
-            Debug.DrawLine(ray.origin, hit.point, Color.green);
-            TogglePickup(true);
-            potentialItem = hit.transform.gameObject.GetComponent<Pickup>();
-        }
-        else
-        {
-            potentialItem = null;
-            TogglePickup(val: false);
-        }
+        TogglePickup(false);
+    }
 
-        void TogglePickup(bool val)
-        {
-            canPickup = val;
-            displayPickup.SetActive(val);
-        }
+    void TogglePickup(bool val)
+    {
+        //print($"toggling pickup {val}");
+        potentialItem = null;
+        canPickup = val;
+        displayPickup.SetActive(val);
     }
 
     void Interact()
     {
         Place();
-        Pickup();
+        if (canPickup)
+            Pickup();
     }
 
     void Pickup()
     {
-        if (!canPickup) return;
         Item newItem = potentialItem.item;
         pickedUpItems.Add(newItem);
-        int newIndex = pickedUpItems.IndexOf(newItem);
+        int newIndex = pickedUpItems.IndexOf(item: newItem);
+        print($"Inv: New item index {newIndex}");
         SetDisplayItem(newItem, newIndex);
         if (pickedUpItems.Count == 1)
             SelectItem(newIndex);
 
-        print("Inv: Pciking up item");
-        var data = newItem.stateAndFunctionality.GetDataValue();
-
-        if (data is Uses)
-            SetStates_ThatHaveUses();
-        if (data is RequiredItem)
-            SetStates_ThatRequireItems(newItem);
-
-
+        print("Inv: Picking up item");
+        object newData = newItem.functionality.Data;
+        if (newData == null) Debug.LogError("Item SO functionality not set (null)");
 
         potentialItem.PickedUp();
     }
 
     void Place()
     {
+        if (canPickup) return;
+
         Item itemBeingPlaced = null;
-        IState state = null;
 
         if (pickedUpItems.Count > selectItem)
             itemBeingPlaced = pickedUpItems[selectItem];
         else return;
         print("Inv: has an item that can be selected");
-
-        if (itemBeingPlaced != null)
-        {
-            state = agent.GetState(itemBeingPlaced.stateAndFunctionality);
-            print($"Inv: Selected state: {state}");
-        }
-        else return;
-
-        print("Inv: has a state that coincides with a selectable item");
-
-
-        if (state != null)
-        {
-            print("Inv: state is not null");
-            TryUseItem(pickedUpItems[selectItem], state.GetDataValue());
-        }
-        else return;
-
-        print("Inv: can select item");
-
-
     }
-
-    void SetStates_ThatHaveUses()
-    {
-        print("Inv: Updating item with uses");
-
-        var agentStates_CanPlace_SameObject = agent.hashStates
-            .Where(s => s.GetDataValue() is Uses u)
-            .ForEach(s =>
-            {
-                var agentData = (Uses)s.GetDataValue();
-                agentData.UsesInit();
-            });
-    }
-
-    void SetStates_ThatRequireItems(Item newItem)
-    {
-        print("Inv: Updating item that require items");
-
-        var agentStates_CanPlace_SameObject = agent.hashStates
-            .Where(s => s.GetDataValue() is RequiredItem r
-             && ReferenceEquals(r.requiredItem, newItem))
-            .ForEach(s =>
-            {
-                RequiredItem r = (RequiredItem)s.GetDataValue();
-                r.SetHasRequiredItem(true);
-                print("Inv: Update success");
-            });
-
-    }
-
 
     void CreateInventorySlots()
     {
@@ -188,8 +137,10 @@ public class Inventory : MonoBehaviour, IDependencyProvider
 
     void SetDisplayItem(Item item, int i)
     {
+        print("Inv: Setting new display item");
         gridParent.transform.GetChild(i).GetComponent<InventorySlot>().SetSlot(item);
     }
+    
     void DisplayItem(int i)
     {
         gridParent.transform.GetChild(i).GetComponent<InventorySlot>().Select();
@@ -210,19 +161,6 @@ public class Inventory : MonoBehaviour, IDependencyProvider
         .ForEach(s => s.Unselect());
     }
 
-    void TryUseItem(Item item, object data)
-    {
-        print("Inv: Trying to use item");
-        if(agent.hashStates.TryGetValue(item.stateAndFunctionality, out IState state))
-        {
-            print($"Inv: Using item {item}, data {data}");
-            state.Use(data, this, RemoveCurrentSelectedItem);
-        }
-        else
-            Debug.Log("Item failed use");
-
-    }
-
     public void RemoveItem(Item item)
     {
         pickedUpItems.Remove(item);
@@ -233,6 +171,16 @@ public class Inventory : MonoBehaviour, IDependencyProvider
         pickedUpItems.Remove(pickedUpItems[selectItem]);
         gridParent.transform.GetChild(selectItem).GetComponent<InventorySlot>().ResetSlot();
 
+    }
+
+    public Item GetCurrentItem()
+    {
+        if (pickedUpItems.Count <= 0) return null;
+        if (pickedUpItems.Count < selectItem) return null;
+        if (pickedUpItems[selectItem] != null) 
+            return pickedUpItems[selectItem];
+
+        return null;
     }
 
 

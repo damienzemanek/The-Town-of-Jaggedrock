@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class SprayableDestination : Destination
+public class SprayableDestination : MonoBehaviour, IDestination
 {
-    public override bool preventContact { get => isClean; set => isClean = value; }
+    public bool preventContact { get => isClean; set => isClean = value; }
     public bool isClean;
     public GameObject dirtyObject;
-    public override void MakeContact() => Clean();
-    public override void ResetContact() => Dirty();
+    public void MakeContact() => Clean();
+    public void ResetContact() => Dirty();
 
     private void Start()
     {
