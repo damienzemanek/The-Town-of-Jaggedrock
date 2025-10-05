@@ -32,7 +32,7 @@ public sealed class RequiredItem : ItemVariationData
 }
 
 
-[Serializable]
+ [Serializable]
 public sealed class Uses : ItemVariationData
 {
     [field: SerializeField] public Inventory inv { get; set; }
@@ -261,21 +261,3 @@ class DestinationUser : ItemFunctionality<DestinationUser.Data>
         data.SetUseLocation(newData.useDestination);
     }
 }
-
-
-
-
-//[Serializable]
-//class Unlock : UseFunctionality<CanUnlock.Data>
-//{
-//    public override bool Use(CanUnlock.Data agentData, Action cb)
-//    {
-//        if (agentData.requiredItem.tag != "key") return false;
-//        Debug.Log(message: $"Item: Unlocking door w/ Item {agentData} ");
-
-//        if (agentData.doorDestination.preventContact) return false;
-//            agentData.doorDestination.MakeContact();
-
-//        return true;
-//    }
-//}

@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: Key 1
   m_EditorClassIdentifier: 
   Name: Key
-  tag: key
   icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  stateAndFunctionality:
-    rid: 9200141154425241719
+  functionality:
+    rid: 5167628891253113110
   references:
     version: 2
     RefIds:
-    - rid: 9200141154425241719
-      type: {class: CanUnlock, ns: , asm: Assembly-CSharp}
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 5167628891253113110
+      type: {class: DestinationUser, ns: , asm: Assembly-CSharp}
       data:
+        <variations>k__BackingField: []
         <data>k__BackingField:
-          <hasRequiredItem>k__BackingField: 0
-          <requiredItem>k__BackingField: {fileID: 11400000}
+          rid: -2

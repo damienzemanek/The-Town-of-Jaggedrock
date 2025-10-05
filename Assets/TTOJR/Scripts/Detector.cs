@@ -13,7 +13,7 @@ public class Detector : MonoBehaviour
     [ShowIf("rayCastDetector")] public GameObject casterObject { get => obj; set => obj = value; }
     [ShowIf("notCaster")] public GameObject colliderObject { get => obj; set => obj = value; }
 
-    [PropertyOrder(0)] [BoxGroup("Enable Unity Events")][SerializeField] protected bool onEnter;
+    [PropertyOrder(0)][BoxGroup("Enable Unity Events")][SerializeField] protected bool onEnter;
     [PropertyOrder(1)][BoxGroup("Enable Unity Events")][ShowIf("onEnter")] public UnityEvent Enter;
     [PropertyOrder(2)][BoxGroup("Enable Unity Events")][SerializeField] protected bool onStay;
     [PropertyOrder(3)][BoxGroup("Enable Unity Events")][ShowIf("onStay")] public UnityEvent Stay;
