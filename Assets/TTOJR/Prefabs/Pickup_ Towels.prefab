@@ -190,7 +190,6 @@ GameObject:
   - component: {fileID: 200131125112957416}
   - component: {fileID: 7853786840210191299}
   - component: {fileID: 7395105119978997452}
-  - component: {fileID: 2085353036325264884}
   m_Layer: 7
   m_Name: Pickup_ Towels
   m_TagString: Untagged
@@ -304,19 +303,7 @@ MonoBehaviour:
   <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2085353036325264884}
-        m_TargetAssemblyTypeName: InventoryUpdater, Assembly-CSharp
-        m_MethodName: UpdateItem
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &7395105119978997452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,7 +319,7 @@ MonoBehaviour:
   rayCastDetector: 1
   obj: {fileID: 0}
   raycasted: 0
-  onEnter: 0
+  onEnter: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
@@ -340,51 +327,10 @@ MonoBehaviour:
   Stay:
     m_PersistentCalls:
       m_Calls: []
-  onExit: 0
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
   <locationMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 8
---- !u!114 &2085353036325264884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6080151802301790228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a240f640956840841b32f2098109f992, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  intention: PIckup Event callback
-  variationDataUpdate: 1
-  functionalityDataUpdate: 0
-  functionalityUseItemCallback:
-    m_PersistentCalls:
-      m_Calls: []
-  itemDataPhases:
-  - rid: 5167628879241412696
-  references:
-    version: 2
-    RefIds:
-    - rid: 5167628879241412696
-      type: {class: Placeable, ns: , asm: Assembly-CSharp}
-      data:
-        <variations>k__BackingField:
-        - rid: 5167628879241412698
-        <data>k__BackingField:
-          rid: 5167628879241412697
-    - rid: 5167628879241412697
-      type: {class: Placeable/Data, ns: , asm: Assembly-CSharp}
-      data:
-        placeLocation: {fileID: 0}
-        objectToPlace: {fileID: 0}
-        locationDetector: {fileID: 0}
-    - rid: 5167628879241412698
-      type: {class: RequiredItem, ns: , asm: Assembly-CSharp}
-      data:
-        <hasRequiredItem>k__BackingField: 1
-        <requiredItem>k__BackingField: {fileID: 11400000, guid: b7b681c82c9668b47af52c2d7a49996e, type: 2}

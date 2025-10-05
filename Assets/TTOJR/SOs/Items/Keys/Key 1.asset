@@ -12,18 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c656c5d7992fac42800355fc2a04ec6, type: 3}
   m_Name: Key 1
   m_EditorClassIdentifier: 
-  Name: Key
+  <type>k__BackingField: 3
   icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   functionality:
     rid: 5167628891253113110
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
     - rid: 5167628891253113110
       type: {class: DestinationUser, ns: , asm: Assembly-CSharp}
       data:
         <variations>k__BackingField: []
         <data>k__BackingField:
-          rid: -2
+          rid: 5167628900989665382
+    - rid: 5167628900989665382
+      type: {class: DestinationUser/Data, ns: , asm: Assembly-CSharp}
+      data:
+        <useDestination>k__BackingField: {fileID: 0}

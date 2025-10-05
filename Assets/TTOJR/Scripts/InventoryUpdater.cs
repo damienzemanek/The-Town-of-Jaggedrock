@@ -1,13 +1,13 @@
+using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Detector))]
+[RequireComponent(typeof(PreRequisiteCallbackDetector))]
 public class InventoryUpdater : MonoBehaviour
 {
-    public string intention;
-    Detector detector;
+    PreRequisiteCallbackDetector detector;
 
     public bool variationDataUpdate;
     public bool functionalityDataUpdate;
@@ -15,31 +15,39 @@ public class InventoryUpdater : MonoBehaviour
 
     private void Awake()
     {
-        detector = gameObject.GetComponent<Detector>();
+        detector = gameObject.GetComponent<PreRequisiteCallbackDetector>();
     }
 
-    [field:SerializeReference] public IItemFunctionality[] itemDataPhases;
+    [Button]
+    public void AddItemDataPhase(Item item)
+    {
+        if(item != null)
+            itemDataPhases.Add(item.Clone());
+    }
+
+    [InlineEditor] [field:SerializeReference] public List<Item> itemDataPhases;
 
     public void UpdateItem(int phase)
     {
-        IItemFunctionality interactItemFunctionality = itemDataPhases[phase];
+        print($"Inv: UPDATER attempting item update phase {phase}");
+        Item interactItem = itemDataPhases[phase];
         if (detector.casterObject == null) Debug.LogError("Inv: UPDATER detector obj is NULL");
         Inventory inv = detector.casterObject.gameObject.GetComponent<Inventory>();
         print(inv);
         Item invItem = inv.pickedUpItems.FirstOrDefault
-            (itm => itm.functionality.GetType() == interactItemFunctionality.GetType());
+            (itm => itm != null && itm.type == interactItem.type);
         if(invItem == null)
         {
             print("Inv: UPDATER no item found of that type, returning");
             return;
         }
-        print(invItem.Name);
+        print(invItem.type.ToString());
 
         if (functionalityDataUpdate)
-            invItem.functionality.UpdateFunctionalityData(interactItemFunctionality.Data);
+            invItem.functionality.UpdateFunctionalityData(interactItem.functionality.Data);
 
         if (variationDataUpdate)
-            VariationDataUpdate(invItem, interactItemFunctionality);
+            VariationDataUpdate(invItem, interactItem.functionality);
 
     }
 
@@ -60,16 +68,15 @@ public class InventoryUpdater : MonoBehaviour
         }
     }
 
-    public void UseItem(int phase)
+    public void UseItem()
     {
-        IItemFunctionality interactItemFunctionality = itemDataPhases[phase];
         Inventory inv = detector.casterObject.gameObject.GetComponent<Inventory>();
         print(inv);
         Item invItem = inv.GetCurrentItem();
 
         if (invItem == null) return;
-        if (invItem.functionality.GetType() != interactItemFunctionality.GetType()) return;       
-        print($"Inventory: UPDATER using item {invItem.Name} which is a {invItem.functionality.GetType()}");
+        if (invItem.functionality.GetType() != detector.lookingForChangesToItem.functionality.GetType()) return;       
+        print($"Inventory: UPDATER using item {invItem.type.ToString()} which is a {invItem.functionality.GetType()}");
         invItem.functionality.CanUse_ThenUse(functionalityUseItemCallback);
     }
 

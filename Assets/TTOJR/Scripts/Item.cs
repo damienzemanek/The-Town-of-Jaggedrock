@@ -15,21 +15,6 @@ public abstract class ItemVariationData
     public abstract ItemVariationData UpdateValueThenGet(ItemVariationData newVariationData = null);
 }
 
-[Serializable]
-public sealed class RequiredItem : ItemVariationData
-{
-    public override void Reset() => SetHasRequiredItem(val: false);
-    [field: SerializeField] public bool hasRequiredItem { get; private set; }
-    [field: SerializeField] public Item requiredItem { get; set; }
-    public void SetHasRequiredItem(bool val) => hasRequiredItem = val;
-
-    public override ItemVariationData UpdateValueThenGet(ItemVariationData newVariationData = null)
-    {
-        RequiredItem newData = (RequiredItem)newVariationData;
-        hasRequiredItem = newData.hasRequiredItem;
-        return this;
-    }
-}
 
 
  [Serializable]
@@ -62,6 +47,7 @@ public sealed class Uses : ItemVariationData
     { 
         usedUp = true;
         inv.RemoveCurrentSelectedItem();
+        inv.interactor.ToggleCanInteract(false);
         Debug.Log("Item: VARIATION Uses out of uses");
     }
     public void UsesInit() { uses = initialUses; usedUp = false; }
@@ -73,14 +59,37 @@ public sealed class Uses : ItemVariationData
 [CreateAssetMenu(fileName = "New Item", menuName = "ScriptableObject/Item")]
 public class Item : ScriptableObject
 {
-    public string Name;
+    public enum ItemType
+    {
+        none,
+        towels,
+        cleaningspray,
+        keys,
+        deadcroweffigy,
+        notebook,
+        polaroid,
+        revolver
+    }
+    [field:SerializeField] public ItemType type { get; set; }
     public Sprite icon;
 
    [field: SerializeReference] public IItemFunctionality functionality;
 
+    public Item Clone(string namesuff = " instance")
+    {
+        var clone = CreateInstance<Item>();
+        clone.name = name + namesuff;
+        clone.type = type;
+        clone.icon = icon;
+        clone.functionality = functionality?.Clone();
+        var vars = clone.functionality?.variations;
+        vars?.ForEach(v => v.Reset());
+        return clone;
+    }
+
 }
 
-
+[field: Serializable]
 public interface IItemFunctionality 
 {
     public abstract bool CanUse_ThenUse(UnityEvent callback = null);
@@ -133,25 +142,16 @@ class Placeable : ItemFunctionality<Placeable.Data>
     public override bool VariantsAllowUse()
     {
         //Variations
-        RequiredItem requiredItem = null;
         Uses usesItem = null;
 
         //Getting the variations
         for (int i = 0; i < variations.Count; i++)
         {
-            if (variations[i] is RequiredItem foundReqItem)
-                requiredItem = foundReqItem;
-
             if (variations[i] is Uses foundUsesItem)
                 usesItem = foundUsesItem;
         }
 
         //Check if we even have the variants
-        if (requiredItem == null)
-        {
-            Debug.LogWarning($"Item: Variant RequiredItem not found on item {this.GetType()}");
-            return false;
-        }
         if (usesItem == null)
         {
             Debug.LogWarning($"Item: Variant Uses not found on item {this.GetType()}"); 
@@ -161,7 +161,7 @@ class Placeable : ItemFunctionality<Placeable.Data>
         Debug.Log($"Item: Attempting to use {GetType()}");
 
         //Check if the variations stop the item use
-        if (requiredItem.hasRequiredItem || !usesItem.usedUp) return true;
+        if (!usesItem.usedUp) return true;
         return false;
     }
 
@@ -214,28 +214,7 @@ class DestinationUser : ItemFunctionality<DestinationUser.Data>
 
     public override bool VariantsAllowUse()
     {
-        //Variations
-        RequiredItem requiredItem = null;
-
-        //Getting the variations
-        for (int i = 0; i < variations.Count; i++)
-        {
-            if (variations[i] is RequiredItem foundReqItem)
-                requiredItem = foundReqItem;
-        }
-
-        //Check if we even have the variants
-        if (requiredItem == null)
-        {
-            Debug.LogWarning($"Item: Variant RequiredItem not found on item {this.GetType()}");
-            return false;
-        }
-
-        Debug.Log($"Item: Attempting to use {GetType()}");
-
-        //Check if the variations stop the item use
-        if (requiredItem.hasRequiredItem) return true;
-        return false;
+        return true;
     }
 
     public override bool CanUse_ThenUse(UnityEvent callback = null)

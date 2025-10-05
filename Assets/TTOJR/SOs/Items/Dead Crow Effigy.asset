@@ -12,5 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c656c5d7992fac42800355fc2a04ec6, type: 3}
   m_Name: Dead Crow Effigy
   m_EditorClassIdentifier: 
-  Name: 
+  <type>k__BackingField: 4
   icon: {fileID: 0}
+  functionality:
+    rid: -2
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

@@ -13,8 +13,9 @@ using UnityEngine;
 [RequireComponent(typeof(Interactor))]
 public class Inventory : MonoBehaviour, IDependencyProvider
 {
+    public const int INV_SIZE = 5;
     [Inject] MainCamera cam;
-    [BoxGroup(group: "Runtime")][field: SerializeReference] public List<Item> pickedUpItems { get; set; }
+    [BoxGroup(group: "Runtime")][field: SerializeReference] public Item[] pickedUpItems { get; set; } = new Item[INV_SIZE];
 
     [BoxGroup(group: "Runtime")][SerializeField] GameObject displayPickup;
     [BoxGroup(group: "Runtime")][SerializeField] int selectItem;
@@ -22,7 +23,7 @@ public class Inventory : MonoBehaviour, IDependencyProvider
     [BoxGroup(group: "Runtime")][SerializeField] public bool canPickup { get; private set; }
 
     [Inject] EntityControls controls;
-    Interactor interactor;
+    public Interactor interactor { get; private set; }
 
     [BoxGroup(group: "UI")][field: SerializeField] public GameObject gridParent { get; private set; }
     [BoxGroup(group: "UI")][field: SerializeField] public GameObject inventorySlotPrefab { get; private set; }
@@ -84,7 +85,7 @@ public class Inventory : MonoBehaviour, IDependencyProvider
 
     void TogglePickup(bool val)
     {
-        //print($"toggling pickup {val}");
+        print($"toggling pickup {val}");
         potentialItem = null;
         canPickup = val;
         displayPickup.SetActive(val);
@@ -100,13 +101,20 @@ public class Inventory : MonoBehaviour, IDependencyProvider
     void Pickup()
     {
         Item newItem = potentialItem.item;
-        pickedUpItems.Add(newItem);
-        int newIndex = pickedUpItems.IndexOf(item: newItem);
+        int newIndex = 0;
+        for (int i = 0; i < pickedUpItems.Length; i++)
+        {
+            if (pickedUpItems[i] == null)
+            {
+                pickedUpItems[i] = newItem;
+                newIndex = i;
+                break;
+            }
+        };
+        print($"Inv: new item is {newItem.type.ToString()}");
         SetDisplayItem(newItem, newIndex);
-        if (pickedUpItems.Count == 1)
-            SelectItem(newIndex);
+        SelectItem(newIndex);
 
-        print("Inv: Picking up item");
         object newData = newItem.functionality.Data;
         if (newData == null) Debug.LogError("Item SO functionality not set (null)");
 
@@ -140,9 +148,13 @@ public class Inventory : MonoBehaviour, IDependencyProvider
         UnselectAllItems();
         print($"Inv: Selecting Item index {num}");
         DisplayItem(num);
-        if (num >= pickedUpItems.Count) return; if (pickedUpItems.Count <= 0) return;
-        print($"Inv: Item selected is {pickedUpItems[num].Name}");
-        PreRequisiteStateChangeDetector.hasItemPreRequisite.Invoke(pickedUpItems[num], true);
+        if (num >= pickedUpItems.Length) return; if (pickedUpItems.Length <= 0) return;
+        if (pickedUpItems[num] == null)
+            print($"Inv: Item selected is NULL or EMPTY");
+        else
+            print($"Inv: Item selected is {pickedUpItems[num].type.ToString()}");
+
+        PreRequisiteCallbackDetector.hasItemPreRequisite.Invoke(pickedUpItems[num], true);
         print($"Inv: Set preq to {true}");
     }
 
@@ -152,25 +164,29 @@ public class Inventory : MonoBehaviour, IDependencyProvider
         gridParent.GetComponentsInChildren<InventorySlot>(true)
         .ToList()
         .ForEach(action: s => s.Unselect());
-        PreRequisiteStateChangeDetector.HasItemPrequisitesReset();
+        PreRequisiteCallbackDetector.HasItemPrequisitesReset();
     }
 
     public void RemoveItem(Item item)
     {
-        pickedUpItems.Remove(item);
+        for(int i = 0; i < pickedUpItems.Length; i++)
+            if (pickedUpItems[i] == item)
+                pickedUpItems[i] = null;
     }
 
     public void RemoveCurrentSelectedItem()
     {
-        PreRequisiteStateChangeDetector.hasItemPreRequisite?.Invoke(pickedUpItems[selectItem], false);
-        pickedUpItems.Remove(pickedUpItems[selectItem]);
+        PreRequisiteCallbackDetector.hasItemPreRequisite?.Invoke(pickedUpItems[selectItem], false);
+        RemoveItem(pickedUpItems[selectItem]);
         gridParent.transform.GetChild(selectItem).GetComponent<InventorySlot>().ResetSlot();
+        interactor.FailedRaycast?.Invoke();
+        interactor.InteractEvent = null;
     }
 
     public Item GetCurrentItem()
     {
-        if (pickedUpItems.Count <= 0) return null;
-        if (pickedUpItems.Count < selectItem) return null;
+        if (pickedUpItems.Length <= 0) return null;
+        if (pickedUpItems.Length <= selectItem) return null;
         if (pickedUpItems[selectItem] != null) 
             return pickedUpItems[selectItem];
 

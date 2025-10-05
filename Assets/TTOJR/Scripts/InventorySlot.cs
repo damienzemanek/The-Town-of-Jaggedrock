@@ -23,7 +23,7 @@ public class InventorySlot : RuntimeInjectableMonoBehaviour
 
     public void SetSlot(Item item)
     {
-        print($"Inventory Slot: Setting Slot with item {item.Name}");
+        print($"Inventory Slot: Setting Slot with item {item.type.ToString()}");
         myItem = item;
         displayIcon.sprite = item.icon;
     }

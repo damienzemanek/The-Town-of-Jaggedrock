@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class PreRequisiteStateChangeDetector : CallbackDetector
+public class PreRequisiteCallbackDetector : CallbackDetector
 {
     [SerializeField] bool _preRequisite;
     [field:SerializeField] public Item lookingForChangesToItem { get; set; }
@@ -36,14 +36,13 @@ public class PreRequisiteStateChangeDetector : CallbackDetector
             return; 
         }
         if (lookingForChangesToItem == null) return;
-        if (item.functionality.GetType() == lookingForChangesToItem.functionality.GetType())
+        if (item.type == lookingForChangesToItem.type)
             _preRequisite = val;
-    } 
-
+    }
     protected override void OnTriggerEnter(Collider other)
     {
-        print("PreReq: OnTrigger Enter");
         if (!_preRequisite) return;
+        print(message: "PreReq: OnTrigger Enter");
         base.OnTriggerEnter(other);
     }
 
@@ -51,7 +50,7 @@ public class PreRequisiteStateChangeDetector : CallbackDetector
     {
         if (obj != null && !_preRequisite) base.OnTriggerExit(other);
         if (!_preRequisite) return;
-        if (somethingCollided && obj == null) base.OnTriggerEnter(other);
+        if (somethingCollided && obj == null) { print("Something collided"); OnTriggerEnter(other); }
         base.OnTriggerStay(other);
     }
 
@@ -61,6 +60,23 @@ public class PreRequisiteStateChangeDetector : CallbackDetector
         base.OnTriggerExit(other);
     }
 
+
+    public override void OnRaycastedEnter(GameObject caster)
+    {
+        if (!_preRequisite) return;
+        base.OnRaycastedEnter(caster);
+    }
+
+    public override void OnRaycastedStay(GameObject caster)
+    {
+        if (!_preRequisite) return;
+        base.OnRaycastedStay(caster);
+    }
+
+    public override void OnRaycastedExit(GameObject caster)
+    {
+        base.OnRaycastedExit(caster);
+    }
 }
 
 

@@ -19,7 +19,8 @@ public class Teleport : MonoBehaviour
 
     public void DoTeleport()
     {
-        if (objToTeleport == null) Debug.LogError($"TP: No Object found to teleport");
+        print("Teleport: Attempting TP");
+        if (objToTeleport == null) Debug.LogError(message: $"TP: No Object found to teleport");
         objToTeleport.transform.position = tpLoc.position;
     }
 

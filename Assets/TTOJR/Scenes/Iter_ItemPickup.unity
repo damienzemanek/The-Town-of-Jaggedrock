@@ -119,6 +119,35 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &92498238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c656c5d7992fac42800355fc2a04ec6, type: 3}
+  m_Name: Cleaning Spray instance
+  m_EditorClassIdentifier: 
+  <type>k__BackingField: 2
+  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  functionality:
+    rid: 5167628900989665490
+  references:
+    version: 2
+    RefIds:
+    - rid: 5167628900989665490
+      type: {class: DestinationUser, ns: , asm: Assembly-CSharp}
+      data:
+        <variations>k__BackingField: []
+        <data>k__BackingField:
+          rid: 5167628900989665491
+    - rid: 5167628900989665491
+      type: {class: DestinationUser/Data, ns: , asm: Assembly-CSharp}
+      data:
+        <useDestination>k__BackingField: {fileID: 0}
 --- !u!1 &98296642
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,38 +511,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a240f640956840841b32f2098109f992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intention: Detector Enter/Exit -> UpdateItem
   variationDataUpdate: 0
   functionalityDataUpdate: 1
   functionalityUseItemCallback:
     m_PersistentCalls:
       m_Calls: []
   itemDataPhases:
-  - rid: 5167628891253113014
-  - rid: 5167628891253113019
-  references:
-    version: 2
-    RefIds:
-    - rid: 5167628891253113014
-      type: {class: DestinationUser, ns: , asm: Assembly-CSharp}
-      data:
-        <variations>k__BackingField: []
-        <data>k__BackingField:
-          rid: 5167628891253113015
-    - rid: 5167628891253113015
-      type: {class: DestinationUser/Data, ns: , asm: Assembly-CSharp}
-      data:
-        <useDestination>k__BackingField: {fileID: 107119406}
-    - rid: 5167628891253113019
-      type: {class: DestinationUser, ns: , asm: Assembly-CSharp}
-      data:
-        <variations>k__BackingField: []
-        <data>k__BackingField:
-          rid: 5167628891253113020
-    - rid: 5167628891253113020
-      type: {class: DestinationUser/Data, ns: , asm: Assembly-CSharp}
-      data:
-        <useDestination>k__BackingField: {fileID: 0}
+  - {fileID: 1304950750}
+  - {fileID: 92498238}
 --- !u!114 &107119408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,6 +532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 0
+  collisionDetector: 1
   obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
@@ -557,7 +563,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onStay: 1
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls:
@@ -604,6 +610,7 @@ MonoBehaviour:
   <locationMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 8
+  raycastEntered: 0
   functionality: 0
   useCallback:
     rid: 5167628891253113113
@@ -622,7 +629,7 @@ MonoBehaviour:
           - m_Target: {fileID: 107119407}
             m_TargetAssemblyTypeName: InventoryUpdater, Assembly-CSharp
             m_MethodName: UseItem
-            m_Mode: 3
+            m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1956,6 +1963,45 @@ Transform:
   m_Children: []
   m_Father: {fileID: 98296643}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &400832477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c656c5d7992fac42800355fc2a04ec6, type: 3}
+  m_Name: Towels instance
+  m_EditorClassIdentifier: 
+  <type>k__BackingField: 1
+  icon: {fileID: 21300000, guid: 9b8aca84f8869e446a5ab44b450ffb0c, type: 3}
+  functionality:
+    rid: 5167628900989665495
+  references:
+    version: 2
+    RefIds:
+    - rid: 5167628900989665495
+      type: {class: Placeable, ns: , asm: Assembly-CSharp}
+      data:
+        <variations>k__BackingField:
+        - rid: 5167628900989665496
+        <data>k__BackingField:
+          rid: 5167628900989665497
+    - rid: 5167628900989665496
+      type: {class: Uses, ns: , asm: Assembly-CSharp}
+      data:
+        <inv>k__BackingField: {fileID: 0}
+        <usedUp>k__BackingField: 0
+        <uses>k__BackingField: 1
+        <initialUses>k__BackingField: 1
+    - rid: 5167628900989665497
+      type: {class: Placeable/Data, ns: , asm: Assembly-CSharp}
+      data:
+        placeLocation: {fileID: 0}
+        objectToPlace: {fileID: 6080151802301790228, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
+        locationDetector: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -2204,6 +2250,7 @@ GameObject:
   - component: {fileID: 580276500}
   - component: {fileID: 580276499}
   - component: {fileID: 580276502}
+  - component: {fileID: 580276503}
   m_Layer: 6
   m_Name: key (1)
   m_TagString: Untagged
@@ -2319,6 +2366,38 @@ MonoBehaviour:
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &580276503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 580276497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f46259c236a818c4e9686db9663a4436, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayCastDetector: 1
+  collisionDetector: 0
+  obj: {fileID: 0}
+  raycasted: 0
+  onEnter: 1
+  Enter:
+    m_PersistentCalls:
+      m_Calls: []
+  onStay: 0
+  Stay:
+    m_PersistentCalls:
+      m_Calls: []
+  onExit: 1
+  Exit:
+    m_PersistentCalls:
+      m_Calls: []
+  <locationMask>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 8
+  raycastEntered: 0
 --- !u!1 &594555547
 GameObject:
   m_ObjectHideFlags: 0
@@ -2388,6 +2467,45 @@ Transform:
   - {fileID: 890581307}
   m_Father: {fileID: 1951918758}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &639775640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c656c5d7992fac42800355fc2a04ec6, type: 3}
+  m_Name: Towels instance
+  m_EditorClassIdentifier: 
+  <type>k__BackingField: 1
+  icon: {fileID: 21300000, guid: 9b8aca84f8869e446a5ab44b450ffb0c, type: 3}
+  functionality:
+    rid: 5167628900989665492
+  references:
+    version: 2
+    RefIds:
+    - rid: 5167628900989665492
+      type: {class: Placeable, ns: , asm: Assembly-CSharp}
+      data:
+        <variations>k__BackingField:
+        - rid: 5167628900989665493
+        <data>k__BackingField:
+          rid: 5167628900989665494
+    - rid: 5167628900989665493
+      type: {class: Uses, ns: , asm: Assembly-CSharp}
+      data:
+        <inv>k__BackingField: {fileID: 0}
+        <usedUp>k__BackingField: 0
+        <uses>k__BackingField: 1
+        <initialUses>k__BackingField: 1
+    - rid: 5167628900989665494
+      type: {class: Placeable/Data, ns: , asm: Assembly-CSharp}
+      data:
+        placeLocation: {fileID: 1109141746}
+        objectToPlace: {fileID: 6080151802301790228, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
+        locationDetector: {fileID: 837159817}
 --- !u!1 &649653416
 GameObject:
   m_ObjectHideFlags: 0
@@ -4025,7 +4143,6 @@ GameObject:
   - component: {fileID: 837159819}
   - component: {fileID: 837159818}
   - component: {fileID: 837159822}
-  - component: {fileID: 837159823}
   - component: {fileID: 837159824}
   m_Layer: 7
   m_Name: Location Detector
@@ -4136,6 +4253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  collisionDetector: 0
   obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
@@ -4201,6 +4319,7 @@ MonoBehaviour:
   <locationMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 8
+  raycastEntered: 0
   functionality: 0
   useCallback:
     rid: 5167628891253113062
@@ -4219,7 +4338,7 @@ MonoBehaviour:
           - m_Target: {fileID: 837159824}
             m_TargetAssemblyTypeName: InventoryUpdater, Assembly-CSharp
             m_MethodName: UseItem
-            m_Mode: 3
+            m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4228,49 +4347,6 @@ MonoBehaviour:
               m_StringArgument: 
               m_BoolArgument: 0
             m_CallState: 2
---- !u!114 &837159823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 837159817}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a240f640956840841b32f2098109f992, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  intention: 'Detector Use Callback -> Uses '
-  variationDataUpdate: 1
-  functionalityDataUpdate: 0
-  functionalityUseItemCallback:
-    m_PersistentCalls:
-      m_Calls: []
-  itemDataPhases:
-  - rid: 5167628849117397128
-  references:
-    version: 2
-    RefIds:
-    - rid: 5167628849117397128
-      type: {class: Placeable, ns: , asm: Assembly-CSharp}
-      data:
-        <variations>k__BackingField:
-        - rid: 5167628891253112918
-        <data>k__BackingField:
-          rid: 5167628849117397129
-    - rid: 5167628849117397129
-      type: {class: Placeable/Data, ns: , asm: Assembly-CSharp}
-      data:
-        placeLocation: {fileID: 0}
-        objectToPlace: {fileID: 0}
-        locationDetector: {fileID: 0}
-    - rid: 5167628891253112918
-      type: {class: Uses, ns: , asm: Assembly-CSharp}
-      data:
-        <inv>k__BackingField: {fileID: 0}
-        <usedUp>k__BackingField: 0
-        <uses>k__BackingField: 0
-        <initialUses>k__BackingField: 0
 --- !u!114 &837159824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4283,42 +4359,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a240f640956840841b32f2098109f992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intention: Detector ENT/EXT -> Functionality
   variationDataUpdate: 0
   functionalityDataUpdate: 1
   functionalityUseItemCallback:
     m_PersistentCalls:
       m_Calls: []
   itemDataPhases:
-  - rid: 5167628891253112942
-  - rid: 5167628891253112944
-  references:
-    version: 2
-    RefIds:
-    - rid: 5167628891253112942
-      type: {class: Placeable, ns: , asm: Assembly-CSharp}
-      data:
-        <variations>k__BackingField: []
-        <data>k__BackingField:
-          rid: 5167628891253112943
-    - rid: 5167628891253112943
-      type: {class: Placeable/Data, ns: , asm: Assembly-CSharp}
-      data:
-        placeLocation: {fileID: 1109141746}
-        objectToPlace: {fileID: 6080151802301790228, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
-        locationDetector: {fileID: 837159817}
-    - rid: 5167628891253112944
-      type: {class: Placeable, ns: , asm: Assembly-CSharp}
-      data:
-        <variations>k__BackingField: []
-        <data>k__BackingField:
-          rid: 5167628891253112945
-    - rid: 5167628891253112945
-      type: {class: Placeable/Data, ns: , asm: Assembly-CSharp}
-      data:
-        placeLocation: {fileID: 0}
-        objectToPlace: {fileID: 0}
-        locationDetector: {fileID: 0}
+  - {fileID: 639775640}
+  - {fileID: 400832477}
 --- !u!1 &864556832
 GameObject:
   m_ObjectHideFlags: 0
@@ -4367,6 +4415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  collisionDetector: 0
   obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
@@ -4384,6 +4433,7 @@ MonoBehaviour:
   <locationMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 128
+  raycastEntered: 0
   functionality: 0
   useCallback:
     rid: -2
@@ -5512,8 +5562,9 @@ GameObject:
   - component: {fileID: 1154877176}
   - component: {fileID: 1154877175}
   - component: {fileID: 1154877181}
-  - component: {fileID: 1154877178}
+  - component: {fileID: 1154877183}
   - component: {fileID: 1154877182}
+  - component: {fileID: 1154877178}
   m_Layer: 7
   m_Name: obj
   m_TagString: Untagged
@@ -5637,6 +5688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  collisionDetector: 0
   obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
@@ -5654,6 +5706,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1154877183}
+        m_TargetAssemblyTypeName: InventoryUpdater, Assembly-CSharp
+        m_MethodName: UpdateItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1154877178}
         m_TargetAssemblyTypeName: Teleport, Assembly-CSharp
@@ -5687,12 +5751,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1154877183}
+        m_TargetAssemblyTypeName: InventoryUpdater, Assembly-CSharp
+        m_MethodName: UpdateItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   <locationMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 8
+  raycastEntered: 0
   functionality: 0
   useCallback:
-    rid: 5167628891253113107
+    rid: 5167628900989665475
   toggleUseCallback: []
   currCallback: 0
   _preRequisite: 0
@@ -5700,14 +5777,14 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5167628891253113107
+    - rid: 5167628900989665475
       type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
       data:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 1154877178}
-            m_TargetAssemblyTypeName: Teleport, Assembly-CSharp
-            m_MethodName: DoTeleport
+          - m_Target: {fileID: 1154877183}
+            m_TargetAssemblyTypeName: InventoryUpdater, Assembly-CSharp
+            m_MethodName: UseItem
             m_Mode: 1
             m_Arguments:
               m_ObjectArgument: {fileID: 0}
@@ -5732,10 +5809,42 @@ MonoBehaviour:
   <preventContact>k__BackingField: 0
   Contact:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1154877178}
+        m_TargetAssemblyTypeName: Teleport, Assembly-CSharp
+        m_MethodName: DoTeleport
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Reset:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1154877183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154877173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a240f640956840841b32f2098109f992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variationDataUpdate: 0
+  functionalityDataUpdate: 1
+  functionalityUseItemCallback:
+    m_PersistentCalls:
+      m_Calls: []
+  itemDataPhases:
+  - {fileID: 1826561317}
+  - {fileID: 1746774287}
 --- !u!1001 &1175809993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5751,6 +5860,10 @@ PrefabInstance:
     - target: {fileID: 373574799293960687, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
       propertyPath: m_Name
       value: 'Pickup: KeyChain'
+      objectReference: {fileID: 0}
+    - target: {fileID: 373574799293960687, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5795,10 +5908,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1597162769745340619, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
 --- !u!1 &1192540914
 GameObject:
@@ -6152,6 +6262,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1262498383}
   m_CullTransparentMesh: 1
+--- !u!114 &1304950750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c656c5d7992fac42800355fc2a04ec6, type: 3}
+  m_Name: Cleaning Spray instance
+  m_EditorClassIdentifier: 
+  <type>k__BackingField: 2
+  icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  functionality:
+    rid: 5167628900989665487
+  references:
+    version: 2
+    RefIds:
+    - rid: 5167628900989665487
+      type: {class: DestinationUser, ns: , asm: Assembly-CSharp}
+      data:
+        <variations>k__BackingField: []
+        <data>k__BackingField:
+          rid: 5167628900989665488
+    - rid: 5167628900989665488
+      type: {class: DestinationUser/Data, ns: , asm: Assembly-CSharp}
+      data:
+        <useDestination>k__BackingField: {fileID: 107119406}
 --- !u!1 &1323535680
 GameObject:
   m_ObjectHideFlags: 0
@@ -10795,6 +10934,35 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1746774287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c656c5d7992fac42800355fc2a04ec6, type: 3}
+  m_Name: Key 1 instance
+  m_EditorClassIdentifier: 
+  <type>k__BackingField: 3
+  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  functionality:
+    rid: 5167628905739452489
+  references:
+    version: 2
+    RefIds:
+    - rid: 5167628905739452489
+      type: {class: DestinationUser, ns: , asm: Assembly-CSharp}
+      data:
+        <variations>k__BackingField: []
+        <data>k__BackingField:
+          rid: 5167628905739452490
+    - rid: 5167628905739452490
+      type: {class: DestinationUser/Data, ns: , asm: Assembly-CSharp}
+      data:
+        <useDestination>k__BackingField: {fileID: 0}
 --- !u!1 &1776887849
 GameObject:
   m_ObjectHideFlags: 0
@@ -10826,6 +10994,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 515707339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1826561317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c656c5d7992fac42800355fc2a04ec6, type: 3}
+  m_Name: Key 1 instance
+  m_EditorClassIdentifier: 
+  <type>k__BackingField: 3
+  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  functionality:
+    rid: 5167628900989665507
+  references:
+    version: 2
+    RefIds:
+    - rid: 5167628900989665507
+      type: {class: DestinationUser, ns: , asm: Assembly-CSharp}
+      data:
+        <variations>k__BackingField: []
+        <data>k__BackingField:
+          rid: 5167628900989665508
+    - rid: 5167628900989665508
+      type: {class: DestinationUser/Data, ns: , asm: Assembly-CSharp}
+      data:
+        <useDestination>k__BackingField: {fileID: 1154877182}
 --- !u!1 &1951918756
 GameObject:
   m_ObjectHideFlags: 0
@@ -11044,7 +11241,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3ee9cf78624ff64cab0b69a4208f28d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <pickedUpItems>k__BackingField: []
+  <pickedUpItems>k__BackingField:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   displayPickup: {fileID: 1216084264}
   selectItem: 0
   potentialItem: {fileID: 0}
@@ -11558,6 +11760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  collisionDetector: 0
   obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
@@ -11599,6 +11802,7 @@ MonoBehaviour:
   <locationMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 8
+  raycastEntered: 0
   functionality: 1
   useCallback:
     rid: -2
@@ -11927,14 +12131,6 @@ PrefabInstance:
     - target: {fileID: 6080151802301790228, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
       propertyPath: m_Name
       value: 'Pickup: Towels'
-      objectReference: {fileID: 0}
-    - target: {fileID: 7395105119978997452, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
-      propertyPath: onExit
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7395105119978997452, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
-      propertyPath: onEnter
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9181181238037711441, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
       propertyPath: m_LocalPosition.x

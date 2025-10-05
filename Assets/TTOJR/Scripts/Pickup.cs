@@ -14,11 +14,12 @@ public class Pickup : MonoBehaviour
     private void Awake()
     {
         item = ScriptableObject.CreateInstance<Item>();
-        item.Name = presetItem.name + " instance";
+        item.type = presetItem.type;
         item.functionality = presetItem.functionality?.Clone();
         item.icon = presetItem.icon;
         item.functionality.variations?.ForEach(v => v.Reset());
 
+        gameObject.layer = 7;
     }
 
     public void PickedUp(Inventory inv)

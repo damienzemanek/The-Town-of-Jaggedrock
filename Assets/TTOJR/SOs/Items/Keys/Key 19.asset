@@ -12,17 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c656c5d7992fac42800355fc2a04ec6, type: 3}
   m_Name: Key 19
   m_EditorClassIdentifier: 
-  Name: Key
-  tag: key
+  <type>k__BackingField: 3
   icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  stateAndFunctionality:
-    rid: 9200141154425241724
+  functionality:
+    rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 9200141154425241724
-      type: {class: CanUnlock, ns: , asm: Assembly-CSharp}
-      data:
-        <data>k__BackingField:
-          <hasRequiredItem>k__BackingField: 0
-          <requiredItem>k__BackingField: {fileID: 11400000}
+    - rid: -2
+      type: {class: , ns: , asm: }

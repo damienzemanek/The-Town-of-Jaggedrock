@@ -25,39 +25,25 @@ public class CallbackDetector : Detector
                 toggleUseCallback[i].AddListener(ToggleCallback);
 
     }
-
-    protected override void OnTriggerEnter(Collider other)
+    protected override void EnterImplementationChild(Collider other)
     {
-        if (!IsInLayer(other)) return;
-        print("Enter");
-
         Functionalities(other.gameObject);
-
-        base.OnTriggerEnter(other);
-
     }
 
-    protected override void OnTriggerStay(Collider other)
+    protected override void StayImplementationChild(Collider other)
     {
-        if (!IsInLayer(other)) return;
-
         Functionalities(other.gameObject);
-
-        base.OnTriggerStay(other);
     }
 
-    protected override void OnTriggerExit(Collider other)
+    protected override void ExitImplementationChild(Collider other)
     {
-        if (!IsInLayer(other)) return;
-
-        Functionalities((other.gameObject));
-
-        base.OnTriggerExit(other);
-
+        Functionalities(other.gameObject);
     }
+
 
     void Functionalities(GameObject other)
     {
+        //if (other == null) return;
         if (!other.gameObject.GetComponent<Interactor>()) return;
 
         if (singleCbCheck())
@@ -81,19 +67,20 @@ public class CallbackDetector : Detector
 
     public override void OnRaycastedEnter(GameObject caster)
     {
-        if (!CasterInLayer(caster)) return;
-
         Functionalities((caster));
-
         base.OnRaycastedEnter (caster);
     }
 
+    public override void OnRaycastedStay(GameObject caster)
+    {
+        Functionalities((caster));
+        base.OnRaycastedStay(caster);
+    }
+
+
     public override void OnRaycastedExit(GameObject caster)
     {
-        if (!CasterInLayer(caster)) return;
-
         Functionalities((caster));
-
         base.OnRaycastedExit(caster);
     }
 

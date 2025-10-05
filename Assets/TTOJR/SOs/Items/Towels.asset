@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c656c5d7992fac42800355fc2a04ec6, type: 3}
   m_Name: Towels
   m_EditorClassIdentifier: 
-  Name: Towels
+  <type>k__BackingField: 1
   icon: {fileID: 21300000, guid: 9b8aca84f8869e446a5ab44b450ffb0c, type: 3}
   functionality:
     rid: 5167628849117397098
@@ -23,7 +23,6 @@ MonoBehaviour:
       type: {class: Placeable, ns: , asm: Assembly-CSharp}
       data:
         <variations>k__BackingField:
-        - rid: 5167628879241412726
         - rid: 5167628879241412728
         <data>k__BackingField:
           rid: 5167628849117397100
@@ -32,14 +31,11 @@ MonoBehaviour:
       data:
         placeLocation: {fileID: 0}
         objectToPlace: {fileID: 6080151802301790228, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
-    - rid: 5167628879241412726
-      type: {class: RequiredItem, ns: , asm: Assembly-CSharp}
-      data:
-        <hasRequiredItem>k__BackingField: 0
-        <requiredItem>k__BackingField: {fileID: 11400000}
+        locationDetector: {fileID: 0}
     - rid: 5167628879241412728
       type: {class: Uses, ns: , asm: Assembly-CSharp}
       data:
+        <inv>k__BackingField: {fileID: 0}
         <usedUp>k__BackingField: 0
         <uses>k__BackingField: 1
         <initialUses>k__BackingField: 1

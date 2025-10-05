@@ -63,7 +63,7 @@ public class Interactor : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, mainCamera.castDist, interactionMask))
         {
             RaycasterEvent?.Invoke(ray, hit);
-            hit.transform.gameObject.GetComponent<Detector>().OnRaycastedEnter(gameObject);
+            hit.transform.gameObject.GetComponent<Detector>().OnRaycastedStay(gameObject);
         }
         else
             FailedRaycast?.Invoke();
