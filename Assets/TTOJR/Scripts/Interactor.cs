@@ -49,7 +49,6 @@ public class Interactor : MonoBehaviour
 
     public void Interact()
     {
-        if (controls.GetComponent<Inventory>().canPickup) return;
         if (canInteract)
         {
             InteractEvent?.Invoke();

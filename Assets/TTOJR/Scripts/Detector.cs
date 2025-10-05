@@ -4,46 +4,54 @@ using UnityEngine.Events;
 
 public class Detector : MonoBehaviour
 {
+    protected bool somethingCollided;
     public bool rayCastDetector;
     bool notCaster => !rayCastDetector;
-    GameObject obj;
+    [SerializeField] protected GameObject obj;
 
     [ShowIf("rayCastDetector")] public bool raycasted;
     [ShowIf("rayCastDetector")] public GameObject casterObject { get => obj; set => obj = value; }
     [ShowIf("notCaster")] public GameObject colliderObject { get => obj; set => obj = value; }
 
-    [BoxGroup("Enable Unity Events")][SerializeField] protected bool onEnter;
-    [BoxGroup("Enable Unity Events")][SerializeField] protected bool onStay;
-    [BoxGroup("Enable Unity Events")][SerializeField] protected bool onExit;
-
-    [ShowIf("onEnter")] public UnityEvent Enter;
-    [ShowIf("onStay")] public UnityEvent Stay;
-    [ShowIf("onExit")] public UnityEvent Exit;
+    [PropertyOrder(0)] [BoxGroup("Enable Unity Events")][SerializeField] protected bool onEnter;
+    [PropertyOrder(1)][BoxGroup("Enable Unity Events")][ShowIf("onEnter")] public UnityEvent Enter;
+    [PropertyOrder(2)][BoxGroup("Enable Unity Events")][SerializeField] protected bool onStay;
+    [PropertyOrder(3)][BoxGroup("Enable Unity Events")][ShowIf("onStay")] public UnityEvent Stay;
+    [PropertyOrder(4)][BoxGroup("Enable Unity Events")][SerializeField] protected bool onExit;
+    [PropertyOrder(5)][BoxGroup("Enable Unity Events")][ShowIf("onExit")] public UnityEvent Exit;
 
     [field: SerializeField] public LayerMask locationMask { get; private set; }
 
     protected virtual void OnTriggerEnter(Collider other)
     {
+        if (!onEnter) return;
         if (rayCastDetector) return;
         if (!IsInLayer(other)) return;
         obj = other.gameObject;
-        if (onEnter) Enter?.Invoke();
+        print("Detector: Enter");
+        Enter?.Invoke();
     }
 
     protected virtual void OnTriggerStay(Collider other)
     {
-        if (rayCastDetector) return;
         if (!IsInLayer(other)) return;
+        somethingCollided = true;
+        if (!onStay) return;
+        if (rayCastDetector) return;
         obj = other.gameObject;
-        if (onStay) Stay?.Invoke();
+        print("Detector: Stay");
+        Stay?.Invoke();
     }
 
     protected virtual void OnTriggerExit(Collider other)
     {
+        if (!onExit) return;
         if (rayCastDetector) return;
         if (!IsInLayer(other)) return;
+        print("Detector: Exit");
+        Exit?.Invoke();
         obj = null;
-        if (onExit) Exit?.Invoke();
+        somethingCollided = false;
     }
 
     protected bool IsInLayer(Collider other)
@@ -62,6 +70,7 @@ public class Detector : MonoBehaviour
 
     public virtual void OnRaycastedEnter(GameObject caster)
     {
+        if (!onEnter) return;
         if (!rayCastDetector) return;
         if (!CasterInLayer(caster)) return;
         //print("raycast enter");
@@ -72,15 +81,16 @@ public class Detector : MonoBehaviour
 
         raycasted = true;
 
-        if (onEnter) Enter?.Invoke();
+        Enter?.Invoke();
     }
 
     public virtual void OnRaycastedExit(GameObject caster)
     {
+        if (!onExit) return;
         if (!rayCastDetector) return;
         if (!CasterInLayer(casterBuffer)) return;
-        obj = null;
         if (onExit) Exit?.Invoke();
+        obj = null;
     }
 
     void DisableRaycasted()

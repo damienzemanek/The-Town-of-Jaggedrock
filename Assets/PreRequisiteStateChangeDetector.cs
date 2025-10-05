@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,35 +9,55 @@ using UnityEngine;
 
 public class PreRequisiteStateChangeDetector : CallbackDetector
 {
+    [SerializeField] bool _preRequisite;
+    [field:SerializeField] public Item lookingForChangesToItem { get; set; }
+    public static void HasItemPrequisitesReset() => hasItemPreRequisite?.Invoke(null, false);
+    public static Action<Item, bool> hasItemPreRequisite;
 
-    public static List<Action<bool>> callbacks = new List<Action<bool>>();
+    //1 -> Has items
 
-    bool _preRequisite;
-    public void SetPreRequisite(bool val) => _preRequisite = val;
-    public Action<bool> SetPreReqCb;
-
-    private void Awake()
+    private void OnEnable()
     {
-        SetPreReqCb += SetPreRequisite;
-        callbacks.Add(SetPreReqCb);
+        hasItemPreRequisite += SetPreRequisite;
     }
 
+    private void OnDisable()
+    {
+        hasItemPreRequisite -= SetPreRequisite;
+    }
+
+    void SetPreRequisite(Item item, bool val)
+    {
+        print("Inv: Attempting to set prereq");
+        if (item == null) 
+        { 
+            _preRequisite = false;
+            print("Resseting Prereqs");
+            return; 
+        }
+        if (lookingForChangesToItem == null) return;
+        if (item.functionality.GetType() == lookingForChangesToItem.functionality.GetType())
+            _preRequisite = val;
+    } 
 
     protected override void OnTriggerEnter(Collider other)
     {
-        if (!_preRequisite) return; if (!IsInLayer(other)) return;
+        print("PreReq: OnTrigger Enter");
+        if (!_preRequisite) return;
         base.OnTriggerEnter(other);
     }
 
     protected override void OnTriggerStay(Collider other)
     {
-        if (!_preRequisite) return; if (!IsInLayer(other)) return;
+        if (obj != null && !_preRequisite) base.OnTriggerExit(other);
+        if (!_preRequisite) return;
+        if (somethingCollided && obj == null) base.OnTriggerEnter(other);
         base.OnTriggerStay(other);
     }
 
     protected override void OnTriggerExit(Collider other)
     {
-        if (!_preRequisite) return; if (!IsInLayer(other)) return;
+        if (!_preRequisite) return; 
         base.OnTriggerExit(other);
     }
 

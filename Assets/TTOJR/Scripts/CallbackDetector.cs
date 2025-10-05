@@ -6,8 +6,8 @@ using UnityEngine.Events;
 public class CallbackDetector : Detector
 {
     public CallbackFunctionality functionality;
-    [ShowIf(nameof(singleCbCheck))][field: SerializeReference] public UnityEvent callback;
-    [ShowIf(nameof(toggleCbCheck))] [field: SerializeReference] public UnityEvent[] toggleCallback;
+    [ShowIf(nameof(singleCbCheck))][field: SerializeReference] public UnityEvent useCallback;
+    [ShowIf(nameof(toggleCbCheck))] [field: SerializeReference] public UnityEvent[] toggleUseCallback;
     [ShowIf(nameof(toggleCbCheck))][SerializeField] int currCallback = 0;
     public enum CallbackFunctionality
     {
@@ -21,14 +21,15 @@ public class CallbackDetector : Detector
     private void Awake()
     {
         if(toggleCbCheck())
-            for(int i = 0; i < toggleCallback.Length; i++)
-                toggleCallback[i].AddListener(ToggleCallback);
+            for(int i = 0; i < toggleUseCallback.Length; i++)
+                toggleUseCallback[i].AddListener(ToggleCallback);
 
     }
 
     protected override void OnTriggerEnter(Collider other)
     {
         if (!IsInLayer(other)) return;
+        print("Enter");
 
         Functionalities(other.gameObject);
 
@@ -61,12 +62,12 @@ public class CallbackDetector : Detector
 
         if (singleCbCheck())
         { 
-            other.gameObject.GetComponent<Interactor>().SetInteractEvent(callback); 
+            other.gameObject.GetComponent<Interactor>().SetInteractEvent(callback: useCallback); 
             return;
         }
         if (toggleCbCheck())
         {
-            other.gameObject.GetComponent<Interactor>().SetInteractEvent(toggleCallback[currCallback]);
+            other.gameObject.GetComponent<Interactor>().SetInteractEvent(toggleUseCallback[currCallback]);
             return;
         }
     }

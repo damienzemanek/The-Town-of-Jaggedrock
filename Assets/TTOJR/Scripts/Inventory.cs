@@ -7,6 +7,7 @@ using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor.Drawers;
 using Sirenix.Utilities;
 using Unity.VisualScripting;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 [RequireComponent(typeof(Interactor))]
@@ -91,7 +92,7 @@ public class Inventory : MonoBehaviour, IDependencyProvider
 
     void Interact()
     {
-        Place();
+        print("Inv: Interacting");
         if (canPickup)
             Pickup();
     }
@@ -101,7 +102,6 @@ public class Inventory : MonoBehaviour, IDependencyProvider
         Item newItem = potentialItem.item;
         pickedUpItems.Add(newItem);
         int newIndex = pickedUpItems.IndexOf(item: newItem);
-        print($"Inv: New item index {newIndex}");
         SetDisplayItem(newItem, newIndex);
         if (pickedUpItems.Count == 1)
             SelectItem(newIndex);
@@ -110,19 +110,7 @@ public class Inventory : MonoBehaviour, IDependencyProvider
         object newData = newItem.functionality.Data;
         if (newData == null) Debug.LogError("Item SO functionality not set (null)");
 
-        potentialItem.PickedUp();
-    }
-
-    void Place()
-    {
-        if (canPickup) return;
-
-        Item itemBeingPlaced = null;
-
-        if (pickedUpItems.Count > selectItem)
-            itemBeingPlaced = pickedUpItems[selectItem];
-        else return;
-        print("Inv: has an item that can be selected");
+        potentialItem.PickedUp(this);
     }
 
     void CreateInventorySlots()
@@ -150,15 +138,21 @@ public class Inventory : MonoBehaviour, IDependencyProvider
     void SelectItem(int num)
     {
         UnselectAllItems();
-        print($"Inventory: Selecting Item {num}");
+        print($"Inv: Selecting Item index {num}");
         DisplayItem(num);
+        if (num >= pickedUpItems.Count) return; if (pickedUpItems.Count <= 0) return;
+        print($"Inv: Item selected is {pickedUpItems[num].Name}");
+        PreRequisiteStateChangeDetector.hasItemPreRequisite.Invoke(pickedUpItems[num], true);
+        print($"Inv: Set preq to {true}");
     }
 
     void UnselectAllItems()
     {
+        print("Inv: Unsellecting all items");
         gridParent.GetComponentsInChildren<InventorySlot>(true)
         .ToList()
-        .ForEach(s => s.Unselect());
+        .ForEach(action: s => s.Unselect());
+        PreRequisiteStateChangeDetector.HasItemPrequisitesReset();
     }
 
     public void RemoveItem(Item item)
@@ -166,11 +160,11 @@ public class Inventory : MonoBehaviour, IDependencyProvider
         pickedUpItems.Remove(item);
     }
 
-    void RemoveCurrentSelectedItem()
+    public void RemoveCurrentSelectedItem()
     {
+        PreRequisiteStateChangeDetector.hasItemPreRequisite?.Invoke(pickedUpItems[selectItem], false);
         pickedUpItems.Remove(pickedUpItems[selectItem]);
         gridParent.transform.GetChild(selectItem).GetComponent<InventorySlot>().ResetSlot();
-
     }
 
     public Item GetCurrentItem()

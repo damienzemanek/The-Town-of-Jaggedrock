@@ -1,8 +1,18 @@
 using UnityEngine;
+using UnityEngine.Events;
 
-public interface IDestination 
+public class Destination : MonoBehaviour, IDestination
 {
-    public abstract bool preventContact { get; set; }
-    public abstract void MakeContact();
-    public abstract void ResetContact();
+    [field: SerializeField] public bool preventContact { get; set; } = false;
+    public void MakeContact() { Contact?.Invoke(); Debug.Log("Destination: Made Contact"); }
+    public void ResetContact() => Reset?.Invoke();
+
+    public UnityEvent Contact;
+    public UnityEvent Reset;
+
+    private void Start()
+    {
+        Reset?.Invoke();
+    }
+
 }

@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -984,6 +985,8 @@ GameObject:
   - component: {fileID: 107119404}
   - component: {fileID: 107119403}
   - component: {fileID: 107119406}
+  - component: {fileID: 107119408}
+  - component: {fileID: 107119407}
   m_Layer: 7
   m_Name: Location Detector
   m_TagString: Untagged
@@ -1092,78 +1095,198 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 953d5434c443ee2448d0c1fda959e204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isClean: 0
-  dirtyObject: {fileID: 2132379618}
---- !u!1 &116154885 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6080151802301790228, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
-  m_PrefabInstance: {fileID: 7374547706522262681}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &116154891
+  <preventContact>k__BackingField: 0
+  Contact:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2132379618}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Reset:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2132379618}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &107119407
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116154885}
+  m_GameObject: {fileID: 107119401}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a240f640956840841b32f2098109f992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  functionalityDataUpdate: 0
-  variationDataUpdate: 1
+  intention: Detector Enter/Exit -> UpdateItem
+  variationDataUpdate: 0
+  functionalityDataUpdate: 1
+  functionalityUseItemCallback:
+    m_PersistentCalls:
+      m_Calls: []
   itemDataPhases:
-  - rid: 5167628879241412696
+  - rid: 5167628891253113014
+  - rid: 5167628891253113019
   references:
     version: 2
     RefIds:
-    - rid: 5167628879241412696
-      type: {class: Placeable, ns: , asm: Assembly-CSharp}
+    - rid: 5167628891253113014
+      type: {class: DestinationUser, ns: , asm: Assembly-CSharp}
       data:
-        <variations>k__BackingField:
-        - rid: 5167628879241412698
+        <variations>k__BackingField: []
         <data>k__BackingField:
-          rid: 5167628879241412697
-    - rid: 5167628879241412697
-      type: {class: Placeable/Data, ns: , asm: Assembly-CSharp}
+          rid: 5167628891253113015
+    - rid: 5167628891253113015
+      type: {class: DestinationUser/Data, ns: , asm: Assembly-CSharp}
       data:
-        placeLocation: {fileID: 0}
-        objectToPlace: {fileID: 0}
-    - rid: 5167628879241412698
-      type: {class: RequiredItem, ns: , asm: Assembly-CSharp}
+        <useDestination>k__BackingField: {fileID: 107119406}
+    - rid: 5167628891253113019
+      type: {class: DestinationUser, ns: , asm: Assembly-CSharp}
       data:
-        <hasRequiredItem>k__BackingField: 1
-        <requiredItem>k__BackingField: {fileID: 11400000, guid: b7b681c82c9668b47af52c2d7a49996e, type: 2}
---- !u!114 &116154892
+        <variations>k__BackingField: []
+        <data>k__BackingField:
+          rid: 5167628891253113020
+    - rid: 5167628891253113020
+      type: {class: DestinationUser/Data, ns: , asm: Assembly-CSharp}
+      data:
+        <useDestination>k__BackingField: {fileID: 0}
+--- !u!114 &107119408
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116154885}
+  m_GameObject: {fileID: 107119401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f46259c236a818c4e9686db9663a4436, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d374b4c8b935b34e98635921825c0ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayCastDetector: 1
+  rayCastDetector: 0
+  obj: {fileID: 0}
   raycasted: 0
-  onEnter: 0
-  onStay: 0
-  onExit: 0
+  onEnter: 1
   Enter:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1951918766}
+        m_TargetAssemblyTypeName: Interactor, Assembly-CSharp
+        m_MethodName: ToggleCanInteract
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 107119407}
+        m_TargetAssemblyTypeName: InventoryUpdater, Assembly-CSharp
+        m_MethodName: UpdateItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onStay: 1
   Stay:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1951918766}
+        m_TargetAssemblyTypeName: Interactor, Assembly-CSharp
+        m_MethodName: ToggleCanInteract
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onExit: 1
   Exit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1951918766}
+        m_TargetAssemblyTypeName: Interactor, Assembly-CSharp
+        m_MethodName: ToggleCanInteract
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 107119407}
+        m_TargetAssemblyTypeName: InventoryUpdater, Assembly-CSharp
+        m_MethodName: UpdateItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   <locationMask>k__BackingField:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 8
+  functionality: 0
+  useCallback:
+    rid: 5167628891253113063
+  toggleUseCallback: []
+  currCallback: 0
+  _preRequisite: 0
+  <lookingForChangesToItem>k__BackingField: {fileID: 11400000, guid: ed37412028e2472428ad0a75becebef4, type: 2}
+  references:
+    version: 2
+    RefIds:
+    - rid: 5167628891253113063
+      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
+      data:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 107119406}
+            m_TargetAssemblyTypeName: Destination, Assembly-CSharp
+            m_MethodName: MakeContact
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
 --- !u!1 &144128611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1214,6 +1337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1341,6 +1465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1466,16 +1591,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -1483,18 +1609,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &207231989
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2528,6 +2651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -3245,16 +3369,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -3262,18 +3387,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &401970140
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3519,6 +3641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -3865,16 +3988,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -3882,18 +4006,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &513117814
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4261,16 +4382,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -4278,18 +4400,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &542400723
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4364,75 +4483,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542400720}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &543024406
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 4.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3182005310683413487, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_Name
-      value: 'PIckup: Keychain'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3182005310683413487, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6444504850154810277, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: <item>k__BackingField
-      value: 
-      objectReference: {fileID: 11400000, guid: e8a7edb2a6627c44d8ea797a43b8b94b, type: 2}
-    - target: {fileID: 7357099605028963546, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_text
-      value: Key Chain
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
 --- !u!1 &580276497
 GameObject:
   m_ObjectHideFlags: 0
@@ -4557,6 +4607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -4853,16 +4904,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -4870,18 +4922,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &643745638
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5092,6 +5141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -5270,6 +5320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -5747,16 +5798,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -5764,18 +5816,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &739770771
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7179,16 +7228,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -7196,18 +7246,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &831865237
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7345,6 +7392,7 @@ GameObject:
   - component: {fileID: 837159818}
   - component: {fileID: 837159822}
   - component: {fileID: 837159823}
+  - component: {fileID: 837159824}
   m_Layer: 7
   m_Name: Location Detector
   m_TagString: Untagged
@@ -7454,10 +7502,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls:
@@ -7473,9 +7520,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 837159824}
+        m_TargetAssemblyTypeName: InventoryUpdater, Assembly-CSharp
+        m_MethodName: UpdateItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls:
@@ -7491,23 +7552,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 837159824}
+        m_TargetAssemblyTypeName: InventoryUpdater, Assembly-CSharp
+        m_MethodName: UpdateItem
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   <locationMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 8
   functionality: 0
-  callback:
-    rid: 5167628849117397116
-  toggleCallback: []
+  useCallback:
+    rid: 5167628891253113062
+  toggleUseCallback: []
   currCallback: 0
+  _preRequisite: 0
+  <lookingForChangesToItem>k__BackingField: {fileID: 11400000, guid: b7b681c82c9668b47af52c2d7a49996e, type: 2}
   references:
     version: 2
     RefIds:
-    - rid: 5167628849117397116
+    - rid: 5167628891253113062
       type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
       data:
         m_PersistentCalls:
           m_Calls:
-          - m_Target: {fileID: 837159823}
+          - m_Target: {fileID: 837159824}
             m_TargetAssemblyTypeName: InventoryUpdater, Assembly-CSharp
             m_MethodName: UseItem
             m_Mode: 3
@@ -7531,8 +7606,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a240f640956840841b32f2098109f992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  functionalityDataUpdate: 1
-  variationDataUpdate: 0
+  intention: 'Detector Use Callback -> Uses '
+  variationDataUpdate: 1
+  functionalityDataUpdate: 0
+  functionalityUseItemCallback:
+    m_PersistentCalls:
+      m_Calls: []
   itemDataPhases:
   - rid: 5167628849117397128
   references:
@@ -7541,14 +7620,71 @@ MonoBehaviour:
     - rid: 5167628849117397128
       type: {class: Placeable, ns: , asm: Assembly-CSharp}
       data:
-        <variations>k__BackingField: []
+        <variations>k__BackingField:
+        - rid: 5167628891253112918
         <data>k__BackingField:
           rid: 5167628849117397129
     - rid: 5167628849117397129
       type: {class: Placeable/Data, ns: , asm: Assembly-CSharp}
       data:
+        placeLocation: {fileID: 0}
+        objectToPlace: {fileID: 0}
+        locationDetector: {fileID: 0}
+    - rid: 5167628891253112918
+      type: {class: Uses, ns: , asm: Assembly-CSharp}
+      data:
+        <inv>k__BackingField: {fileID: 0}
+        <usedUp>k__BackingField: 0
+        <uses>k__BackingField: 0
+        <initialUses>k__BackingField: 0
+--- !u!114 &837159824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837159817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a240f640956840841b32f2098109f992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  intention: Detector ENT/EXT -> Functionality
+  variationDataUpdate: 0
+  functionalityDataUpdate: 1
+  functionalityUseItemCallback:
+    m_PersistentCalls:
+      m_Calls: []
+  itemDataPhases:
+  - rid: 5167628891253112942
+  - rid: 5167628891253112944
+  references:
+    version: 2
+    RefIds:
+    - rid: 5167628891253112942
+      type: {class: Placeable, ns: , asm: Assembly-CSharp}
+      data:
+        <variations>k__BackingField: []
+        <data>k__BackingField:
+          rid: 5167628891253112943
+    - rid: 5167628891253112943
+      type: {class: Placeable/Data, ns: , asm: Assembly-CSharp}
+      data:
         placeLocation: {fileID: 1109141746}
         objectToPlace: {fileID: 6080151802301790228, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
+        locationDetector: {fileID: 837159817}
+    - rid: 5167628891253112944
+      type: {class: Placeable, ns: , asm: Assembly-CSharp}
+      data:
+        <variations>k__BackingField: []
+        <data>k__BackingField:
+          rid: 5167628891253112945
+    - rid: 5167628891253112945
+      type: {class: Placeable/Data, ns: , asm: Assembly-CSharp}
+      data:
+        placeLocation: {fileID: 0}
+        objectToPlace: {fileID: 0}
+        locationDetector: {fileID: 0}
 --- !u!1 &837709435
 GameObject:
   m_ObjectHideFlags: 0
@@ -7773,16 +7909,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -7790,18 +7927,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &864556835
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8198,16 +8332,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -8215,18 +8350,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &934563531
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8351,6 +8483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -8654,6 +8787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -9063,16 +9197,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -9080,18 +9215,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &1044648855
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9392,6 +9524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -9688,6 +9821,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -10117,16 +10251,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -10134,18 +10269,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &1153438262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10356,10 +10488,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 1
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls:
@@ -10375,9 +10506,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls:
@@ -10397,30 +10530,79 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   functionality: 0
-  callback:
-    rid: 5167628849117397077
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 5167628849117397077
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1154877178}
-            m_TargetAssemblyTypeName: Teleport, Assembly-CSharp
-            m_MethodName: DoTeleport
-            m_Mode: 2
-            m_Arguments:
-              m_ObjectArgument: {fileID: 1951918756}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+    - rid: -2
+      type: {class: , ns: , asm: }
+--- !u!1001 &1175809993
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 45137108826730910, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_text
+      value: KeyChain
+      objectReference: {fileID: 0}
+    - target: {fileID: 373574799293960687, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_Name
+      value: 'Pickup: KeyChain'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.818
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1597162769745340619, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
 --- !u!1 &1184051681
 GameObject:
   m_ObjectHideFlags: 0
@@ -10469,16 +10651,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -10486,18 +10669,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &1184051684
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10796,16 +10976,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -10813,18 +10994,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &1195579964
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11025,6 +11203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -15076,6 +15255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -15729,16 +15909,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -15746,18 +15927,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &1374360880
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16056,16 +16234,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -16073,18 +16252,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &1411023553
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16375,16 +16551,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -16392,18 +16569,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &1596932921
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16662,6 +16836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -16789,6 +16964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -17255,16 +17431,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -17272,18 +17449,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &1746297852
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17613,16 +17787,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -17630,18 +17805,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &1817685374
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17766,6 +17938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -17893,6 +18066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -18795,6 +18969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -18952,16 +19127,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -18969,18 +19145,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &2056145870
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19103,16 +19276,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls: []
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls: []
@@ -19120,18 +19294,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   functionality: 0
-  callback:
-    rid: 9200141151162073201
-  toggleCallback: []
+  useCallback:
+    rid: -2
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
-    - rid: 9200141151162073201
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls: []
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!65 &2057474484
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19256,6 +19427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   presetItem: {fileID: 0}
+  <item>k__BackingField: {fileID: 0}
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -19786,10 +19958,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
-  onStay: 0
-  onExit: 1
   Enter:
     m_PersistentCalls:
       m_Calls:
@@ -19805,9 +19976,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  onStay: 0
   Stay:
     m_PersistentCalls:
       m_Calls: []
+  onExit: 1
   Exit:
     m_PersistentCalls:
       m_Calls:
@@ -19827,51 +20000,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   functionality: 1
-  callback:
+  useCallback:
     rid: -2
-  toggleCallback:
-  - rid: 9200141151162073168
-  - rid: 9200141151162073169
+  toggleUseCallback: []
   currCallback: 0
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 9200141151162073168
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1626924856}
-            m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-            m_MethodName: Play
-            m_Mode: 5
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: open
-              m_BoolArgument: 0
-            m_CallState: 2
-    - rid: 9200141151162073169
-      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
-      data:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1626924856}
-            m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-            m_MethodName: Play
-            m_Mode: 5
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: close
-              m_BoolArgument: 0
-            m_CallState: 2
 --- !u!65 &2102650007
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20295,6 +20432,66 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &3607371308065597
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 373574799293960687, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_Name
+      value: 'Pickup: Spray'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204799898860746550, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1597162769745340619, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
 --- !u!1001 &7374547706522262681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20307,45 +20504,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'Pickup: Towels'
       objectReference: {fileID: 0}
-    - target: {fileID: 6080151802301790228, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7853786840210191299, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
-      propertyPath: presetItem
-      value: 
-      objectReference: {fileID: 11400000, guid: b7b681c82c9668b47af52c2d7a49996e, type: 2}
-    - target: {fileID: 7853786840210191299, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
-      propertyPath: pickedUpEvent.m_PersistentCalls.m_Calls.Array.size
+    - target: {fileID: 7395105119978997452, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
+      propertyPath: onExit
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7853786840210191299, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
-      propertyPath: pickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7853786840210191299, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
-      propertyPath: pickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 116154891}
-    - target: {fileID: 7853786840210191299, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
-      propertyPath: pickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7853786840210191299, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
-      propertyPath: pickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: UpdateItem
-      objectReference: {fileID: 0}
-    - target: {fileID: 7853786840210191299, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
-      propertyPath: pickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: InventoryUpdater, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7853786840210191299, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
-      propertyPath: pickedUpEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 9119793664825288307, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
-      propertyPath: m_Mesh
-      value: 
+    - target: {fileID: 7395105119978997452, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
+      propertyPath: onEnter
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9181181238037711441, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20391,77 +20556,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6080151802301790228, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 116154892}
-    - targetCorrespondingSourceObject: {fileID: 6080151802301790228, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 116154891}
     - targetCorrespondingSourceObject: {fileID: 4041991460742056670, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: f0e9eedf47e0d804d82cf0dd8a918c81, type: 3}
---- !u!1001 &8002786353090065483
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 824979942998324074, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3182005310683413487, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_Name
-      value: 'PIckup: Spray'
-      objectReference: {fileID: 0}
-    - target: {fileID: 3182005310683413487, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6714ffa2df13a474894baaffaf9ace82, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -20469,8 +20567,8 @@ SceneRoots:
   - {fileID: 1951918758}
   - {fileID: 318432386}
   - {fileID: 7374547706522262681}
-  - {fileID: 8002786353090065483}
-  - {fileID: 543024406}
+  - {fileID: 3607371308065597}
+  - {fileID: 1175809993}
   - {fileID: 2146752681}
   - {fileID: 443651233}
   - {fileID: 538270608}
