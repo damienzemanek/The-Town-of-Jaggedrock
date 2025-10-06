@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using DependencyInjection;
 using System.Collections.Generic;
+using System.Collections;
 
 [DefaultExecutionOrder(-500)]
 public class EntityControls : MonoBehaviour, IDependencyProvider
@@ -29,6 +30,9 @@ public class EntityControls : MonoBehaviour, IDependencyProvider
 
     public InputAction ia_interact;
     public Action interact;
+    public Action interactHold;
+    public Action interactHoldCancel;
+
 
     public InputAction[] ia_inventoryNums = new InputAction[INVENTORY_NUMS];
     public Action<int>[] intentoryNums = new Action<int>[INVENTORY_NUMS];
@@ -59,6 +63,19 @@ public class EntityControls : MonoBehaviour, IDependencyProvider
             interact?.Invoke();
         };
         interact = () => { };
+
+        ia_interact.started += ctx =>
+        {
+            print("Player HOLDING... ");
+            InvokeRepeating(nameof(InteractHoldValueIncrease), 0, 0.1f);
+        };
+
+        ia_interact.canceled += ctx =>
+        {
+            print("Player HOLDING CANCLED ");
+            CancelInvoke(nameof(InteractHoldValueIncrease));
+            interactHoldCancel?.Invoke();
+        };
 
         ia_inventoryNums[0] = IA.Player._1;
         ia_inventoryNums[1] = IA.Player._2;
@@ -98,5 +115,24 @@ public class EntityControls : MonoBehaviour, IDependencyProvider
                 intentoryNums[i]?.Invoke(i);
             };
         }
+        ia_interact.started -= ctx =>
+        {
+            print("Player HOLDING... ");
+            InvokeRepeating(nameof(InteractHoldValueIncrease), 0, 0.1f);
+        };
+
+        ia_interact.canceled -= ctx =>
+        {
+            print("Player HOLDING CANCLED ");
+            CancelInvoke(nameof(InteractHoldValueIncrease));
+            interactHoldCancel?.Invoke();
+        };
+
     }
+
+    void InteractHoldValueIncrease()
+    {
+        interactHold?.Invoke();
+    }
+
 }

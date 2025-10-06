@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c656c5d7992fac42800355fc2a04ec6, type: 3}
   m_Name: Revolver
   m_EditorClassIdentifier: 
-  <type>k__BackingField: 7
+  <type>k__BackingField: 6
   icon: {fileID: 0}
   functionality:
     rid: -2

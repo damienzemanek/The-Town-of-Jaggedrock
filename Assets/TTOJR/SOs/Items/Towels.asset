@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Towels
   m_EditorClassIdentifier: 
   <type>k__BackingField: 1
-  icon: {fileID: 21300000, guid: 9b8aca84f8869e446a5ab44b450ffb0c, type: 3}
+  icon: {fileID: 21300000, guid: 178e74e2b12d75a459ed25aaaa8b40d3, type: 3}
   functionality:
     rid: 5167628849117397098
   references:

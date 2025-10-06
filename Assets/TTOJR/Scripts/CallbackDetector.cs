@@ -1,20 +1,37 @@
 using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class CallbackDetector : Detector
 {
+    [Title("Callback Detector")]
     public CallbackFunctionality functionality;
-    [ShowIf(nameof(singleCbCheck))][field: SerializeReference] public UnityEvent useCallback;
-    [ShowIf(nameof(toggleCbCheck))] [field: SerializeReference] public UnityEvent[] toggleUseCallback;
-    [ShowIf(nameof(toggleCbCheck))][SerializeField] int currCallback = 0;
+    public bool holdingUseDetector;
+
+    [ShowIf(nameof(singleCbCheck))]
+    public UnityEvent useCallback;
+
+    [ShowIf(nameof(singleCbCheck))]
+     public UnityEvent holdCancledCallback;
+
+    [ShowIf(nameof(toggleCbCheck))] 
+    [field: SerializeReference]
+    public UnityEvent[] toggleUseCallback;
+
+    [ShowIf(nameof(toggleCbCheck))]
+    [field: SerializeReference]
+    public UnityEvent[] toggleUseCancledCallback;
+
+    [ShowIf(nameof(toggleCbCheck))]
+    [SerializeField]
+    int currCallback = 0;
     public enum CallbackFunctionality
     {
         singleCallback,
         toggleCallback
     }
-
     bool singleCbCheck() => (functionality == CallbackFunctionality.singleCallback);
     bool toggleCbCheck() => (functionality == CallbackFunctionality.toggleCallback);
 
@@ -23,6 +40,8 @@ public class CallbackDetector : Detector
         if(toggleCbCheck())
             for(int i = 0; i < toggleUseCallback.Length; i++)
                 toggleUseCallback[i].AddListener(ToggleCallback);
+
+        gameObject.layer = 7;
 
     }
     protected override void EnterImplementationChild(Collider other)
@@ -47,13 +66,25 @@ public class CallbackDetector : Detector
         if (!other.gameObject.GetComponent<Interactor>()) return;
 
         if (singleCbCheck())
-        { 
-            other.gameObject.GetComponent<Interactor>().SetInteractEvent(callback: useCallback); 
+        {
+            if (!holdingUseDetector)
+                other.gameObject.GetComponent<Interactor>().SetInteractEvent(callback: useCallback);
+            else
+            {
+                other.gameObject.GetComponent<Interactor>().SetInteracHoldEvent(callback: useCallback);
+                other.gameObject.GetComponent<Interactor>().SetInteractHoldCancledEvent(callback: holdCancledCallback);
+            }
             return;
         }
         if (toggleCbCheck())
         {
-            other.gameObject.GetComponent<Interactor>().SetInteractEvent(toggleUseCallback[currCallback]);
+            if(!holdingUseDetector)
+                other.gameObject.GetComponent<Interactor>().SetInteractEvent(toggleUseCallback[currCallback]);
+            else
+            {
+                other.gameObject.GetComponent<Interactor>().SetInteracHoldEvent(toggleUseCallback[currCallback]);
+                other.gameObject.GetComponent<Interactor>().SetInteractHoldCancledEvent(toggleUseCancledCallback[currCallback]);
+            }
             return;
         }
     }
@@ -84,4 +115,10 @@ public class CallbackDetector : Detector
         base.OnRaycastedExit(caster);
     }
 
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        useCallback.RemoveAllListeners();
+        toggleUseCallback.ForEach(cb => cb.RemoveAllListeners());
+    }
 }

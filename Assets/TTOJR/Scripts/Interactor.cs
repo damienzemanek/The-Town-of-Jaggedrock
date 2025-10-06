@@ -8,8 +8,10 @@ using UnityEngine.UI;
 using TMPro;
 
 [DefaultExecutionOrder(400)]
-public class Interactor : MonoBehaviour
+public class Interactor : MonoBehaviour, IDependencyProvider
 {
+    [Provide] public Interactor Provide() => this;
+
     [Inject] MainCamera mainCamera;
     [Inject] EntityControls controls;
     public LayerMask interactionMask;
@@ -19,6 +21,9 @@ public class Interactor : MonoBehaviour
     public TMP_Text interactText;
 
     public UnityEvent InteractEvent;
+    public UnityEvent InteractHoldEvent;
+    public UnityEvent InteractHoldCanceledEvent;
+    public float interactHoldValue = 0f;
 
     public Action<Ray, RaycastHit> RaycasterEvent;
     public Action FailedRaycast;
@@ -26,13 +31,22 @@ public class Interactor : MonoBehaviour
     private void OnEnable()
     {
         controls.interact += Interact;
+        controls.interactHold += InteractHold;
+        controls.interactHoldCancel += InteractHoldCanceled;
         RaycasterEvent += InteractorRaycast;
     }
 
     private void OnDisable()
     {
         controls.interact -= Interact;
+        controls.interactHold -= InteractHold;
+        controls.interactHoldCancel -= InteractHoldCanceled;
         RaycasterEvent -= InteractorRaycast;
+    }
+
+    private void Start()
+    {
+        interactDisplay.SetActive(false);
     }
     private void Update()
     {
@@ -54,16 +68,37 @@ public class Interactor : MonoBehaviour
     {
         InteractEvent = callback;
     }
+    public void SetInteracHoldEvent(UnityEvent callback)
+    {
+        InteractHoldEvent = callback;
+    }
+    public void SetInteractHoldCancledEvent(UnityEvent callback)
+    {
+        InteractHoldCanceledEvent = callback;
+    }
 
     public void Interact()
     {
         if (canInteract)
         {
             InteractEvent?.Invoke();
-            print("Interactor: Callback invoked");
+            print("Interactor: Interacted callback");
+        }
+    }
+    public void InteractHold()
+    {
+        if (canInteract)
+        {
+            InteractHoldEvent?.Invoke();
+            print("Interactor: Interact HOLD callback");
         }
     }
 
+    public void InteractHoldCanceled()
+    {
+        InteractHoldCanceledEvent?.Invoke();
+        print("Interactor: HOLD CANCLED callback");
+    }
 
     public void CastInteractorRacyast()
     {

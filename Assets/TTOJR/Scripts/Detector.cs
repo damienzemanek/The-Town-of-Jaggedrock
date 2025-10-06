@@ -4,25 +4,33 @@ using UnityEngine.Events;
 
 public class Detector : MonoBehaviour
 {
-    protected bool somethingCollided;
-    public bool rayCastDetector;
-    public bool collisionDetector;
-    bool notCaster => !rayCastDetector;
-    [SerializeField] protected GameObject obj;
-
-    [ShowIf("rayCastDetector")] public bool raycasted;
-    [ShowIf("rayCastDetector")] public GameObject casterObject { get => obj; set => obj = value; }
-    [ShowIf("notCaster")] public GameObject colliderObject { get => obj; set => obj = value; }
-
-    [PropertyOrder(0)][BoxGroup("Enable Unity Events")][SerializeField] protected bool onEnter;
-    [PropertyOrder(1)][BoxGroup("Enable Unity Events")][ShowIf("onEnter")] public UnityEvent Enter;
-    [PropertyOrder(2)][BoxGroup("Enable Unity Events")][SerializeField] protected bool onStay;
-    [PropertyOrder(3)][BoxGroup("Enable Unity Events")][ShowIf("onStay")] public UnityEvent Stay;
-    [PropertyOrder(4)][BoxGroup("Enable Unity Events")][SerializeField] protected bool onExit;
-    [PropertyOrder(5)][BoxGroup("Enable Unity Events")][ShowIf("onExit")] public UnityEvent Exit;
-
+    [Title("Detector")]
+    [PropertySpace(spaceBefore: 1)]
     [field: SerializeField] public LayerMask locationMask { get; private set; }
+    [FoldoutGroup("Detector Type")] public bool rayCastDetector;
+    [FoldoutGroup("Detector Type")] public bool collisionDetector;
 
+    bool notCaster => !rayCastDetector;
+    [FoldoutGroup("Runtime")][SerializeField][ReadOnly]
+    protected GameObject obj;
+    [FoldoutGroup("Runtime")][ShowIf("rayCastDetector")][ReadOnly] 
+    public bool raycasted;
+    [FoldoutGroup("Runtime")][SerializeField][ReadOnly] 
+    protected bool somethingCollided;
+    [FoldoutGroup("Runtime")] [SerializeField][ReadOnly]
+    protected bool raycastEntered = false;
+
+
+    [HideInInspector] public GameObject casterObject { get => obj; set => obj = value; }
+    [HideInInspector] public GameObject colliderObject { get => obj; set => obj = value; }
+
+    [PropertyOrder(0)][FoldoutGroup("Enable Unity Events")][SerializeField] protected bool onEnter;
+    [PropertyOrder(1)][FoldoutGroup("Enable Unity Events")][ShowIf("onEnter")] public UnityEvent Enter;
+    [PropertyOrder(2)][FoldoutGroup("Enable Unity Events")][SerializeField] protected bool onStay;
+    [PropertyOrder(3)][FoldoutGroup("Enable Unity Events")][ShowIf("onStay")] public UnityEvent Stay;
+    [PropertyOrder(4)][FoldoutGroup("Enable Unity Events")][SerializeField] protected bool onExit;
+    [PropertyOrder(5)][FoldoutGroup("Enable Unity Events")][ShowIf("onExit")] public UnityEvent Exit;
+    [PropertySpace(spaceBefore: 2)]
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (!collisionDetector) return;
@@ -76,7 +84,6 @@ public class Detector : MonoBehaviour
     }
 
     GameObject casterBuffer = null;
-    public bool raycastEntered = false;
     public virtual void OnRaycastedEnter(GameObject caster)
     {
         if (!rayCastDetector) return;
@@ -127,6 +134,12 @@ public class Detector : MonoBehaviour
     {
         print($"Disabling raycast with casterbuffer {casterBuffer}");
         OnRaycastedExit(caster: casterBuffer);
+    }
+
+    protected virtual void OnDestroy()
+    {
+        Enter.RemoveAllListeners();
+        Exit.RemoveAllListeners();
     }
 
 }
