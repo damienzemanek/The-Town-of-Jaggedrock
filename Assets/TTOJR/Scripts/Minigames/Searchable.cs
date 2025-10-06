@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(CallbackDetector))]
 public class Searchable : MonoBehaviour
 {
     [field:SerializeField] public float increment { get; private set; }
@@ -9,8 +10,17 @@ public class Searchable : MonoBehaviour
     [field: SerializeField] public bool complete { get; private set; }
     [field: SerializeField] public UnityEvent completeEvent { get; private set; }
 
+    CallbackDetector cbDetector;
+
+    private void Awake()
+    {
+        cbDetector = GetComponent<CallbackDetector>();
+
+        AssignUseHoldBacks();
+    }
     public void IncreaseProgress()
     {
+        print("Searchable: Increasing progress");
         if (complete) return;
 
         progress += increment;
@@ -29,6 +39,12 @@ public class Searchable : MonoBehaviour
         completeEvent?.Invoke();
         progress = completeProgressValue;
         complete = true;
+    }
+
+    void AssignUseHoldBacks()
+    {
+        cbDetector.useCallback.AddListener( () => IncreaseProgress());
+        cbDetector.holdCancledCallback.AddListener( () => ResetProgress());
     }
 
 }

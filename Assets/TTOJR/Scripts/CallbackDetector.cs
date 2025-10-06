@@ -42,6 +42,7 @@ public class CallbackDetector : Detector
                 toggleUseCallback[i].AddListener(ToggleCallback);
 
         gameObject.layer = 7;
+        useCallback.AddListener(() => DebugUse());
 
     }
     protected override void EnterImplementationChild(Collider other)
@@ -64,26 +65,28 @@ public class CallbackDetector : Detector
     {
         //if (other == null) return;
         if (!other.gameObject.GetComponent<Interactor>()) return;
+        Interactor interactor = other.gameObject.GetComponent<Interactor>();
+        interactor.ClearAllInteractEvent();
 
         if (singleCbCheck())
         {
             if (!holdingUseDetector)
-                other.gameObject.GetComponent<Interactor>().SetInteractEvent(callback: useCallback);
+                interactor.SetInteractEvent(callback: useCallback);
             else
             {
-                other.gameObject.GetComponent<Interactor>().SetInteracHoldEvent(callback: useCallback);
-                other.gameObject.GetComponent<Interactor>().SetInteractHoldCancledEvent(callback: holdCancledCallback);
+                interactor.SetInteracHoldEvent(callback: useCallback);
+                interactor.SetInteractHoldCancledEvent(callback: holdCancledCallback);
             }
             return;
         }
         if (toggleCbCheck())
         {
             if(!holdingUseDetector)
-                other.gameObject.GetComponent<Interactor>().SetInteractEvent(toggleUseCallback[currCallback]);
+                interactor.SetInteractEvent(toggleUseCallback[currCallback]);
             else
             {
-                other.gameObject.GetComponent<Interactor>().SetInteracHoldEvent(toggleUseCallback[currCallback]);
-                other.gameObject.GetComponent<Interactor>().SetInteractHoldCancledEvent(toggleUseCancledCallback[currCallback]);
+                interactor.SetInteracHoldEvent(toggleUseCallback[currCallback]);
+                interactor.SetInteractHoldCancledEvent(toggleUseCancledCallback[currCallback]);
             }
             return;
         }
@@ -120,5 +123,10 @@ public class CallbackDetector : Detector
         base.OnDestroy();
         useCallback.RemoveAllListeners();
         toggleUseCallback.ForEach(cb => cb.RemoveAllListeners());
+    }
+
+    void DebugUse()
+    {
+        print("Callback Detector: Use was called");
     }
 }

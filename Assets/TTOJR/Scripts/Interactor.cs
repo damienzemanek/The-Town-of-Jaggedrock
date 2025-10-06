@@ -77,6 +77,12 @@ public class Interactor : MonoBehaviour, IDependencyProvider
         InteractHoldCanceledEvent = callback;
     }
 
+    public void ClearAllInteractEvent()
+    {
+        InteractEvent = null;
+        InteractHoldEvent = null;
+        InteractHoldCanceledEvent = null;
+    }
     public void Interact()
     {
         if (canInteract)

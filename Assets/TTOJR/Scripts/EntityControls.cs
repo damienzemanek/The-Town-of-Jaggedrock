@@ -32,6 +32,7 @@ public class EntityControls : MonoBehaviour, IDependencyProvider
     public Action interact;
     public Action interactHold;
     public Action interactHoldCancel;
+    bool holding;
 
 
     public InputAction[] ia_inventoryNums = new InputAction[INVENTORY_NUMS];
@@ -57,25 +58,11 @@ public class EntityControls : MonoBehaviour, IDependencyProvider
 
         ia_interact = IA.Player.Interact;
         ia_interact.Enable();
-        ia_interact.performed += ctx =>
-        {
-            print("Player pressed INTERACT");
-            interact?.Invoke();
-        };
+        ia_interact.performed += ctx => Interact();
         interact = () => { };
 
-        ia_interact.started += ctx =>
-        {
-            print("Player HOLDING... ");
-            InvokeRepeating(nameof(InteractHoldValueIncrease), 0, 0.1f);
-        };
-
-        ia_interact.canceled += ctx =>
-        {
-            print("Player HOLDING CANCLED ");
-            CancelInvoke(nameof(InteractHoldValueIncrease));
-            interactHoldCancel?.Invoke();
-        };
+        ia_interact.started += ctx => StartHold();
+        ia_interact.canceled += ctx => StopHold();
 
         ia_inventoryNums[0] = IA.Player._1;
         ia_inventoryNums[1] = IA.Player._2;
@@ -115,24 +102,43 @@ public class EntityControls : MonoBehaviour, IDependencyProvider
                 intentoryNums[i]?.Invoke(i);
             };
         }
-        ia_interact.started -= ctx =>
-        {
-            print("Player HOLDING... ");
-            InvokeRepeating(nameof(InteractHoldValueIncrease), 0, 0.1f);
-        };
+        ia_interact.performed -= ctx => Interact();
+        ia_interact.started -= ctx => StartHold();
+        ia_interact.canceled -= ctx => StopHold();
 
-        ia_interact.canceled -= ctx =>
-        {
-            print("Player HOLDING CANCLED ");
-            CancelInvoke(nameof(InteractHoldValueIncrease));
-            interactHoldCancel?.Invoke();
-        };
 
     }
 
-    void InteractHoldValueIncrease()
+    void Interact()
     {
-        interactHold?.Invoke();
+        print("Controls: Player pressed E");
+        interact?.Invoke();
+    }
+
+    void StartHold()
+    {
+        holding = true;
+        print("Player HOLDING... ");
+        StopCoroutine(InteractHoldValueIncrease(0.1f));
+        StartCoroutine(InteractHoldValueIncrease(0.1f));
+    }
+
+    void StopHold()
+    {
+        print("Player HOLDING CANCLED ");
+        holding = false;
+        interactHoldCancel?.Invoke();
+    }
+
+    IEnumerator InteractHoldValueIncrease(float delay)
+    {
+        print("Controls: Attempting to increase HOLD value");
+        while (holding)
+        {
+            print("Controls: Interact Holding...");
+            yield return new WaitForSeconds(delay);
+            interactHold?.Invoke();
+        }
     }
 
 }

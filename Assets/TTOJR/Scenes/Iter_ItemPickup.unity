@@ -8754,7 +8754,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &2020527341
 MonoBehaviour:
@@ -8803,18 +8803,6 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Search (Hold E)
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1951918756}
-        m_TargetAssemblyTypeName: Interactor, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
   onStay: 0
@@ -9527,25 +9515,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4157698676342962344}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &947509789287475232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4157698676342962344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 953d5434c443ee2448d0c1fda959e204, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <preventContact>k__BackingField: 0
-  Contact:
-    m_PersistentCalls:
-      m_Calls: []
-  Reset:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!33 &978481458123602710
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -11199,8 +11168,8 @@ GameObject:
   - component: {fileID: 936657853410378080}
   - component: {fileID: 2315669055597194311}
   - component: {fileID: 379763827864745996}
-  - component: {fileID: 947509789287475232}
   - component: {fileID: 8598204032162238664}
+  - component: {fileID: 8598204032162238665}
   m_Layer: 7
   m_Name: Crow Effigy
   m_TagString: Untagged
@@ -13257,8 +13226,12 @@ MonoBehaviour:
   raycasted: 0
   somethingCollided: 0
   raycastEntered: 0
-  onEnter: 1
+  onEnter: 0
   Enter:
+    m_PersistentCalls:
+      m_Calls: []
+  onStay: 1
+  Stay:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1951918766}
@@ -13285,10 +13258,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  onStay: 0
-  Stay:
-    m_PersistentCalls:
-      m_Calls: []
   onExit: 1
   Exit:
     m_PersistentCalls:
@@ -13309,19 +13278,7 @@ MonoBehaviour:
   holdingUseDetector: 0
   useCallback:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 355629520250029825}
-        m_TargetAssemblyTypeName: CursedRoom, Assembly-CSharp
-        m_MethodName: Uncurse
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   holdCancledCallback:
     m_PersistentCalls:
       m_Calls: []
@@ -13331,6 +13288,18 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!114 &8598204032162238665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4157698676342962344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd26810d92069b24489d465f9abed0dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &8615025575055629561
 MeshRenderer:
   m_ObjectHideFlags: 0
