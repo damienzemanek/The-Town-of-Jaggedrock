@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7230757278387258389}
   - component: {fileID: 1587407235667491085}
   - component: {fileID: 5321531476069315308}
-  - component: {fileID: 7373911341157673117}
+  - component: {fileID: 7446349174277703817}
   m_Layer: 7
   m_Name: Pickup_ Spray
   m_TagString: Untagged
@@ -128,7 +128,7 @@ MonoBehaviour:
   pickedUpEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7373911341157673117
+--- !u!114 &7446349174277703817
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,16 +137,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 373574799293960687}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f46259c236a818c4e9686db9663a4436, type: 3}
+  m_Script: {fileID: 11500000, guid: e5fed3c532c8d0748955304ea520904c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rayCastDetector: 1
+  collisionDetector: 0
   obj: {fileID: 0}
   raycasted: 0
   onEnter: 1
   Enter:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Interactor, Assembly-CSharp
+        m_MethodName: SetInteractText
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Pickup (E)
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Interactor, Assembly-CSharp
+        m_MethodName: ToggleCanInteract
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   onStay: 0
   Stay:
     m_PersistentCalls:
@@ -154,10 +179,48 @@ MonoBehaviour:
   onExit: 1
   Exit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Interactor, Assembly-CSharp
+        m_MethodName: ToggleCanInteract
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   <locationMask>k__BackingField:
     serializedVersion: 2
     m_Bits: 8
+  raycastEntered: 0
+  functionality: 0
+  useCallback:
+    rid: 5167628919116398857
+  toggleUseCallback: []
+  currCallback: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 5167628919116398857
+      type: {class: UnityEvent, ns: UnityEngine.Events, asm: UnityEngine.CoreModule}
+      data:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 0}
+            m_TargetAssemblyTypeName: Interactor, Assembly-CSharp
+            m_MethodName: ToggleCanInteract
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
 --- !u!1 &1597162769745340619
 GameObject:
   m_ObjectHideFlags: 0

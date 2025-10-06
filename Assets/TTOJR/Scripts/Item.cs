@@ -130,9 +130,9 @@ class Placeable : ItemFunctionality<Placeable.Data>
     [Serializable]
     public class Data 
     {
-        public Transform placeLocation;
+        [SerializeReference] public Transform placeLocation;
         public GameObject objectToPlace;
-        public GameObject locationDetector;
+        [SerializeReference] public GameObject locationDetector;
         public void SetPlaceLocation(Transform val) => placeLocation = val;
         public void SetObjectToPlace(GameObject val) => objectToPlace = val;
         public void SetLocationDetector(GameObject val) => locationDetector = val;
@@ -168,8 +168,7 @@ class Placeable : ItemFunctionality<Placeable.Data>
     public override bool CanUse_ThenUse(UnityEvent callback = null)
     {
         if (!VariantsAllowUse()) return false;
-
-        Debug.Log($"Item: Successfully Using {GetType()}");
+                Debug.Log($"Item: Successfully Using {GetType()}");
         Uses usesItem = null;
         for (int i = 0; i < variations.Count; i++)
             if (variations[i] is Uses foundUsesItem)
@@ -189,6 +188,7 @@ class Placeable : ItemFunctionality<Placeable.Data>
         if(data.locationDetector != null)
             data.locationDetector.SetActive(false);
 
+        Debug.Log("Item: Used Placable Complete");
         return true;
     }
 

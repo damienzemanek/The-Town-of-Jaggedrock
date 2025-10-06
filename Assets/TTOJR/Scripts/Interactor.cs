@@ -4,6 +4,8 @@ using DependencyInjection;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
+using TMPro;
 
 [DefaultExecutionOrder(400)]
 public class Interactor : MonoBehaviour
@@ -14,6 +16,7 @@ public class Interactor : MonoBehaviour
 
     public bool canInteract;
     public GameObject interactDisplay;
+    public TMP_Text interactText;
 
     public UnityEvent InteractEvent;
 
@@ -40,6 +43,11 @@ public class Interactor : MonoBehaviour
     {
         this.canInteract = canInteract;
         interactDisplay.SetActive(canInteract);
+    }
+    public void SetInteractText(string text)
+    {
+        interactDisplay.SetActive(canInteract);
+        interactText.text = text;
     }
 
     public void SetInteractEvent(UnityEvent callback)

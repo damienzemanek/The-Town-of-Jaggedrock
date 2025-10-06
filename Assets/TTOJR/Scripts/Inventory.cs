@@ -17,7 +17,6 @@ public class Inventory : MonoBehaviour, IDependencyProvider
     [Inject] MainCamera cam;
     [BoxGroup(group: "Runtime")][field: SerializeReference] public Item[] pickedUpItems { get; set; } = new Item[INV_SIZE];
 
-    [BoxGroup(group: "Runtime")][SerializeField] GameObject displayPickup;
     [BoxGroup(group: "Runtime")][SerializeField] int selectItem;
     [BoxGroup(group: "Runtime")][SerializeField] Pickup potentialItem;
     [BoxGroup(group: "Runtime")][SerializeField] public bool canPickup { get; private set; }
@@ -63,9 +62,6 @@ public class Inventory : MonoBehaviour, IDependencyProvider
 
     private void Start()
     {
-        if (displayPickup == null) Debug.LogError("No DisplayPickup set");
-
-        displayPickup.SetActive(false);
         CreateInventorySlots();
     }
 
@@ -85,10 +81,9 @@ public class Inventory : MonoBehaviour, IDependencyProvider
 
     void TogglePickup(bool val)
     {
-        print($"toggling pickup {val}");
+        //print($"toggling pickup {val}");
         potentialItem = null;
         canPickup = val;
-        displayPickup.SetActive(val);
     }
 
     void Interact()
