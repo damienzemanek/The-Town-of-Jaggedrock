@@ -1,12 +1,15 @@
+using DependencyInjection;
 using UnityEngine;
 
-public class CrowEffigy : MonoBehaviour
+public class CrowEffigy : RuntimeInjectableMonoBehaviour
 {
     CursedRoom room;
     CallbackDetector cbDetector;
+    [Inject] Interactor interactor;
 
-    private void Awake()
+    protected override void OnInstantiate()
     {
+        base.OnInstantiate();
         room = transform.parent.GetComponentInChildren<CursedRoom>() ??
             throw new System.Exception($"Crow Effigy: No Cursed Room Found");
         cbDetector = GetComponent<CallbackDetector>() ?? throw new System.Exception
@@ -19,7 +22,8 @@ public class CrowEffigy : MonoBehaviour
     {
         print($"Crow Effigy: Destroying Effigy in room {room.name}");
         room.Uncurse();
-        Destroy(gameObject, 0.1f);
+        Destroy(gameObject);
+        interactor.ToggleCanInteract(false);
     }
 
     void AssignEffigyUseCallback()

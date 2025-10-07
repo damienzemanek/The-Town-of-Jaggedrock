@@ -1,7 +1,9 @@
+using System.Collections;
 using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
+    bool teleporting;
     public Transform tpLoc;
     public GameObject objToTeleport;
     Detector detector;
@@ -19,10 +21,24 @@ public class Teleport : MonoBehaviour
 
     public void DoTeleport()
     {
+        if (teleporting) return;
+        teleporting = true;
         print("Teleport: Attempting TP");
-        if (objToTeleport == null) Debug.LogError(message: $"TP: No Object found to teleport");
-        objToTeleport.transform.position = tpLoc.position;
+        if (objToTeleport == null) SetObjectToTeleportFromDetector();
+
+        if (objToTeleport.TryGetComponent<FadeScreen>(out FadeScreen fade))
+            FadeTeleport(fade);
+        else
+            TpImplementation();
     }
+
+    public void FadeTeleport(FadeScreen fade) => fade.FadeInAndOutCallback(TpImplementation);
+    void TpImplementation()
+    {
+        objToTeleport.transform.position = tpLoc.position;
+        teleporting = false;
+    }
+
 
     public void SetObjectToTeleport(GameObject GO)
     {

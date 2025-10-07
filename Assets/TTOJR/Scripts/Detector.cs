@@ -139,6 +139,7 @@ public class Detector : MonoBehaviour
     protected virtual void OnDestroy()
     {
         Enter.RemoveAllListeners();
+        Stay.RemoveAllListeners();
         Exit.RemoveAllListeners();
     }
 

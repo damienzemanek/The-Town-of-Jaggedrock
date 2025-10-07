@@ -120,6 +120,9 @@ public class CallbackDetector : Detector
 
     protected override void OnDestroy()
     {
+        if (obj != null || raycasted)
+            if (onExit)
+                Exit?.Invoke();
         base.OnDestroy();
         useCallback.RemoveAllListeners();
         toggleUseCallback.ForEach(cb => cb.RemoveAllListeners());

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(CallbackDetector))]
-public class Searchable : MonoBehaviour
+public class Searchable : RuntimeInjectableMonoBehaviour
 {
     [field:SerializeField] public float increment { get; private set; }
     [field: SerializeField] public float progress { get; private set; }
@@ -13,12 +13,13 @@ public class Searchable : MonoBehaviour
 
     CallbackDetector cbDetector;
     [Inject] EntityControls controls;
+    [Inject] Interactor interactor;
 
-    private void Awake()
+    protected override void OnInstantiate()
     {
+        base.OnInstantiate();
         cbDetector = GetComponent<CallbackDetector>();
-
-        AssignUseHoldBacks();
+        AssignSearchableCallbacks();
     }
     public void IncreaseProgress()
     {
@@ -42,8 +43,29 @@ public class Searchable : MonoBehaviour
         progress = completeProgressValue;
         complete = true;
         controls.ForceStopHold();
+        cbDetector.rayCastDetector = false; //Turns the CBDetector Off
+        interactor.SetHoldingInteraction(false);
+        interactor.ToggleCanInteract(false);
+    }
+    void AssignSearchableCallbacks()
+    {
+        AssignHoldingIntactorCallbacks();
+        AssignUseHoldBacks();
+        AssignInteractorCallbacks();
     }
 
+    void AssignInteractorCallbacks()
+    {
+        cbDetector.Enter.AddListener(call: () => interactor.ToggleCanInteract(true));
+        cbDetector.Enter.AddListener(call: () => interactor.SetInteractText("Search (Hold E)"));
+        cbDetector.Exit.AddListener(call: () => interactor.ToggleCanInteract(false));
+    }
+    
+    void AssignHoldingIntactorCallbacks()
+    {
+        cbDetector.Enter.AddListener(() => interactor.SetHoldingInteraction(true));
+        cbDetector.Exit.AddListener(() => interactor.SetHoldingInteraction(false));
+    }
     void AssignUseHoldBacks()
     {
         cbDetector.useCallback.AddListener( () => IncreaseProgress());

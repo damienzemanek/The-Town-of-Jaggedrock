@@ -11,6 +11,7 @@ using TMPro;
 public class Interactor : MonoBehaviour, IDependencyProvider
 {
     [Provide] public Interactor Provide() => this;
+    public bool holdInteraction;
 
     [Inject] MainCamera mainCamera;
     [Inject] EntityControls controls;
@@ -93,13 +94,15 @@ public class Interactor : MonoBehaviour, IDependencyProvider
     }
     public void InteractHold()
     {
-        if (canInteract)
+        if (canInteract && holdInteraction)
         {
             InteractHoldEvent?.Invoke();
             print("Interactor: Interact HOLD callback");
             holdDisplay.SetActive(value: true);
         }
     }
+
+    public void SetHoldingInteraction(bool val) => holdInteraction = val;
 
     public void InteractHoldCanceled()
     {
