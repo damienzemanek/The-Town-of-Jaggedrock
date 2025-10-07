@@ -15,6 +15,7 @@ public class Interactor : MonoBehaviour, IDependencyProvider
     [Inject] MainCamera mainCamera;
     [Inject] EntityControls controls;
     public LayerMask interactionMask;
+    public GameObject holdDisplay;
 
     public bool canInteract;
     public GameObject interactDisplay;
@@ -23,7 +24,6 @@ public class Interactor : MonoBehaviour, IDependencyProvider
     public UnityEvent InteractEvent;
     public UnityEvent InteractHoldEvent;
     public UnityEvent InteractHoldCanceledEvent;
-    public float interactHoldValue = 0f;
 
     public Action<Ray, RaycastHit> RaycasterEvent;
     public Action FailedRaycast;
@@ -97,6 +97,7 @@ public class Interactor : MonoBehaviour, IDependencyProvider
         {
             InteractHoldEvent?.Invoke();
             print("Interactor: Interact HOLD callback");
+            holdDisplay.SetActive(value: true);
         }
     }
 
@@ -104,6 +105,7 @@ public class Interactor : MonoBehaviour, IDependencyProvider
     {
         InteractHoldCanceledEvent?.Invoke();
         print("Interactor: HOLD CANCLED callback");
+        holdDisplay.SetActive(value: false);
     }
 
     public void CastInteractorRacyast()

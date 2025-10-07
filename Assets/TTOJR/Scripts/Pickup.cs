@@ -29,6 +29,8 @@ public class Pickup : RuntimeInjectableMonoBehaviour
         item.functionality = presetItem.functionality?.Clone();
         item.icon = presetItem.icon;
         item.functionality.variations?.ForEach(v => v.Reset());
+        item.canHold = presetItem.canHold;
+        item.itemObj = presetItem.itemObj;
 
         gameObject.layer = 7;
         AssignValuesForCallbackDetector();

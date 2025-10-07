@@ -32,7 +32,7 @@ public class EntityControls : MonoBehaviour, IDependencyProvider
     public Action interact;
     public Action interactHold;
     public Action interactHoldCancel;
-    bool holding;
+    public bool holding;
 
 
     public InputAction[] ia_inventoryNums = new InputAction[INVENTORY_NUMS];
@@ -120,14 +120,13 @@ public class EntityControls : MonoBehaviour, IDependencyProvider
         holding = true;
         print("Player HOLDING... ");
         StopCoroutine(InteractHoldValueIncrease(0.1f));
-        StartCoroutine(InteractHoldValueIncrease(0.1f));
+        StartCoroutine(routine: InteractHoldValueIncrease(0.1f));
     }
-
+    public void ForceStopHold() => StopHold();
     void StopHold()
     {
         print("Player HOLDING CANCLED ");
         holding = false;
-        interactHoldCancel?.Invoke();
     }
 
     IEnumerator InteractHoldValueIncrease(float delay)
@@ -139,6 +138,8 @@ public class EntityControls : MonoBehaviour, IDependencyProvider
             yield return new WaitForSeconds(delay);
             interactHold?.Invoke();
         }
+        StopCoroutine(routine: InteractHoldValueIncrease(0.1f));
+        interactHoldCancel?.Invoke();
     }
 
 }

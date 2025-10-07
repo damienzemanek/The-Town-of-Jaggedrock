@@ -15,9 +15,26 @@ MonoBehaviour:
   <type>k__BackingField: 6
   icon: {fileID: 0}
   functionality:
-    rid: -2
+    rid: 5167628940249923707
+  canHold: 1
+  itemObj: {fileID: 474301957224382143, guid: 83e35337808e5c348be49721f3907e03, type: 3}
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 5167628940249923707
+      type: {class: Gun, ns: , asm: Assembly-CSharp}
+      data:
+        <variations>k__BackingField:
+        - rid: 5167628940249923708
+        <data>k__BackingField:
+          rid: 5167628940249923709
+    - rid: 5167628940249923708
+      type: {class: Uses, ns: , asm: Assembly-CSharp}
+      data:
+        <inv>k__BackingField: {fileID: 0}
+        <usedUp>k__BackingField: 0
+        <uses>k__BackingField: 6
+        <initialUses>k__BackingField: 6
+    - rid: 5167628940249923709
+      type: {class: Gun/Data, ns: , asm: Assembly-CSharp}
+      data: 

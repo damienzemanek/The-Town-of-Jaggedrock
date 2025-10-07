@@ -140,17 +140,36 @@ public class Inventory : MonoBehaviour, IDependencyProvider
 
     void SelectItem(int num)
     {
-        UnselectAllItems();
         print($"Inv: Selecting Item index {num}");
+
+
+        UnselectAllItems();
         DisplayItem(num);
+
+        //Guard Clauses (for not having an item in the slot)
         if (num >= pickedUpItems.Length) return; if (pickedUpItems.Length <= 0) return;
         if (pickedUpItems[num] == null)
             print($"Inv: Item selected is NULL or EMPTY");
         else
             print($"Inv: Item selected is {pickedUpItems[num].type.ToString()}");
+        
+        //Enable the Item's object if the player can hold the item
+        TryToEnableItemObject(num, pickedUpItems[num]);
 
+        //Set all locational PreReqs to either (T or F) based on this item.
         PreRequisiteCallbackDetector.hasItemPreRequisite.Invoke(pickedUpItems[num], true);
-        print($"Inv: Set preq to {true}");
+
+
+
+        void TryToEnableItemObject(int num, Item item)
+        {
+            ItemHolder holder = GetComponent<ItemHolder>() ?? throw new Exception("Inv: No Item holder found");
+            holder.DisableAllObjects();
+            if (item == null) return;
+            if (!item.canHold) return;
+            holder.UseItem(num, item);
+        }
+
     }
 
     void UnselectAllItems()

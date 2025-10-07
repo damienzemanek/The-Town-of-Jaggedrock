@@ -1,3 +1,4 @@
+using DependencyInjection;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,6 +12,7 @@ public class Searchable : MonoBehaviour
     [field: SerializeField] public UnityEvent completeEvent { get; private set; }
 
     CallbackDetector cbDetector;
+    [Inject] EntityControls controls;
 
     private void Awake()
     {
@@ -39,6 +41,7 @@ public class Searchable : MonoBehaviour
         completeEvent?.Invoke();
         progress = completeProgressValue;
         complete = true;
+        controls.ForceStopHold();
     }
 
     void AssignUseHoldBacks()

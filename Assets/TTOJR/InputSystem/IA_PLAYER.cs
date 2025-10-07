@@ -98,6 +98,15 @@ public partial class @IA_PLAYER: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mouse1"",
+                    ""type"": ""Button"",
+                    ""id"": ""affbe5e9-3b57-4709-8f20-bdd65c5201d1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -329,6 +338,17 @@ public partial class @IA_PLAYER: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""5"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6212c186-059a-4cd4-9a58-529206bf220e"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mouse1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -924,6 +944,7 @@ public partial class @IA_PLAYER: IInputActionCollection2, IDisposable
         m_Player__3 = m_Player.FindAction("3", throwIfNotFound: true);
         m_Player__4 = m_Player.FindAction("4", throwIfNotFound: true);
         m_Player__5 = m_Player.FindAction("5", throwIfNotFound: true);
+        m_Player_Mouse1 = m_Player.FindAction("Mouse1", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1011,6 +1032,7 @@ public partial class @IA_PLAYER: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player__3;
     private readonly InputAction m_Player__4;
     private readonly InputAction m_Player__5;
+    private readonly InputAction m_Player_Mouse1;
     public struct PlayerActions
     {
         private @IA_PLAYER m_Wrapper;
@@ -1023,6 +1045,7 @@ public partial class @IA_PLAYER: IInputActionCollection2, IDisposable
         public InputAction @_3 => m_Wrapper.m_Player__3;
         public InputAction @_4 => m_Wrapper.m_Player__4;
         public InputAction @_5 => m_Wrapper.m_Player__5;
+        public InputAction @Mouse1 => m_Wrapper.m_Player_Mouse1;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1056,6 +1079,9 @@ public partial class @IA_PLAYER: IInputActionCollection2, IDisposable
             @_5.started += instance.On_5;
             @_5.performed += instance.On_5;
             @_5.canceled += instance.On_5;
+            @Mouse1.started += instance.OnMouse1;
+            @Mouse1.performed += instance.OnMouse1;
+            @Mouse1.canceled += instance.OnMouse1;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1084,6 +1110,9 @@ public partial class @IA_PLAYER: IInputActionCollection2, IDisposable
             @_5.started -= instance.On_5;
             @_5.performed -= instance.On_5;
             @_5.canceled -= instance.On_5;
+            @Mouse1.started -= instance.OnMouse1;
+            @Mouse1.performed -= instance.OnMouse1;
+            @Mouse1.canceled -= instance.OnMouse1;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1274,6 +1303,7 @@ public partial class @IA_PLAYER: IInputActionCollection2, IDisposable
         void On_3(InputAction.CallbackContext context);
         void On_4(InputAction.CallbackContext context);
         void On_5(InputAction.CallbackContext context);
+        void OnMouse1(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
