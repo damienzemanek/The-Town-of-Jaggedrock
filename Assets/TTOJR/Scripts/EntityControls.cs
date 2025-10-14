@@ -34,6 +34,9 @@ public class EntityControls : MonoBehaviour, IDependencyProvider
     public Action interactHoldCancel;
     public bool holding;
 
+    public InputAction ia_mouse1;
+    public Action mouse1;
+
 
     public InputAction[] ia_inventoryNums = new InputAction[INVENTORY_NUMS];
     public Action<int>[] intentoryNums = new Action<int>[INVENTORY_NUMS];
@@ -63,6 +66,10 @@ public class EntityControls : MonoBehaviour, IDependencyProvider
 
         ia_interact.started += ctx => StartHold();
         ia_interact.canceled += ctx => StopHold();
+
+        ia_mouse1 = IA.Player.Mouse1;
+        ia_mouse1.Enable();
+        ia_mouse1.performed += ctx => mouse1?.Invoke();
 
         ia_inventoryNums[0] = IA.Player._1;
         ia_inventoryNums[1] = IA.Player._2;
@@ -105,6 +112,9 @@ public class EntityControls : MonoBehaviour, IDependencyProvider
         ia_interact.performed -= ctx => Interact();
         ia_interact.started -= ctx => StartHold();
         ia_interact.canceled -= ctx => StopHold();
+
+        mouse1 = null;
+        ia_mouse1.Disable();
 
 
     }

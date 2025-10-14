@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Sirenix.OdinInspector;
+using Sirenix.OdinInspector.Editor.Drawers;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,10 +11,13 @@ using UnityEngine.Events;
 [Serializable]
 public abstract class ItemVariationData 
 {
+    protected Interactor interactor;
     public virtual ItemVariationData Clone()
         => (ItemVariationData)CloneUtility.DeepClonePolymorph(this);
     public abstract void Reset();
     public abstract ItemVariationData UpdateValueThenGet(ItemVariationData newVariationData = null);
+
+    public virtual void SetInteractor(Interactor interactor) => this.interactor = interactor;
 }
 
 
@@ -155,11 +160,10 @@ class Placeable : ItemFunctionality<Placeable.Data>
     [Serializable]
     public class Data 
     {
-        [SerializeReference] public Transform placeLocation;
         public GameObject objectToPlace;
-        [SerializeReference] public GameObject locationDetector;
+        [SerializeReference] [ReadOnly] public Transform placeLocation;
+        [SerializeReference] [ReadOnly] public GameObject locationDetector;
         public void SetPlaceLocation(Transform val) => placeLocation = val;
-        public void SetObjectToPlace(GameObject val) => objectToPlace = val;
         public void SetLocationDetector(GameObject val) => locationDetector = val;
 
     }
@@ -220,7 +224,6 @@ class Placeable : ItemFunctionality<Placeable.Data>
     public override void UpdateFunctionalityData(object input)
     {
         var newData = (Placeable.Data)input;
-        data.SetObjectToPlace(newData.objectToPlace);
         data.SetPlaceLocation(newData.placeLocation);
         data.SetLocationDetector(newData.locationDetector);
     }
@@ -236,7 +239,7 @@ class DestinationUser : ItemFunctionality<DestinationUser.Data>
     [Serializable]
     public class Data
     {
-        [field:SerializeField] public Destination useDestination { get; set; }
+        [field:SerializeField] [field:ReadOnly] public Destination useDestination { get; private set; }
         public void SetUseLocation(Destination val) => useDestination = val;
     }
 
@@ -279,6 +282,23 @@ class Gun : ItemFunctionality<Gun.Data>
     [Serializable]
     public class Data
     {
+        [field: SerializeField][field: ReadOnly] public Raycaster caster { get; private set; }
+        [field: SerializeField][field: ReadOnly] public EntityControls controls { get; private set; }
+
+        public LayerMask mask;
+        public float damage;
+
+        public void SetCaster(Raycaster _caster) => caster = _caster;
+        public void SetControlsWithGun(EntityControls _controls, Gun gun)
+        {
+            controls = _controls;
+            BindControls(controls, gun);
+        }
+
+        void BindControls(EntityControls controls, Gun gun)
+        {
+            controls.mouse1 += () => gun.CanUse_ThenUse();
+        }
 
     }
     public override bool VariantsAllowUse(out ItemVariationData variData)
@@ -322,12 +342,31 @@ class Gun : ItemFunctionality<Gun.Data>
         //Functionality Utilization
         callback?.Invoke();
 
+        if (!Fire(data)) Debug.Log("Item: (Gun) Missed");
+
         return true;
     }
+
+
+
+    bool Fire(Data data)
+    {
+        Debug.Log("Firing");
+        if (!data.caster.Raycast(out RaycastHit hit, data.mask)) return false;
+        Debug.Log("hit a target");
+        if (!hit.transform.gameObject.TryGetComponent<Health>(out Health health)) 
+        { Debug.Log("Item: (Gun) Did not find a target with Health"); return false; }
+        Debug.Log($"Target {health.gameObject.name} taking damage");
+        
+        health.TakeDamage(data.damage);
+        return true;
+    }
+
 
     public override void UpdateFunctionalityData(object input)
     {
         var newData = (Gun.Data)input;
+        data.SetCaster(newData.caster);
     }
 
     public override bool VariantsAllowUse() => throw new NotImplementedException();

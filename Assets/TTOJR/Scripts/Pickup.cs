@@ -1,6 +1,7 @@
 using System.Linq;
 using DependencyInjection;
 using Sirenix.OdinInspector;
+using Sirenix.OdinInspector.Editor.Drawers;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -24,7 +25,7 @@ public class Pickup : RuntimeInjectableMonoBehaviour
 
 
         item = ScriptableObject.CreateInstance<Item>();
-        print(presetItem.type);
+        //print(presetItem.type);
         item.type = presetItem.type;
         item.functionality = presetItem.functionality?.Clone();
         item.icon = presetItem.icon;
@@ -39,13 +40,32 @@ public class Pickup : RuntimeInjectableMonoBehaviour
     public void PickedUp(Inventory inv)
     {
         print($"Pickuped up item {item.type}");
+
+        //Uses Applying References
         item.functionality.variations?.OfType<Uses>()
             .ToList()
             .ForEach(u => u.inv = inv);
 
+        //Gun functionality apply rerferences
+        if(item.functionality is Gun gun)
+        {
+            Gun.Data data = new Gun.Data();
+
+            if (!inv.gameObject.TryGetComponent<Raycaster>(out Raycaster caster))
+                throw new System.Exception("Pickup: (Gun) No Caster found to use Gun");
+
+            if (!inv.gameObject.TryGetComponent<EntityControls>(out EntityControls controls))
+                throw new System.Exception("Pickup: (Gun) No controls found to bind to");
+
+            print(controls);
+
+            data.SetCaster(caster);
+            data.SetControlsWithGun(controls, (Gun)item.functionality);
+            gun.UpdateFunctionalityData(data);
+        }
+
         pickedUpEvent?.Invoke();
         Destroy(gameObject, 0.1f);
-        print("h");
     }
 
     void AssignValuesForCallbackDetector()

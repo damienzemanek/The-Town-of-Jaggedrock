@@ -37,4 +37,9 @@ MonoBehaviour:
         <initialUses>k__BackingField: 6
     - rid: 5167628940249923709
       type: {class: Gun/Data, ns: , asm: Assembly-CSharp}
-      data: 
+      data:
+        <caster>k__BackingField: {fileID: 0}
+        mask:
+          serializedVersion: 2
+          m_Bits: 256
+        damage: 10

@@ -107,6 +107,15 @@ public partial class @IA_PLAYER: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""fba03aae-8600-43dd-90f1-fcb5b6f05468"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -349,6 +358,17 @@ public partial class @IA_PLAYER: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Mouse1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""53807cee-d019-4366-af30-e38142d191ac"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -945,6 +965,7 @@ public partial class @IA_PLAYER: IInputActionCollection2, IDisposable
         m_Player__4 = m_Player.FindAction("4", throwIfNotFound: true);
         m_Player__5 = m_Player.FindAction("5", throwIfNotFound: true);
         m_Player_Mouse1 = m_Player.FindAction("Mouse1", throwIfNotFound: true);
+        m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1033,6 +1054,7 @@ public partial class @IA_PLAYER: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player__4;
     private readonly InputAction m_Player__5;
     private readonly InputAction m_Player_Mouse1;
+    private readonly InputAction m_Player_Reload;
     public struct PlayerActions
     {
         private @IA_PLAYER m_Wrapper;
@@ -1046,6 +1068,7 @@ public partial class @IA_PLAYER: IInputActionCollection2, IDisposable
         public InputAction @_4 => m_Wrapper.m_Player__4;
         public InputAction @_5 => m_Wrapper.m_Player__5;
         public InputAction @Mouse1 => m_Wrapper.m_Player_Mouse1;
+        public InputAction @Reload => m_Wrapper.m_Player_Reload;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1082,6 +1105,9 @@ public partial class @IA_PLAYER: IInputActionCollection2, IDisposable
             @Mouse1.started += instance.OnMouse1;
             @Mouse1.performed += instance.OnMouse1;
             @Mouse1.canceled += instance.OnMouse1;
+            @Reload.started += instance.OnReload;
+            @Reload.performed += instance.OnReload;
+            @Reload.canceled += instance.OnReload;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1113,6 +1139,9 @@ public partial class @IA_PLAYER: IInputActionCollection2, IDisposable
             @Mouse1.started -= instance.OnMouse1;
             @Mouse1.performed -= instance.OnMouse1;
             @Mouse1.canceled -= instance.OnMouse1;
+            @Reload.started -= instance.OnReload;
+            @Reload.performed -= instance.OnReload;
+            @Reload.canceled -= instance.OnReload;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1304,6 +1333,7 @@ public partial class @IA_PLAYER: IInputActionCollection2, IDisposable
         void On_4(InputAction.CallbackContext context);
         void On_5(InputAction.CallbackContext context);
         void OnMouse1(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
