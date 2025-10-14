@@ -14,11 +14,6 @@ public class Resident : MonoBehaviour
     public bool usingArea = false;
     [ReadOnly] public ResidentAreas lastAreaInContact;
 
-    private void Start()
-    {
-        StartCoroutine(CheckIfStoppedThenUse());
-    }
-
     public void SpawnAtLocation(ResidentAreas spawnArea) => StartCoroutine(UseArea(spawnArea));
     public IEnumerator UseArea(ResidentAreas area)
     {
@@ -38,6 +33,8 @@ public class Resident : MonoBehaviour
     private void FixedUpdate()
     {
         CheckIfStoppedSetStopped();
+        if (stopped) StartCoroutine(UseArea(lastAreaInContact));
+
     }
 
     //This will check if we are stopped
@@ -60,14 +57,7 @@ public class Resident : MonoBehaviour
         lastAreaInContact = area;
     }
 
-    IEnumerator CheckIfStoppedThenUse()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(delayUseArea);
-            if (stopped) StartCoroutine(UseArea(lastAreaInContact));
-        }
-    }
+
 
 
 }
