@@ -5,6 +5,8 @@ using Sirenix.OdinInspector;
 
 public class ResidentSpawner : MonoBehaviour
 {
+    public bool onlySpawnFirstResident = false;
+    [ShowIf("onlySpawnFirstResident")] public float spawnCount;
     public Transform spawnPoint;
     public ResidentAreas spawnArea;
     public List<GameObject> spawnResidentPoolForCycle;
@@ -22,13 +24,28 @@ public class ResidentSpawner : MonoBehaviour
 
     IEnumerator SpawningCycle()
     {
-        while(currentSpawnedResidents < spawnResidentPoolForCycle.Count)
+        if (onlySpawnFirstResident)
         {
-            if (spawnResidentPoolForCycle[currentSpawnedResidents] == null)
-                throw new System.IndexOutOfRangeException(tag);
-            Spawn(spawnResidentPoolForCycle[currentSpawnedResidents]);
-            yield return new WaitForSeconds(delayBetweenSpawns);
-            currentSpawnedResidents++;
+            while(currentSpawnedResidents < spawnCount)
+            {
+                if (spawnResidentPoolForCycle[0] == null)
+                    throw new System.Exception("ResidentSpawner: Set the first resident in the pool");
+
+                Spawn(resident: spawnResidentPoolForCycle[0]);
+                currentSpawnedResidents++;
+                yield return new WaitForSeconds(delayBetweenSpawns);
+            }
+        }
+        else
+        {
+            while (currentSpawnedResidents < spawnResidentPoolForCycle.Count)
+            {
+                if (spawnResidentPoolForCycle[currentSpawnedResidents] == null)
+                    throw new System.IndexOutOfRangeException(tag);
+                Spawn(resident: spawnResidentPoolForCycle[currentSpawnedResidents]);
+                yield return new WaitForSeconds(delayBetweenSpawns);
+                currentSpawnedResidents++;
+            }
         }
     }
 
