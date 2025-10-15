@@ -8,10 +8,10 @@ public class ActionChoices
 {
     public List<WeightedAction> actions;
 
-    public void DoAnAction()
+    public void DoAnAction(ResidentAreas area)
     {
         WeightedAction wa = DetermineActionToExecute();
-        wa.action.Execute();
+        wa.action.Execute(area);
 
         Debug.Log($"ActionChoices: Executing action: {wa.action.GetType().ToString()}");
         
@@ -20,15 +20,13 @@ public class ActionChoices
     public WeightedAction DetermineActionToExecute()
     {
         Debug.Log("ActionChoices: Determining Which action to execute");
-        if (actions == null) return null;
-        if(actions.Count == 0 ) return null;
+        if (actions == null || actions.Count == 0) return null; //No actions
 
-        float total = actions.Sum(a => a.chance);
+        var validActions = actions.Where(a => a.chance > 0).ToList();
+        if (validActions.Count == 0) Debug.LogWarning("ActionsChoices: No valid actions with a chance of > 0");
 
-        if (total <= 0) throw new System.Exception("ActionChoices: Sum is 0. Set the chances");
-
+        float total = validActions.Sum(a => a.chance);
         float roll = UnityEngine.Random.Range(0, total);
-
         float atCurrChance = 0f;
 
         foreach (var action in actions)

@@ -239,7 +239,7 @@ class DestinationUser : ItemFunctionality<DestinationUser.Data>
     [Serializable]
     public class Data
     {
-        [field:SerializeField] [field:ReadOnly] public Destination useDestination { get; private set; }
+        [field:SerializeField]  public Destination useDestination { get; private set; }
         public void SetUseLocation(Destination val) => useDestination = val;
     }
 
@@ -259,6 +259,9 @@ class DestinationUser : ItemFunctionality<DestinationUser.Data>
 
         //Functionality Utilization
         callback?.Invoke();
+        if (data.useDestination == null) throw new System.Exception(
+            "Item: (Destination User) does not have a destination set");
+
         if (!data.useDestination.preventContact)
             data.useDestination.MakeContact();
 

@@ -1,11 +1,14 @@
 using System.Collections;
+using System.ComponentModel;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Teleport : MonoBehaviour
 {
     bool teleporting;
     public Transform tpLoc;
-    public GameObject objToTeleport;
+    [Sirenix.OdinInspector.ReadOnly] public GameObject objToTeleport;
     Detector detector;
 
     private void Awake()
@@ -35,7 +38,20 @@ public class Teleport : MonoBehaviour
     public void FadeTeleport(FadeScreen fade) => fade.FadeInAndOutCallback(TpImplementation);
     void TpImplementation()
     {
-        objToTeleport.transform.position = tpLoc.position;
+        bool foundTpLocOnNavMesh = NavMeshUtility.NearestLocOnNavMesh(tpLoc.position, 5f, out Vector3 tpLocOnNavMesh);
+        if(objToTeleport.gameObject.TryGetComponent<NavMeshAgent>(out NavMeshAgent agent))
+        {
+            if (foundTpLocOnNavMesh) agent.Warp(tpLocOnNavMesh);
+            else
+            {
+                agent.enabled = false;
+                objToTeleport.transform.position = tpLoc.position;
+                agent.enabled = true;
+            }
+        }
+        else
+            objToTeleport.transform.position = foundTpLocOnNavMesh ? tpLocOnNavMesh : tpLoc.position;
+
         teleporting = false;
     }
 

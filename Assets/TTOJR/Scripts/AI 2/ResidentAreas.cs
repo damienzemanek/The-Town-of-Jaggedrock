@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class ResidentAreas : MonoBehaviour
 {
+    [SerializeReference] public HashSet<Resident> whoIsHere = new HashSet<Resident>();
     [SerializeReference] public ActionChoices choices;
 
     public float fixedY;
@@ -13,6 +16,15 @@ public class ResidentAreas : MonoBehaviour
     {
         collider = GetComponent<Collider>();
         if (choices == null) Debug.LogError(message: "ResidentArea: Choices not set");
+    }
+
+    private void Start()
+    {
+        string ResidentAreaLayerMask = "ResidentArea";
+        if (gameObject.layer != LayerMask.NameToLayer(ResidentAreaLayerMask))
+            throw new System.Exception($"ResidentArea: ({gameObject.name})'s Layer is not set correctly, set it to ResidentArea");
+
+        gameObject.layer = LayerMask.NameToLayer(ResidentAreaLayerMask);
     }
 
     public Vector3 GetARandLocation()

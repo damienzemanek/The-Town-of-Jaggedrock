@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 8744624707574587565}
   - component: {fileID: 7953465503095966787}
   - component: {fileID: 9011192281063177126}
+  - component: {fileID: 5011224887782839587}
   m_Layer: 8
   m_Name: Resident
   m_TagString: Untagged
@@ -246,7 +247,27 @@ MonoBehaviour:
     m_Bits: 512
   delayUseArea: 2
   stopped: 0
-  areaImIn: {fileID: 0}
+  usingArea: 0
+  lastAreaInContact: {fileID: 0}
+--- !u!114 &5011224887782839587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5903264447225073114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bc8063c9e95401f9a8a38bc716750d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Method: 0
+  m_Curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &7904466343369297884
 GameObject:
   m_ObjectHideFlags: 0

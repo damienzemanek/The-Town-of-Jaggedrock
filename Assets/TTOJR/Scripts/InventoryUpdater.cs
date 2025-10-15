@@ -12,10 +12,20 @@ public class InventoryUpdater : MonoBehaviour
     public bool variationDataUpdate;
     public bool functionalityDataUpdate;
     [ShowIf("functionalityDataUpdate")] public UnityEvent functionalityUseItemCallback;
+    [InlineEditor][field: SerializeReference] public List<Item> itemDataPhases;
 
     private void Awake()
     {
         detector = gameObject.GetComponent<PreRequisiteCallbackDetector>();
+    }
+
+    private void Start()
+    {
+        itemDataPhases.Where(i => i.type != detector.lookingForChangesToItem.type)
+            .ToList()
+            .ForEach(notSameType => Debug.LogError(
+            $"InventoryUpdater: ({gameObject.name})'s item {notSameType.name} type ({notSameType.type}) does not match detector’s expected type ({detector.lookingForChangesToItem.type})"
+        ));
     }
 
     [Button]
@@ -25,7 +35,6 @@ public class InventoryUpdater : MonoBehaviour
             itemDataPhases.Add(item.Clone());
     }
 
-    [InlineEditor] [field:SerializeReference] public List<Item> itemDataPhases;
 
     public void UpdateItem(int phase)
     {
@@ -75,7 +84,12 @@ public class InventoryUpdater : MonoBehaviour
         Item invItem = inv.GetCurrentItem();
 
         if (invItem == null) return;
-        if (invItem.functionality.GetType() != detector.lookingForChangesToItem.functionality.GetType()) return;       
+        if (invItem.functionality.GetType() != detector.lookingForChangesToItem.functionality.GetType())
+        {
+            Debug.LogWarning($"InventoryUpdater: Trying to use Item that is NOT the same type" +
+            $" ({invItem.functionality.GetType()}) and ({detector.lookingForChangesToItem.functionality.GetType()})"); 
+        }
+
         print($"Inventory: UPDATER using item {invItem.type.ToString()} which is a {invItem.functionality.GetType()}");
         invItem.functionality.CanUse_ThenUse(functionalityUseItemCallback);
     }
