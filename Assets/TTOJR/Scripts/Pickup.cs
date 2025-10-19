@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(CallbackDetector))]
-public class Pickup : RuntimeInjectableMonoBehaviour
+public class Pickup : RuntimeInjectableMonoBehaviour, ICallbackUser
 {
     [Inject] Interactor interactor;
     [field: SerializeReference] public Item presetItem;
@@ -68,7 +68,7 @@ public class Pickup : RuntimeInjectableMonoBehaviour
         Destroy(gameObject, 0.1f);
     }
 
-    void AssignValuesForCallbackDetector()
+    public void AssignValuesForCallbackDetector()
     {
         cbDetector.Enter.AddListener(() => interactor.SetInteractText("Pickup (E)"));
         cbDetector.Enter.AddListener(() => interactor.ToggleCanInteract(true));

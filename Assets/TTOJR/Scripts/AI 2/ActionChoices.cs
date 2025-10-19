@@ -8,7 +8,7 @@ public class ActionChoices
 {
     public List<WeightedAction> actions;
 
-    public void DoAnAction(ResidentAreas area)
+    public void DoAnAction(NPC_Area area)
     {
         WeightedAction wa = DetermineActionToExecute();
         wa.action.Execute(area);

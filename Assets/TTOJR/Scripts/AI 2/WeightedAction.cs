@@ -1,10 +1,11 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 [Serializable]
 public class WeightedAction 
 {
-    [SerializeReference] public ActionDo action;
+    [Required] [SerializeReference] public ActionDo action;
     public float chance = 1;
     
     public WeightedAction()

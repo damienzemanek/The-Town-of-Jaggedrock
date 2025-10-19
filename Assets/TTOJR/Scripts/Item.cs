@@ -61,7 +61,7 @@ public sealed class Uses : ItemVariationData
 
 
 [Serializable]
-[CreateAssetMenu(fileName = "New Item", menuName = "ScriptableObject/Item")]
+[CreateAssetMenu(fileName = "New Item", menuName = "ScriptableObjects/Item")]
 public class Item : ScriptableObject
 {
     public enum ItemType

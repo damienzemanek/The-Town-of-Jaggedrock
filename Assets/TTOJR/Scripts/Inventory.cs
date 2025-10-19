@@ -23,7 +23,6 @@ public class Inventory : MonoBehaviour, IDependencyProvider
 
     [Inject] EntityControls controls;
     public Interactor interactor { get; private set; }
-
     [BoxGroup(group: "UI")][field: SerializeField] public GameObject gridParent { get; private set; }
     [BoxGroup(group: "UI")][field: SerializeField] public GameObject inventorySlotPrefab { get; private set; }
     [BoxGroup(group: "UI")][field: SerializeField] public Sprite emptyIcon { get; private set; }
@@ -141,6 +140,7 @@ public class Inventory : MonoBehaviour, IDependencyProvider
     void SelectItem(int num)
     {
         print($"Inv: Selecting Item index {num}");
+        print("Inv: Selecting Item index {num}");
 
 
         UnselectAllItems();
@@ -207,8 +207,6 @@ public class Inventory : MonoBehaviour, IDependencyProvider
         return null;
     }
 
-
-    /////////////
-   
+    public void ToggleInventoryVisability(bool val) => gridParent?.SetActive(val);
 
 }

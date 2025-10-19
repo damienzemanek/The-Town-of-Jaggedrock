@@ -1,12 +1,14 @@
+using System.ComponentModel;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
+using ReadOnlyAttribute = Sirenix.OdinInspector.ReadOnlyAttribute;
 
 public class Detector : MonoBehaviour
 {
     [Title("Detector")]
     [PropertySpace(spaceBefore: 1)]
-    [field: SerializeField] public LayerMask locationMask { get; private set; }
+    [field:InfoBox("Who can interact with me")] [field: SerializeField] public LayerMask locationMask { get; private set; }
     [FoldoutGroup("Detector Type")] public bool rayCastDetector;
     [FoldoutGroup("Detector Type")] public bool collisionDetector;
 

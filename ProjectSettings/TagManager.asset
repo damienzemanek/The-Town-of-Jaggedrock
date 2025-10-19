@@ -14,7 +14,7 @@ TagManager:
   - Item
   - LocationEvent
   - Resident
-  - ResidentArea
+  - NPC_Area
   - 
   - 
   - 
