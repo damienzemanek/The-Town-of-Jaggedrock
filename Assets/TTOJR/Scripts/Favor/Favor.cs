@@ -1,9 +1,14 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using NodeCanvas;
+using ParadoxNotion.Design;
 
 public class Favor : MonoBehaviour
 {
-    [HideInInspector] [SerializeField] int _favor;
+    int minorFavorGain = 1;
+    int majorFavorGain = 3;
+
+    [SerializeField, HideInInspector, ExposeField] int _favor;
     [ShowInInspector] public int favor
     {
         get => _favor;
@@ -36,5 +41,10 @@ public class Favor : MonoBehaviour
         }
     }
 
+
+    public void GainMinorFavor() => favor += minorFavorGain;
+    public void GainMajorFavor() => favor += majorFavorGain;
+    public void LoseMinorFavor() => favor -= minorFavorGain;
+    public void LoseMajorFavor() => favor -= majorFavorGain;
 
 }

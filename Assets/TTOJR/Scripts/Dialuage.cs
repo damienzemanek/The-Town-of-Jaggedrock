@@ -2,27 +2,32 @@ using UnityEngine;
 using DependencyInjection;
 using UnityEngine.AI;
 using NUnit;
+using NodeCanvas.Framework;
+using NodeCanvas.DialogueTrees;
+using System;
 
 [RequireComponent(typeof(CallbackDetector))]
 public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
 {
     [Inject] EntityControls playerControls;
-    //public NPCConversation convo;
+    [Inject] Interactor interactor;
+
     [SerializeField] bool inConvo;
 
     #region Privs
     CallbackDetector detector;
     NPC_Movement movement;
     NavMeshAgent agent;
-    [Inject] Interactor interactor;
+    DialogueTreeController dialaugeController;
     #endregion
 
     protected override void OnInstantiate()
     {
         base.OnInstantiate();
-        detector = GetComponent<CallbackDetector>();
-        movement = GetComponent<NPC_Movement>();
-        agent = GetComponent<NavMeshAgent>();
+        detector = this.TryGet<CallbackDetector>();
+        movement = this.TryGet<NPC_Movement>();
+        agent = this.TryGet<NavMeshAgent>();
+        dialaugeController = this.TryGet<DialogueTreeController>();
         AssignValuesForCallbackDetector();
     }
 
@@ -37,17 +42,12 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
 
     void DialaugeUsage()
     {
-        Talk();
+        StartDialauge();
         DisableMyMovement();
         LookAtWhoImTalkingTo();
         TalkeeLooksAtMe();
     }
 
-    public void Talk()
-    {
-        //ConversationManager.OnConversationEnded += StopTalking;
-        //ConversationManager.Instance.StartConversation(convo);
-    }
     void LookAtWhoImTalkingTo()
     {
         transform.LookAtPosThenMyTransform(playerControls.transform.position.With(y: 0))
@@ -61,8 +61,8 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
 
     void TalkeeLooksAtMe()
     {
-        if (!playerControls.gameObject.TryGetComponent<Look>(out Look look)) this.Error("Look not found on player");
-        if (!interactor.transform.TryGetComponent<Inventory>(out Inventory inv)) this.Error("Inventory not found on player");
+        Look look = playerControls.TryGet<Look>();
+        Inventory inv = playerControls.TryGet<Inventory>();
 
         playerControls.headDirection.transform.LookAt(transform.position.With(y: 3));
         look.ToggleCursorUsability(true);
@@ -70,10 +70,10 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
         inv.ToggleInventoryVisability(false);
     }
 
-    void StopTalking()
+    void OnStopTalking(bool success)
     {
-        if (!playerControls.gameObject.TryGetComponent<Look>(out Look look)) this.Error("Look not found on player");
-        if (!interactor.transform.TryGetComponent<Inventory>(out Inventory inv)) this.Error("Inventory not found on player");
+        Look look = playerControls.TryGet<Look>();
+        Inventory inv = playerControls.TryGet<Inventory>();
 
         look.ToggleCursorUsability(false);
         look.ToggleUpdateMouseLooking(true);
@@ -81,7 +81,15 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
 
         movement.enabled = true;
         agent.enabled = true;
-
-        //.OnConversationEnded -= StopTalking;
+        inConvo = false;
     }
+
+
+    void StartDialauge()
+    {
+        if (dialaugeController == null) this.Error("dialaugeOwner is null");
+        inConvo = true;
+        dialaugeController.StartDialogue(OnStopTalking);
+    }
+
 }

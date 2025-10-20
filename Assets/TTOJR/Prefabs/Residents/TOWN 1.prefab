@@ -86,37 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &5020727275647112104
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 364613058720176006}
-  m_Layer: 8
-  m_Name: Dialauge
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &364613058720176006
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5020727275647112104}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2379640947552331762}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5903264447225073114
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,8 +104,11 @@ GameObject:
   - component: {fileID: 5011224887782839587}
   - component: {fileID: 6902335289300123792}
   - component: {fileID: -4611304713590683017}
-  - component: {fileID: -4501941781510294363}
   - component: {fileID: 8840392011632752183}
+  - component: {fileID: -9144149633550173534}
+  - component: {fileID: 2217963900361797958}
+  - component: {fileID: -6235299643011096383}
+  - component: {fileID: 2748782247982346700}
   m_Layer: 8
   m_Name: TOWN 1
   m_TagString: Untagged
@@ -159,7 +131,6 @@ Transform:
   m_Children:
   - {fileID: 134652333517317123}
   - {fileID: 2275732511205854095}
-  - {fileID: 364613058720176006}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5679287963306251154
@@ -334,19 +305,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   role: 0
---- !u!114 &-4501941781510294363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5903264447225073114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11fe4a4c5b8540f4fbb462dcd46ef205, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inConvo: 0
 --- !u!114 &8840392011632752183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,6 +352,113 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!114 &-9144149633550173534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5903264447225073114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98a6db0b653f764eac834f85857a9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parentBlackboard: {fileID: 0}
+  _serializedBlackboard: '{"_variables":{"Dialogue Tree Controller":{"_value":1,"_name":"Dialogue
+    Tree Controller","_id":"6c4d9e71-f1bb-4a5e-a079-849b7be4db25","$type":"NodeCanvas.Framework.Variable`1[[NodeCanvas.DialogueTrees.DialogueTreeController,
+    NodeCanvas, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"status":{"_propertyPath":"Favor.status","_name":"status","_id":"d20b347e-1660-40f6-ba82-ac3534ef7ee9","$type":"NodeCanvas.Framework.Variable`1[[Favor+FavorStatus,
+    Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}}}'
+  _objectReferences:
+  - {fileID: 0}
+  - {fileID: -6235299643011096383}
+  _serializedVariables:
+  - _json: '{"_value":1,"_name":"Dialogue Tree Controller","_id":"6c4d9e71-f1bb-4a5e-a079-849b7be4db25","$type":"NodeCanvas.Framework.Variable`1[[NodeCanvas.DialogueTrees.DialogueTreeController,
+      NodeCanvas, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}'
+    _references:
+    - {fileID: 0}
+    - {fileID: -6235299643011096383}
+  - _json: '{"_propertyPath":"Favor.status","_name":"status","_id":"d20b347e-1660-40f6-ba82-ac3534ef7ee9","$type":"NodeCanvas.Framework.Variable`1[[Favor+FavorStatus,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}'
+    _references: []
+--- !u!114 &2217963900361797958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5903264447225073114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d71fb7c52372e244baf2e69a9d0d116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: TOWN 1
+  _portrait: {fileID: 0}
+  _dialogueColor: {r: 1, g: 1, b: 1, a: 1}
+  _dialogueOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &-6235299643011096383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5903264447225073114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32e4b851ebd8fa4ea0645b99be1cf97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _serializedExposedParameters: []
+  _boundGraphSerialization: '{"type":"NodeCanvas.DialogueTrees.DialogueTree","nodes":[{"conditions":[{"valueA":{"_type":"System.Enum","_name":"status","_targetVariableID":"d20b347e-1660-40f6-ba82-ac3534ef7ee9"},"valueB":{"_type":"Favor+FavorStatus","_value":{"$content":0,"$type":"Favor+FavorStatus"}},"$type":"NodeCanvas.Tasks.Conditions.CheckEnum"},{"valueA":{"_type":"System.Enum","_name":"status","_targetVariableID":"d20b347e-1660-40f6-ba82-ac3534ef7ee9"},"valueB":{"_type":"Favor+FavorStatus","_value":{"$content":1,"$type":"Favor+FavorStatus"}},"$type":"NodeCanvas.Tasks.Conditions.CheckEnum"},{"valueA":{"_type":"System.Enum","_name":"status","_targetVariableID":"d20b347e-1660-40f6-ba82-ac3534ef7ee9"},"valueB":{"_type":"Favor+FavorStatus","_value":{"$content":2,"$type":"Favor+FavorStatus"}},"$type":"NodeCanvas.Tasks.Conditions.CheckEnum"}],"_position":{"x":611.8978,"y":114.5243},"$type":"NodeCanvas.DialogueTrees.MultipleConditionNode","$id":"0"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_position":{"x":265.0569,"y":450.9601},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"1"},{"statement":{"_text":"I
+    don''t like the way your looking at me"},"_position":{"x":-36.13923,"y":683.3382},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"2"},{"statement":{"_text":"Cursed
+    be you. Leave me."},"_position":{"x":-31.58089,"y":532.5961},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"3"},{"statement":{"_text":"Don''t
+    talk to me man..."},"_position":{"x":-8.599195,"y":459.2274},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"4"},{"statement":{"_text":"Go
+    away"},"_position":{"x":68.64597,"y":604.4803},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"5"},{"childOptions":[{"weight":{"_value":1.0}}],"_position":{"x":269.7863,"y":360.9541},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"6"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_position":{"x":559.9209,"y":944.2943},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"7"},{"statement":{"_text":"Howdy"},"_position":{"x":-131.2338,"y":1121.265},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"8"},{"availableChoices":[{"statement":{"_text":"Have
+    any reccomendations for the hotel?"}},{"statement":{"_text":"How are you?"}},{"statement":{"_text":"Anything
+    you need?"}}],"_position":{"x":-185.8908,"y":1248.724},"$type":"NodeCanvas.DialogueTrees.MultipleChoiceNode","$id":"9"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_position":{"x":-382.2841,"y":1474.523},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"10"},{"statement":{"_text":"Not
+    really. Sure is a nice place to stay at though.\r\n\r"},"_position":{"x":-592.3301,"y":1563.793},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"11"},{"statement":{"_text":"Yeah,
+    I think we need more water dispensers"},"_position":{"x":-596.5312,"y":1635.209},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"12"},{"statement":{"_text":"Keep
+    those prices down! I can barely afford my expenses right now"},"_position":{"x":-590.2297,"y":1709.776},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"13"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_position":{"x":-253.2836,"y":1478.144},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"14"},{"statement":{"_text":"Been
+    a hard day so far."},"_position":{"x":-300.5626,"y":1659.911},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"15"},{"statement":{"_text":"Im
+    good thanks for asking!\r\n"},"_position":{"x":-303.6947,"y":1580.016},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"16"},{"statement":{"_text":"Im
+    alright, just need to catch some more shut eye"},"_position":{"x":-299.6172,"y":1725.949},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"17"},{"statement":{"_text":"Oh
+    thanks for asking! Right now nothing.\n(+1 Favor with TOWN)\r\n"},"_position":{"x":-62.34517,"y":1584.43},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"18"},{"_action":{"method":{"_baseInfo":"Favor|GainMinorFavor|System.Void","_paramsInfo":""},"parameters":[],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_position":{"x":-23.64817,"y":1672.573},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"19"},{"statement":{"_text":"How''s
+    your day going?"},"_position":{"x":99.91956,"y":1106.904},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"20"},{"statement":{"_text":"(PLACE)
+    is wonderfull to visit"},"_position":{"x":412.6534,"y":1120.999},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"21"},{"statement":{"_text":"I
+    was at (PLACE) earlier, lovely place"},"_position":{"x":775.1904,"y":1123.078},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"22"},{"statement":{"_text":"I
+    heard some people talking about (LOCATION) earlier. Wonder what that was about? 
+    \r\n"},"_position":{"x":1075.544,"y":1141.549},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"23"},{"statement":{"_text":"I
+    was in my friend (PERSON)''s room the other day. Lovely time we had.  \r\n"},"_position":{"x":1371.746,"y":1135.538},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"24"},{"statement":{"_text":"Whats
+    up?  \r\n"},"_position":{"x":1689.152,"y":1135.61},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"25"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"5"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"6"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"8"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"20"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"21"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"22"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"23"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"24"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"25"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"8"},"_targetNode":{"$ref":"9"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"9"},"_targetNode":{"$ref":"10"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"9"},"_targetNode":{"$ref":"14"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"9"},"_targetNode":{"$ref":"18"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"10"},"_targetNode":{"$ref":"11"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"10"},"_targetNode":{"$ref":"12"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"10"},"_targetNode":{"$ref":"13"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"14"},"_targetNode":{"$ref":"15"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"14"},"_targetNode":{"$ref":"16"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"14"},"_targetNode":{"$ref":"17"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"18"},"_targetNode":{"$ref":"19"},"$type":"NodeCanvas.DialogueTrees.DTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}},"derivedData":{"actorParameters":[],"$type":"NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"}}'
+  _boundGraphObjectReferences: []
+  _boundGraphSource:
+    _version: 3.33
+    _category: 
+    _comments: 
+    _translation: {x: 520, y: -191}
+    _zoomFactor: 0.48831785
+  _firstActivation: 0
+  _enableAction: 1
+  _disableAction: 2
+  _lockBoundGraphPrefabOverrides: 1
+  _preInitializeSubGraphs: 0
+  _updateMode: 0
+  _graph: {fileID: 0}
+  _blackboard: {fileID: -9144149633550173534}
+--- !u!114 &2748782247982346700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5903264447225073114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11fe4a4c5b8540f4fbb462dcd46ef205, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inConvo: 0
 --- !u!1 &7904466343369297884
 GameObject:
   m_ObjectHideFlags: 0
