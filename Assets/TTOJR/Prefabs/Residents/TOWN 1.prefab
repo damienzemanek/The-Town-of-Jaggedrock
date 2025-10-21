@@ -103,12 +103,13 @@ GameObject:
   - component: {fileID: 9011192281063177126}
   - component: {fileID: 5011224887782839587}
   - component: {fileID: 6902335289300123792}
-  - component: {fileID: -4611304713590683017}
   - component: {fileID: 8840392011632752183}
   - component: {fileID: -9144149633550173534}
   - component: {fileID: 2217963900361797958}
   - component: {fileID: -6235299643011096383}
   - component: {fileID: 2748782247982346700}
+  - component: {fileID: 8691793057313305186}
+  - component: {fileID: 622850279409869296}
   m_Layer: 8
   m_Name: TOWN 1
   m_TagString: Untagged
@@ -292,19 +293,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _favor: 0
---- !u!114 &-4611304713590683017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5903264447225073114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6a8ebdb907271f49b93327bfb7f114c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  role: 0
 --- !u!114 &8840392011632752183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,6 +356,11 @@ MonoBehaviour:
   _serializedBlackboard: '{"_variables":{"Dialogue Tree Controller":{"_value":1,"_name":"Dialogue
     Tree Controller","_id":"6c4d9e71-f1bb-4a5e-a079-849b7be4db25","$type":"NodeCanvas.Framework.Variable`1[[NodeCanvas.DialogueTrees.DialogueTreeController,
     NodeCanvas, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"status":{"_propertyPath":"Favor.status","_name":"status","_id":"d20b347e-1660-40f6-ba82-ac3534ef7ee9","$type":"NodeCanvas.Framework.Variable`1[[Favor+FavorStatus,
+    Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"RandLoc":{"_propertyPath":"LocationRandomizer.RandLoc","_name":"RandLoc","_id":"6e8ab097-a04f-4677-a28e-1b2d54f1bff9","$type":"NodeCanvas.Framework.Variable`1[[System.String,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"RandLocExcludeHotel":{"_propertyPath":"LocationRandomizer.RandLocExcludeHotel","_name":"RandLocExcludeHotel","_id":"92e76660-2214-4e94-adb6-2bf7c48375dc","$type":"NodeCanvas.Framework.Variable`1[[System.String,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"personName":{"_propertyPath":"Dialuage.personName","_name":"personName","_id":"60a4a1fb-8ab5-419f-9a1c-37bb8d63c121","$type":"NodeCanvas.Framework.Variable`1[[System.String,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"randPersonName":{"_propertyPath":"Dialuage.randPersonName","_name":"randPersonName","_id":"3ae41356-d7f3-42d6-be74-c711ccd68a9e","$type":"NodeCanvas.Framework.Variable`1[[System.String,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"dialaugeChoice":{"_propertyPath":"DialaugeChooser.dialaugeChoice","_name":"dialaugeChoice","_id":"89050d4b-8394-459f-94f3-b2c64cb0037b","$type":"NodeCanvas.Framework.Variable`1[[DialaugeChooser+DialaugeChoice,
     Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}}}'
   _objectReferences:
   - {fileID: 0}
@@ -379,6 +372,21 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: -6235299643011096383}
   - _json: '{"_propertyPath":"Favor.status","_name":"status","_id":"d20b347e-1660-40f6-ba82-ac3534ef7ee9","$type":"NodeCanvas.Framework.Variable`1[[Favor+FavorStatus,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}'
+    _references: []
+  - _json: '{"_propertyPath":"LocationRandomizer.RandLoc","_name":"RandLoc","_id":"6e8ab097-a04f-4677-a28e-1b2d54f1bff9","$type":"NodeCanvas.Framework.Variable`1[[System.String,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
+    _references: []
+  - _json: '{"_propertyPath":"LocationRandomizer.RandLocExcludeHotel","_name":"RandLocExcludeHotel","_id":"92e76660-2214-4e94-adb6-2bf7c48375dc","$type":"NodeCanvas.Framework.Variable`1[[System.String,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
+    _references: []
+  - _json: '{"_propertyPath":"Dialuage.personName","_name":"personName","_id":"60a4a1fb-8ab5-419f-9a1c-37bb8d63c121","$type":"NodeCanvas.Framework.Variable`1[[System.String,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
+    _references: []
+  - _json: '{"_propertyPath":"Dialuage.randPersonName","_name":"randPersonName","_id":"3ae41356-d7f3-42d6-be74-c711ccd68a9e","$type":"NodeCanvas.Framework.Variable`1[[System.String,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
+    _references: []
+  - _json: '{"_propertyPath":"DialaugeChooser.dialaugeChoice","_name":"dialaugeChoice","_id":"89050d4b-8394-459f-94f3-b2c64cb0037b","$type":"NodeCanvas.Framework.Variable`1[[DialaugeChooser+DialaugeChoice,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}'
     _references: []
 --- !u!114 &2217963900361797958
@@ -410,34 +418,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serializedExposedParameters: []
-  _boundGraphSerialization: '{"type":"NodeCanvas.DialogueTrees.DialogueTree","nodes":[{"conditions":[{"valueA":{"_type":"System.Enum","_name":"status","_targetVariableID":"d20b347e-1660-40f6-ba82-ac3534ef7ee9"},"valueB":{"_type":"Favor+FavorStatus","_value":{"$content":0,"$type":"Favor+FavorStatus"}},"$type":"NodeCanvas.Tasks.Conditions.CheckEnum"},{"valueA":{"_type":"System.Enum","_name":"status","_targetVariableID":"d20b347e-1660-40f6-ba82-ac3534ef7ee9"},"valueB":{"_type":"Favor+FavorStatus","_value":{"$content":1,"$type":"Favor+FavorStatus"}},"$type":"NodeCanvas.Tasks.Conditions.CheckEnum"},{"valueA":{"_type":"System.Enum","_name":"status","_targetVariableID":"d20b347e-1660-40f6-ba82-ac3534ef7ee9"},"valueB":{"_type":"Favor+FavorStatus","_value":{"$content":2,"$type":"Favor+FavorStatus"}},"$type":"NodeCanvas.Tasks.Conditions.CheckEnum"}],"_position":{"x":611.8978,"y":114.5243},"$type":"NodeCanvas.DialogueTrees.MultipleConditionNode","$id":"0"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_position":{"x":265.0569,"y":450.9601},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"1"},{"statement":{"_text":"I
-    don''t like the way your looking at me"},"_position":{"x":-36.13923,"y":683.3382},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"2"},{"statement":{"_text":"Cursed
-    be you. Leave me."},"_position":{"x":-31.58089,"y":532.5961},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"3"},{"statement":{"_text":"Don''t
-    talk to me man..."},"_position":{"x":-8.599195,"y":459.2274},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"4"},{"statement":{"_text":"Go
-    away"},"_position":{"x":68.64597,"y":604.4803},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"5"},{"childOptions":[{"weight":{"_value":1.0}}],"_position":{"x":269.7863,"y":360.9541},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"6"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_position":{"x":559.9209,"y":944.2943},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"7"},{"statement":{"_text":"Howdy"},"_position":{"x":-131.2338,"y":1121.265},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"8"},{"availableChoices":[{"statement":{"_text":"Have
+  _boundGraphSerialization: '{"type":"NodeCanvas.DialogueTrees.DialogueTree","nodes":[{"conditions":[null],"_position":{"x":613.0597,"y":114.5243},"$type":"NodeCanvas.DialogueTrees.MultipleConditionNode","$id":"0"},{"_action":{"method":{"_baseInfo":"DialaugeChooser|SetDialaugeChoice|System.Void","_paramsInfo":""},"parameters":[],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_position":{"x":562.4798,"y":267.1653},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"1"},{"conditions":[{"valueA":{"_type":"System.Enum","_name":"dialaugeChoice","_targetVariableID":"89050d4b-8394-459f-94f3-b2c64cb0037b"},"valueB":{"_type":"DialaugeChooser+DialaugeChoice","_value":{"$content":0,"$type":"DialaugeChooser+DialaugeChoice"}},"$type":"NodeCanvas.Tasks.Conditions.CheckEnum"},{"valueA":{"_type":"System.Enum","_name":"dialaugeChoice","_targetVariableID":"89050d4b-8394-459f-94f3-b2c64cb0037b"},"valueB":{"_type":"DialaugeChooser+DialaugeChoice","_value":{"$content":1,"$type":"DialaugeChooser+DialaugeChoice"}},"$type":"NodeCanvas.Tasks.Conditions.CheckEnum"}],"_position":{"x":575.343,"y":476.7953},"$type":"NodeCanvas.DialogueTrees.MultipleConditionNode","$id":"2"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_position":{"x":-346.6169,"y":381.8058},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"3"},{"statement":{"_text":"I
+    don''t like the way your looking at me"},"_position":{"x":-842.6528,"y":587.9868},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"4"},{"statement":{"_text":"Cursed
+    be you. Leave me."},"_position":{"x":-838.0944,"y":438.36},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"5"},{"statement":{"_text":"Don''t
+    talk to me man..."},"_position":{"x":-815.1127,"y":363.8761},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"6"},{"statement":{"_text":"Go
+    away"},"_position":{"x":-737.8674,"y":509.129},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"7"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_position":{"x":559.9209,"y":944.2943},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"8"},{"statement":{"_text":"Howdy"},"_position":{"x":-403.132,"y":1109.27},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"9"},{"availableChoices":[{"statement":{"_text":"Have
     any reccomendations for the hotel?"}},{"statement":{"_text":"How are you?"}},{"statement":{"_text":"Anything
-    you need?"}}],"_position":{"x":-185.8908,"y":1248.724},"$type":"NodeCanvas.DialogueTrees.MultipleChoiceNode","$id":"9"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_position":{"x":-382.2841,"y":1474.523},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"10"},{"statement":{"_text":"Not
-    really. Sure is a nice place to stay at though.\r\n\r"},"_position":{"x":-592.3301,"y":1563.793},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"11"},{"statement":{"_text":"Yeah,
-    I think we need more water dispensers"},"_position":{"x":-596.5312,"y":1635.209},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"12"},{"statement":{"_text":"Keep
-    those prices down! I can barely afford my expenses right now"},"_position":{"x":-590.2297,"y":1709.776},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"13"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_position":{"x":-253.2836,"y":1478.144},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"14"},{"statement":{"_text":"Been
-    a hard day so far."},"_position":{"x":-300.5626,"y":1659.911},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"15"},{"statement":{"_text":"Im
-    good thanks for asking!\r\n"},"_position":{"x":-303.6947,"y":1580.016},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"16"},{"statement":{"_text":"Im
-    alright, just need to catch some more shut eye"},"_position":{"x":-299.6172,"y":1725.949},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"17"},{"statement":{"_text":"Oh
-    thanks for asking! Right now nothing.\n(+1 Favor with TOWN)\r\n"},"_position":{"x":-62.34517,"y":1584.43},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"18"},{"_action":{"method":{"_baseInfo":"Favor|GainMinorFavor|System.Void","_paramsInfo":""},"parameters":[],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_position":{"x":-23.64817,"y":1672.573},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"19"},{"statement":{"_text":"How''s
-    your day going?"},"_position":{"x":99.91956,"y":1106.904},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"20"},{"statement":{"_text":"(PLACE)
-    is wonderfull to visit"},"_position":{"x":412.6534,"y":1120.999},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"21"},{"statement":{"_text":"I
-    was at (PLACE) earlier, lovely place"},"_position":{"x":775.1904,"y":1123.078},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"22"},{"statement":{"_text":"I
-    heard some people talking about (LOCATION) earlier. Wonder what that was about? 
-    \r\n"},"_position":{"x":1075.544,"y":1141.549},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"23"},{"statement":{"_text":"I
-    was in my friend (PERSON)''s room the other day. Lovely time we had.  \r\n"},"_position":{"x":1371.746,"y":1135.538},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"24"},{"statement":{"_text":"Whats
-    up?  \r\n"},"_position":{"x":1689.152,"y":1135.61},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"25"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"5"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"6"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"8"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"20"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"21"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"22"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"23"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"24"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"7"},"_targetNode":{"$ref":"25"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"8"},"_targetNode":{"$ref":"9"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"9"},"_targetNode":{"$ref":"10"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"9"},"_targetNode":{"$ref":"14"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"9"},"_targetNode":{"$ref":"18"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"10"},"_targetNode":{"$ref":"11"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"10"},"_targetNode":{"$ref":"12"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"10"},"_targetNode":{"$ref":"13"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"14"},"_targetNode":{"$ref":"15"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"14"},"_targetNode":{"$ref":"16"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"14"},"_targetNode":{"$ref":"17"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"18"},"_targetNode":{"$ref":"19"},"$type":"NodeCanvas.DialogueTrees.DTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}},"derivedData":{"actorParameters":[],"$type":"NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"}}'
+    you need?"}}],"_position":{"x":-457.789,"y":1236.729},"$type":"NodeCanvas.DialogueTrees.MultipleChoiceNode","$id":"10"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_position":{"x":-534.2272,"y":1722.43},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"11"},{"statement":{"_text":"Not
+    really. Sure is a nice place to stay at though.\r\n\r"},"_position":{"x":-744.2732,"y":1811.7},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"12"},{"statement":{"_text":"Yeah,
+    I think we need more water dispensers"},"_position":{"x":-748.4743,"y":1883.116},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"13"},{"statement":{"_text":"Keep
+    those prices down! I can barely afford my expenses right now"},"_position":{"x":-742.1728,"y":1957.683},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"14"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_position":{"x":-405.2267,"y":1726.051},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"15"},{"statement":{"_text":"Been
+    a hard day so far."},"_position":{"x":-452.5057,"y":1907.818},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"16"},{"statement":{"_text":"Im
+    good thanks for asking!\r\n"},"_position":{"x":-455.6378,"y":1827.923},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"17"},{"statement":{"_text":"Im
+    alright, just need to catch some more shut eye"},"_position":{"x":-451.5603,"y":1973.856},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"18"},{"statement":{"_text":"Oh
+    thanks for asking! Right now nothing.\n(+1 Favor with TOWN)\r\n"},"_position":{"x":-214.2883,"y":1832.337},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"19"},{"_action":{"method":{"_baseInfo":"Favor|GainMinorFavor|System.Void","_paramsInfo":""},"parameters":[],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_position":{"x":-175.5913,"y":1920.48},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"20"},{"statement":{"_text":"How''s
+    your day going?"},"_position":{"x":99.91956,"y":1106.904},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"21"},{"availableChoices":[{"statement":{"_text":"Good,
+    how about you?"}},{"statement":{"_text":"Not Great, im worried."}}],"_position":{"x":99.98212,"y":1249.606},"$type":"NodeCanvas.DialogueTrees.MultipleChoiceNode","$id":"22"},{"statement":{"_text":"Doing
+    good,  was just was at  [RandLocExcludeHotel]. Great people thereI"},"_position":{"x":-34.9216,"y":1455.406},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"23"},{"statement":{"_text":"Oh
+    im sure it can''t be that bad, at least not as bad as"},"_position":{"x":189.1077,"y":1453.139},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"24"},{"statement":{"_text":"That
+    wacko that escaped jail after murder! Work of the devil I say."},"_position":{"x":185.7056,"y":1527.986},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"25"},{"statement":{"_text":"He
+    does''t even speek, just steals everyone''s stuff. "},"_position":{"x":193.644,"y":1615.308},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"26"},{"statement":{"_text":"Mabye
+    you can give him something and he''ll say something actually usefull."},"_position":{"x":185.7056,"y":1686.753},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"27"},{"statement":{"_text":"The
+    [RandLoc] is wonderfull to visit"},"_position":{"x":412.6534,"y":1120.999},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"28"},{"availableChoices":[{"statement":{"_text":"What
+    makes it so great?"}},{"statement":{"_text":"Thats awsome, I''ll be sure to visit"}}],"_position":{"x":418.5668,"y":1785.485},"$type":"NodeCanvas.DialogueTrees.MultipleChoiceNode","$id":"29"},{"statement":{"_text":"Well
+    my friend [randPersonName] visits there quite often,"},"_position":{"x":293.616,"y":1946.831},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"30"},{"statement":{"_text":"That
+    reminds me, that Photographer was there recently"},"_position":{"x":290.9491,"y":2036.172},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"31"},{"statement":{"_text":"You
+    should ask her to take photos of places to know whats going on around town."},"_position":{"x":297.6163,"y":2118.844},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"32"},{"statement":{"_text":"Yeah,
+    It would be great to have more people there."},"_position":{"x":531.7184,"y":1940.239},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"33"},{"statement":{"_text":"I
+    was at [RandLoc] earlier, seems different place"},"_position":{"x":776.3245,"y":1120.546},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"34"},{"availableChoices":[{"statement":{"_text":"Different
+    in what way?"}},{"statement":{"_text":"Best not to go there anymore I suppose"}}],"_position":{"x":730.6945,"y":1293.337},"$type":"NodeCanvas.DialogueTrees.MultipleChoiceNode","$id":"35"},{"statement":{"_text":"Mabye
+    it was that creepy lady who dresses in all black."},"_position":{"x":639.973,"y":1482.34},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"36"},{"statement":{"_text":"She
+    creeps me out man, I''d stay away from her If I was you, she knows some things..."},"_position":{"x":636.949,"y":1563.99},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"37"},{"statement":{"_text":"Ah
+    but I loved how it felt before, Well thanks anyway."},"_position":{"x":883.4091,"y":1486.876},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"38"},{"statement":{"_text":"I
+    heard some people talking about [RandLoc] earlier. Wonder what that was about? 
+    \r\n"},"_position":{"x":1076.942,"y":1141.549},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"39"},{"availableChoices":[{"statement":{"_text":"Do
+    you know who?"}},{"statement":{"_text":"What was discussed?"}}],"_position":{"x":1115.48,"y":1665.34},"$type":"NodeCanvas.DialogueTrees.MultipleChoiceNode","$id":"40"},{"statement":{"_text":"Hmm..
+    I think it was [randPersonName]?"},"_position":{"x":945.6185,"y":1849.21},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"41"},{"statement":{"_text":"I''m
+    not sure..."},"_position":{"x":984.1439,"y":1928.012},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"42"},{"statement":{"_text":"People
+    talk crazy here all the time, its like there''s something evil here"},"_position":{"x":954.3744,"y":2008.564},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"43"},{"statement":{"_text":"Or
+    someone."},"_position":{"x":970.1348,"y":2085.615},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"44"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_position":{"x":1315.11,"y":1847.459},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"45"},{"statement":{"_text":"The
+    sherriff was snooping around there lately"},"_position":{"x":1182.023,"y":2132.896},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"46"},{"statement":{"_text":"Some
+    recent renovations planned at [RandLocExcludeHotel]."},"_position":{"x":1185.526,"y":1973.542},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"47"},{"statement":{"_text":"Hah,
+    they were just gossiping about [randPersonName]"},"_position":{"x":1194.281,"y":2045.338},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"48"},{"statement":{"_text":"Hmm.."},"_position":{"x":1222.3,"y":2216.951},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"49"},{"statement":{"_text":"I
+    forgot."},"_position":{"x":1336.124,"y":2225.707},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"50"},{"statement":{"_text":"I
+    was in my friend [randPersonName]''s room the other day. Lovely time we had. 
+    \r\n"},"_position":{"x":1371.746,"y":1135.538},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"51"},{"availableChoices":[{"statement":{"_text":"Mabye
+    next time I can join you guys in the fun."}},{"statement":{"_text":"What did
+    you guys do?"}}],"_position":{"x":1381.651,"y":1264.211},"$type":"NodeCanvas.DialogueTrees.MultipleChoiceNode","$id":"52"},{"statement":{"_text":"Sure
+    we would love to have you there."},"_position":{"x":1292.413,"y":1426.911},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"53"},{"statement":{"_text":"We
+    used a little bit of that devils lettuce!"},"_position":{"x":1510.314,"y":1428.119},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"54"},{"statement":{"_text":"Sh...
+    don''t tell the sherrif or he''ll suspect us of bein evil!"},"_position":{"x":1515.696,"y":1503.162},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"55"},{"statement":{"_text":"Whats
+    up?  \r\n"},"_position":{"x":1804.338,"y":1137.743},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"56"},{"availableChoices":[{"statement":{"_text":"Nothing
+    much"}},{"statement":{"_text":"Alot I suppose."}}],"_position":{"x":1778.979,"y":1625.398},"$type":"NodeCanvas.DialogueTrees.MultipleChoiceNode","$id":"57"},{"statement":{"_text":"Well
+    then hold on to your secrets mister."},"_position":{"x":1627.531,"y":1783.245},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"58"},{"statement":{"_text":"Seems
+    like everyone here has some secrets..."},"_position":{"x":1623.265,"y":1870.701},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"59"},{"statement":{"_text":"Same
+    here, I''ve been worried about [randPersonName] lately."},"_position":{"x":1900.564,"y":1785.379},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"60"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"8"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"5"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"8"},"_targetNode":{"$ref":"9"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"8"},"_targetNode":{"$ref":"21"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"8"},"_targetNode":{"$ref":"28"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"8"},"_targetNode":{"$ref":"34"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"8"},"_targetNode":{"$ref":"39"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"8"},"_targetNode":{"$ref":"51"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"8"},"_targetNode":{"$ref":"56"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"9"},"_targetNode":{"$ref":"10"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"10"},"_targetNode":{"$ref":"11"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"10"},"_targetNode":{"$ref":"15"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"10"},"_targetNode":{"$ref":"19"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"11"},"_targetNode":{"$ref":"12"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"11"},"_targetNode":{"$ref":"13"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"11"},"_targetNode":{"$ref":"14"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"15"},"_targetNode":{"$ref":"16"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"15"},"_targetNode":{"$ref":"17"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"15"},"_targetNode":{"$ref":"18"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"19"},"_targetNode":{"$ref":"20"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"21"},"_targetNode":{"$ref":"22"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"22"},"_targetNode":{"$ref":"23"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"22"},"_targetNode":{"$ref":"24"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"24"},"_targetNode":{"$ref":"25"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"25"},"_targetNode":{"$ref":"26"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"26"},"_targetNode":{"$ref":"27"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"28"},"_targetNode":{"$ref":"29"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"29"},"_targetNode":{"$ref":"30"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"29"},"_targetNode":{"$ref":"33"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"30"},"_targetNode":{"$ref":"31"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"31"},"_targetNode":{"$ref":"32"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"34"},"_targetNode":{"$ref":"35"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"35"},"_targetNode":{"$ref":"36"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"35"},"_targetNode":{"$ref":"38"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"36"},"_targetNode":{"$ref":"37"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"39"},"_targetNode":{"$ref":"40"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"40"},"_targetNode":{"$ref":"41"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"40"},"_targetNode":{"$ref":"45"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"41"},"_targetNode":{"$ref":"42"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"42"},"_targetNode":{"$ref":"43"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"43"},"_targetNode":{"$ref":"44"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"45"},"_targetNode":{"$ref":"46"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"45"},"_targetNode":{"$ref":"47"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"45"},"_targetNode":{"$ref":"48"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"45"},"_targetNode":{"$ref":"49"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"49"},"_targetNode":{"$ref":"50"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"51"},"_targetNode":{"$ref":"52"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"52"},"_targetNode":{"$ref":"53"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"52"},"_targetNode":{"$ref":"54"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"54"},"_targetNode":{"$ref":"55"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"56"},"_targetNode":{"$ref":"57"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"57"},"_targetNode":{"$ref":"58"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"57"},"_targetNode":{"$ref":"60"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"58"},"_targetNode":{"$ref":"59"},"$type":"NodeCanvas.DialogueTrees.DTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}},"derivedData":{"actorParameters":[],"$type":"NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"}}'
   _boundGraphObjectReferences: []
   _boundGraphSource:
     _version: 3.33
     _category: 
     _comments: 
-    _translation: {x: 520, y: -191}
-    _zoomFactor: 0.48831785
+    _translation: {x: -136.52695, y: 76.78668}
+    _zoomFactor: 0.67738307
   _firstActivation: 0
   _enableAction: 1
   _disableAction: 2
@@ -459,6 +501,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inConvo: 0
+  person: {fileID: 11400000, guid: 5d62d39584c0ab6489866496d1a2f620, type: 2}
+  role: 0
+--- !u!114 &8691793057313305186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5903264447225073114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 808eb9a637cbdb94d905c033134e9bcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialaugeChoice: 1
+--- !u!114 &622850279409869296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5903264447225073114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf3870f004d2d234985c2fe0d02aca24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locations:
+  - Hotel
+  - Courthouse
+  - Bakery
+  - Office
+  - Store
+  - Farm
+  - Library
+  - Forest
+  - Forest Hideout
+  - Mansion
+  - Park
+  - Sheriff's Office
+  - Rundown Building
 --- !u!1 &7904466343369297884
 GameObject:
   m_ObjectHideFlags: 0

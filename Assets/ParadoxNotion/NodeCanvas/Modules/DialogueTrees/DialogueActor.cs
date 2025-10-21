@@ -22,6 +22,11 @@ namespace NodeCanvas.DialogueTrees
 
         new public string name {
             get { return _name; }
+            set
+            {
+                _name = value;
+                base.name = value;
+            }
         }
 
         public Texture2D portrait {
@@ -48,11 +53,17 @@ namespace NodeCanvas.DialogueTrees
         //IDialogueActor.transform is implemented by inherited MonoBehaviour.transform
 
 
-        ///----------------------------------------------------------------------------------------------
-        ///---------------------------------------UNITY EDITOR-------------------------------------------
+        public void AssignName(string input_name)
+        {
+            this.name = input_name;
+
+        }
+
+            ///----------------------------------------------------------------------------------------------
+            ///---------------------------------------UNITY EDITOR-------------------------------------------
 #if UNITY_EDITOR
 
-        void Reset() {
+            void Reset() {
             _name = gameObject.name;
         }
 

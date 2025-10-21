@@ -9,16 +9,34 @@ using System;
 [RequireComponent(typeof(CallbackDetector))]
 public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
 {
+    public enum CharacterRole
+    {
+        Town,
+        Coven,
+        Sherrif,
+        LadyInBlack,
+        Photographer,
+        AssylumEscapee
+    }
+
     [Inject] EntityControls playerControls;
     [Inject] Interactor interactor;
 
+
     [SerializeField] bool inConvo;
+    [SerializeField] SO_Person person;
+    public CharacterRole role;
+
+    public string personName { get => (person != null) ? person.personName : string.Empty; }
+    public string randPersonName { get => (person != null) ? person.GetRandomPersonName() : string.Empty; }
 
     #region Privs
     CallbackDetector detector;
     NPC_Movement movement;
     NavMeshAgent agent;
     DialogueTreeController dialaugeController;
+    DialaugeChooser dialaugeChooser;
+    DialogueActor actor;
     #endregion
 
     protected override void OnInstantiate()
@@ -28,7 +46,14 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
         movement = this.TryGet<NPC_Movement>();
         agent = this.TryGet<NavMeshAgent>();
         dialaugeController = this.TryGet<DialogueTreeController>();
+        dialaugeChooser = this.TryGet<DialaugeChooser>();
+        actor = this.TryGet<DialogueActor>();
         AssignValuesForCallbackDetector();
+    }
+
+    private void Start()
+    {
+        AssignDialaugeActorName();
     }
 
     public void AssignValuesForCallbackDetector()
@@ -83,8 +108,6 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
         agent.enabled = true;
         inConvo = false;
     }
-
-
     void StartDialauge()
     {
         if (dialaugeController == null) this.Error("dialaugeOwner is null");
@@ -92,4 +115,7 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
         dialaugeController.StartDialogue(OnStopTalking);
     }
 
+    void AssignDialaugeActorName() => actor.AssignName(personName);
+
 }
+
