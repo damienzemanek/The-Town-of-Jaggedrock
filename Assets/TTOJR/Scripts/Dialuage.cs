@@ -74,8 +74,8 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
         DisableMyMovement();
         LookAtWhoImTalkingTo();
         TalkeeLooksAtMe();
+        FreezeTime(true);
     }
-
     void LookAtWhoImTalkingTo()
     {
         transform.LookAtPosThenMyTransform(playerControls.transform.position.With(y: 0))
@@ -86,7 +86,6 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
         movement.enabled = false;
         agent.enabled = false;
     }
-
     void TalkeeLooksAtMe()
     {
         Look look = playerControls.TryGet<Look>();
@@ -97,8 +96,13 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
         look.ToggleUpdateMouseLooking(false);
         inv.ToggleInventoryVisability(false);
     }
-
-    void OnStopTalking(bool success)
+    void StartDialauge()
+    {
+        if (dialaugeController == null) this.Error("dialaugeOwner is null");
+        inConvo = true;
+        dialaugeController.StartDialogue(StopDialauge);
+    }
+    void StopDialauge(bool success)
     {
         Look look = playerControls.TryGet<Look>();
         Inventory inv = playerControls.TryGet<Inventory>();
@@ -110,16 +114,11 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
         movement.enabled = true;
         agent.enabled = true;
         inConvo = false;
-    }
-    void StartDialauge()
-    {
-        if (dialaugeController == null) this.Error("dialaugeOwner is null");
-        inConvo = true;
-        dialaugeController.StartDialogue(OnStopTalking);
-    }
 
+        FreezeTime(false);
+    }
     void AssignDialaugeActorName() => actor.AssignName(input_name: personName);
-
+    void FreezeTime(bool val) => TimeCycle.instance.timeFrozen = val;
 
 }
 
