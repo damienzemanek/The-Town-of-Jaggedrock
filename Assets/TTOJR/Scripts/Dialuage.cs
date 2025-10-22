@@ -14,7 +14,9 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
     [Inject] Interactor interactor;
 
 
+#pragma warning disable IDE0052 // Remove unread private members
     [SerializeField] bool inConvo;
+#pragma warning restore IDE0052 // Remove unread private members
     [SerializeField] SO_Person person;
     [field:SerializeField] public SO_Favor favor { get; private set; }
 

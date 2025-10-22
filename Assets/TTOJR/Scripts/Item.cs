@@ -158,7 +158,9 @@ class Placeable : ItemFunctionality<Placeable.Data>
 {
     [field: SerializeReference] public override Data data { get; set; }
     [Serializable]
-    public class Data 
+#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
+    public class Data
+#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
     {
         public GameObject objectToPlace;
         [SerializeReference] [ReadOnly] public Transform placeLocation;
@@ -237,7 +239,9 @@ class DestinationUser : ItemFunctionality<DestinationUser.Data>
 {
     [field: SerializeReference] public override Data data { get; set; }
     [Serializable]
+#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
     public class Data
+#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
     {
         [field:SerializeField]  public Destination useDestination { get; private set; }
         public void SetUseLocation(Destination val) => useDestination = val;
@@ -283,7 +287,9 @@ class Gun : ItemFunctionality<Gun.Data>
 {
     [field: SerializeReference] public override Data data { get; set; }
     [Serializable]
+#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
     public class Data
+#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
     {
         [field: SerializeField][field: ReadOnly] public Raycaster caster { get; private set; }
         [field: SerializeField][field: ReadOnly] public EntityControls controls { get; private set; }

@@ -1,23 +1,36 @@
+using System.Collections;
 using DependencyInjection;
+using Sirenix.OdinInspector;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class TimeCycle : MonoBehaviour
 {
     [Inject] EntityControls controls;
     public static TimeCycle instance;
+    public Light dayLight;
+    public float nightIntensity = 0f;
+    float initialIntensity;
 
     private void Awake()
     {
         instance = this;
+        initialIntensity = dayLight.intensity;
     }
 
 
     public float currentTime;
 
-    public float dayLengthInMinutes = (60f * 5);
-    public float nightLenghtInMinutes = (60f * 3);
+    [Title("Fade Settings")]
+    [Range(0f, 100f)] public float dayFadeStartPercent = 75f;
+    [Range(0f, 100f)] public float nightFadeStartPercent = 75f;
 
+    [Title("Cycle Lengths (Minutes)")]
+    public float dayLengthInMinutes = 5f * 60f;
+    public float nightLengthInMinutes = 3f * 60f;
+
+    [Title("States")]
     [SerializeField] bool isDay = true;
     public bool timeFrozen = false;
     public bool transitioning = false;
@@ -38,13 +51,16 @@ public class TimeCycle : MonoBehaviour
 
     void CheckDay()
     {
+        FadeDayLightToNight();
         if (currentTime > dayLengthInMinutes * 60)
             Transition();
     }
 
     void CheckNight()
     {
-        if (currentTime > nightLenghtInMinutes * 60)
+        FadeNightLightToDay(); 
+
+        if (currentTime > nightLengthInMinutes * 60)
             Transition();
     }
 
@@ -60,12 +76,37 @@ public class TimeCycle : MonoBehaviour
 
     void SetToNight()
     {
-
+        dayLight.intensity = nightIntensity;
     }
 
     void SetToDay()
     {
-
+        dayLight.intensity = initialIntensity;
     }
+
+    void FadeDayLightToNight()
+    {
+        float fadeStart = (dayFadeStartPercent / 100f) * (dayLengthInMinutes * 60f);
+        float fadeEnd = dayLengthInMinutes * 60f;
+
+        if (currentTime >= fadeStart)
+        {
+            float t = Mathf.InverseLerp(fadeStart, fadeEnd, currentTime);
+            dayLight.intensity = Mathf.Lerp(initialIntensity, nightIntensity, t);
+        }
+    }
+
+    void FadeNightLightToDay()
+    {
+        float fadeStart = (nightFadeStartPercent / 100f) * (nightLengthInMinutes * 60f);
+        float fadeEnd = nightLengthInMinutes * 60f;
+
+        if (currentTime >= fadeStart)
+        {
+            float t = Mathf.InverseLerp(fadeStart, fadeEnd, currentTime);
+            dayLight.intensity = Mathf.Lerp(nightIntensity, initialIntensity, t);
+        }
+    }
+
 
 }
