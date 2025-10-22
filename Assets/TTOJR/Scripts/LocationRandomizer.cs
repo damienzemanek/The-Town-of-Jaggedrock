@@ -20,6 +20,7 @@ public class LocationRandomizer : MonoBehaviour
         Courthouse,
         Mansion,
         Offices,
+        Trail,
         Farm,
         Forest,
         RundownHouse

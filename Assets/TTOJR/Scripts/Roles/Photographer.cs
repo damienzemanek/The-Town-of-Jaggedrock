@@ -3,6 +3,8 @@ using UnityEngine;
 public class Photographer : MonoBehaviour
 {
     public LocationRandomizer.Locations locationIWantToPhotograph;
+    public LocationRandomizer.Locations locationGivenByPlayerToPhotograph;
+    [SerializeField] bool givenLoc;
 
 
     LocationRandomizer locations;
@@ -20,6 +22,11 @@ public class Photographer : MonoBehaviour
     void SetNewLocationIWantToPhotograph()
     {
         locationIWantToPhotograph = locations.GetRandomLocationExcludeHotel();
+    }
+
+    public void PlayerGivenPhotographerALocation()
+    {
+        givenLoc = true;
     }
 
 }

@@ -12533,10 +12533,10 @@ MonoBehaviour:
   actorPortrait: {fileID: 4477938853081724605}
   waitInputIndicator: {fileID: 4413276371823288469}
   subtitleDelays:
-    characterDelay: 0.05
-    sentenceDelay: 0.5
+    characterDelay: 0.03
+    sentenceDelay: 0.24
     commaDelay: 0.1
-    finalDelay: 1.2
+    finalDelay: 1
   typingSounds:
   - {fileID: 8300000, guid: a0d9ccf1ea0e87d4794965b3fa230c65, type: 3}
   - {fileID: 8300000, guid: 5e5452015663bd141a0af3ff478c7272, type: 3}
@@ -52943,7 +52943,7 @@ RectTransform:
   m_GameObject: {fileID: 4477938853075174225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.000015233394}
-  m_LocalScale: {x: 1.3311146, y: 1.3311148, z: 1.3311146}
+  m_LocalScale: {x: 0.6655573, y: 0.6655573, z: 0.6655573}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4477938853052877299}
@@ -52951,8 +52951,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 8.652222}
-  m_SizeDelta: {x: -366, y: 47}
+  m_AnchoredPosition: {x: -0.0004272461, y: 8.652222}
+  m_SizeDelta: {x: -147.92, y: 47}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!224 &4477938853052877299
 RectTransform:
@@ -52971,7 +52971,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: -23.35}
+  m_AnchoredPosition: {x: 0, y: -23.35}
   m_SizeDelta: {x: -51.8, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &4477938853052877301
@@ -53059,7 +53059,7 @@ RectTransform:
   m_GameObject: {fileID: 4477938853075174239}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.000015233394}
-  m_LocalScale: {x: 1.3311146, y: 1.3311148, z: 1.3311146}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4413276371823288469}
@@ -53334,7 +53334,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0.5019608}
+    m_NormalColor: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 0.5019608}
     m_HighlightedColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0.69803923}
     m_PressedColor: {r: 0.34509805, g: 0.34509805, b: 0.34509805, a: 0.69803923}
     m_SelectedColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0.69803923}
@@ -53370,7 +53370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.588}
+  m_Color: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 0.588}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -53400,7 +53400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.7607843}
+  m_Color: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 0.078431375}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -53466,7 +53466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.196, g: 0.196, b: 0.196, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -53474,11 +53474,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
+    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_FontSize: 17
+    m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
