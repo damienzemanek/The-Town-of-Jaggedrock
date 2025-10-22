@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using ParadoxNotion.Design;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -21,33 +22,37 @@ public class LocationRandomizer : MonoBehaviour
         Offices,
         Farm,
         Forest,
+        RundownHouse
     }
 
-    public string[] locations; 
+    public string[] locations; //Display Names
 
     private void Awake() => SetLocs();
     private void OnValidate() => SetLocs();
+    static string ConvertLocEnumToFormattedString(Locations loc) =>
+        Regex.Replace(loc.ToString(), "([a-z])([A-Z])", "$1 $2");
 
-    void SetLocs() => locations = Enum.GetNames(typeof(Locations));
+    void SetLocs() => locations = Enum.GetValues(typeof(Locations))
+                        .Cast<Locations>()
+                        .Select(ConvertLocEnumToFormattedString)
+                        .ToArray();
 
 
     public string RandLoc { get => GetRandomLocation(); }
-    public string RandLocExcludeHotel { get => GetRandomLocationExclude(Locations.Hotel); }
-    //
+    public string RandLocExcludeHotel { get => GetRandomLocationExclude(Locations.Hotel).ToString(); }
 
-    public string GetRandomLocation()
+
+    public string GetRandomLocation() => locations[Random.Range(0, locations.Length)];
+
+    public Locations GetRandomLocationExcludeHotel() => GetRandomLocationExclude(Locations.Hotel);
+
+    public Locations GetRandomLocationExclude(Locations exclude)
     {
+        var include = Enum.GetValues(typeof(Locations))
+            .Cast<Locations>()
+            .Where(loc => loc != exclude)
+            .ToArray();
 
-        return locations[Random.Range(0, locations.Length)];
-    }
-
-    public string GetRandomLocationExclude(Locations exclude)
-    {
-        if (locations?.Length > 0 == false) return string.Empty;
-
-        var include = locations.Where((loc, index) => index != (int)exclude).ToArray();
-        if(include.Length == 0) return string.Empty;
-
-        return locations[Random.Range(0, include.Length)];
+        return include[Random.Range(0, include.Length)];
     }
 }

@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 2748782247982346700}
   - component: {fileID: 8691793057313305186}
   - component: {fileID: 622850279409869296}
+  - component: {fileID: -2442088848572391889}
   m_Layer: 8
   m_Name: PHOTOGRAPHER
   m_TagString: Untagged
@@ -349,6 +350,7 @@ MonoBehaviour:
     Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"personITalkAboutsGroupingTrait":{"_propertyPath":"Dialuage.personITalkAboutsGroupingTrait","_name":"personITalkAboutsGroupingTrait","_id":"5a2deb3a-798d-40bb-a63a-fa19e32f0736","$type":"NodeCanvas.Framework.Variable`1[[System.String,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"personITalkAboutsName":{"_propertyPath":"Dialuage.personITalkAboutsName","_name":"personITalkAboutsName","_id":"fd3d5f98-5453-40ae-ad4e-ede694e55697","$type":"NodeCanvas.Framework.Variable`1[[System.String,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"myGroupingTrait":{"_propertyPath":"Dialuage.myGroupingTrait","_name":"myGroupingTrait","_id":"6921b1fe-e939-424a-ae9d-4f8f40a16088","$type":"NodeCanvas.Framework.Variable`1[[SO_Person+GroupingTrait,
+    Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"locationIWantToPhotograph":{"_propertyPath":"Photographer.locationIWantToPhotograph","_name":"locationIWantToPhotograph","_id":"4538c429-78e4-43b9-a576-1298fa1bea35","$type":"NodeCanvas.Framework.Variable`1[[LocationRandomizer+Locations,
     Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}}}'
   _objectReferences:
   - {fileID: 0}
@@ -383,6 +385,9 @@ MonoBehaviour:
   - _json: '{"_propertyPath":"Dialuage.myGroupingTrait","_name":"myGroupingTrait","_id":"6921b1fe-e939-424a-ae9d-4f8f40a16088","$type":"NodeCanvas.Framework.Variable`1[[SO_Person+GroupingTrait,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}'
     _references: []
+  - _json: '{"_propertyPath":"Photographer.locationIWantToPhotograph","_name":"locationIWantToPhotograph","_id":"4538c429-78e4-43b9-a576-1298fa1bea35","$type":"NodeCanvas.Framework.Variable`1[[LocationRandomizer+Locations,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}'
+    _references: []
 --- !u!114 &2217963900361797958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,37 +417,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serializedExposedParameters: []
-  _boundGraphSerialization: '{"type":"NodeCanvas.DialogueTrees.DialogueTree","nodes":[{"conditions":[null],"_UID":"3dbe52a7-48a7-40c7-b394-9c6573369dd0","_position":{"x":613.0597,"y":114.5243},"$type":"NodeCanvas.DialogueTrees.MultipleConditionNode","$id":"0"},{"_action":{"method":{"_baseInfo":"DialaugeChooser|SetDialaugeChoice|System.Void","_paramsInfo":""},"parameters":[],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_UID":"30553741-2224-424e-a4bb-ebc994c5374c","_position":{"x":570.0354,"y":269.1845},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"1"},{"conditions":[null],"_UID":"f68020c6-79ff-43c0-87db-40128c2cf8f8","_position":{"x":619.3403,"y":435.1341},"$type":"NodeCanvas.DialogueTrees.MultipleConditionNode","$id":"2"},{"statement":{"_text":"Whatsup
-    mister"},"_position":{"x":595.6702,"y":562.3342},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"3"},{"availableChoices":[{"statement":{"_text":"Whats
-    been on your mind?"}},{"statement":{"_text":"I have some recomendations for places
-    to take photos of."}}],"_position":{"x":544.4495,"y":676.5336},"$type":"NodeCanvas.DialogueTrees.MultipleChoiceNode","$id":"4"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_position":{"x":283.2788,"y":900.5454},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"5"},{"statement":{"_text":"I''ve
-    been itchin to back to school lately. Being out here making a living is tough
-    as is. But I would have to know more."},"_position":{"x":-113.8888,"y":1015.909},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"6"},{"statement":{"_text":"
+  _boundGraphSerialization: '{"type":"NodeCanvas.DialogueTrees.DialogueTree","nodes":[{"conditions":[null],"_UID":"3dbe52a7-48a7-40c7-b394-9c6573369dd0","_position":{"x":613.0597,"y":114.5243},"$type":"NodeCanvas.DialogueTrees.MultipleConditionNode","$id":"0"},{"_action":{"method":{"_baseInfo":"DialaugeChooser|SetDialaugeChoice|System.Void","_paramsInfo":""},"parameters":[],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_UID":"30553741-2224-424e-a4bb-ebc994c5374c","_position":{"x":570.0354,"y":269.1845},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"1"},{"conditions":[null],"_UID":"f68020c6-79ff-43c0-87db-40128c2cf8f8","_position":{"x":618.3403,"y":387.1341},"$type":"NodeCanvas.DialogueTrees.MultipleConditionNode","$id":"2"},{"statement":{"_text":"Whatsup
+    mister"},"_position":{"x":592.6702,"y":514.3342},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"3"},{"availableChoices":[{"statement":{"_text":"I
+    have some recomendations for places to take photos of."}},{"statement":{"_text":"Whats
+    been on your mind?"}}],"_position":{"x":544.4495,"y":677.5336},"$type":"NodeCanvas.DialogueTrees.MultipleChoiceNode","$id":"4"},{"conditions":[{"valueA":{"_type":"System.Enum","_name":"locationIWantToPhotograph","_targetVariableID":"4538c429-78e4-43b9-a576-1298fa1bea35"},"valueB":{"_type":"LocationRandomizer+Locations","_value":{"$content":6,"$type":"LocationRandomizer+Locations"}},"$type":"NodeCanvas.Tasks.Conditions.CheckEnum"},{"valueA":{"_type":"System.Enum","_name":"locationIWantToPhotograph","_targetVariableID":"4538c429-78e4-43b9-a576-1298fa1bea35"},"valueB":{"_type":"LocationRandomizer+Locations","_value":{"$content":3,"$type":"LocationRandomizer+Locations"}},"$type":"NodeCanvas.Tasks.Conditions.CheckEnum"},{"valueA":{"_type":"System.Enum","_name":"locationIWantToPhotograph","_targetVariableID":"4538c429-78e4-43b9-a576-1298fa1bea35"},"valueB":{"_type":"LocationRandomizer+Locations","_value":{"$content":12,"$type":"LocationRandomizer+Locations"}},"$type":"NodeCanvas.Tasks.Conditions.CheckEnum"},{"valueA":{"_type":"System.Enum","_name":"locationIWantToPhotograph","_targetVariableID":"4538c429-78e4-43b9-a576-1298fa1bea35"},"valueB":{"_type":"LocationRandomizer+Locations","_value":{"$content":9,"$type":"LocationRandomizer+Locations"}},"$type":"NodeCanvas.Tasks.Conditions.CheckEnum"},{"valueA":{"_type":"System.Enum","_name":"locationIWantToPhotograph","_targetVariableID":"4538c429-78e4-43b9-a576-1298fa1bea35"},"valueB":{"_type":"LocationRandomizer+Locations","_value":{"$content":5,"$type":"LocationRandomizer+Locations"}},"$type":"NodeCanvas.Tasks.Conditions.CheckEnum"},{"valueA":{"_type":"System.Enum","_name":"locationIWantToPhotograph","_targetVariableID":"4538c429-78e4-43b9-a576-1298fa1bea35"},"valueB":{"_type":"LocationRandomizer+Locations","_value":{"$content":2,"$type":"LocationRandomizer+Locations"}},"$type":"NodeCanvas.Tasks.Conditions.CheckEnum"},{"valueA":{"_type":"System.Enum","_name":"locationIWantToPhotograph","_targetVariableID":"4538c429-78e4-43b9-a576-1298fa1bea35"},"valueB":{"_type":"LocationRandomizer+Locations","_value":{"$content":8,"$type":"LocationRandomizer+Locations"}},"$type":"NodeCanvas.Tasks.Conditions.CheckEnum"},{"valueA":{"_type":"System.Enum","_name":"locationIWantToPhotograph","_targetVariableID":"4538c429-78e4-43b9-a576-1298fa1bea35"},"valueB":{"_type":"LocationRandomizer+Locations","_value":{"$content":4,"$type":"LocationRandomizer+Locations"}},"$type":"NodeCanvas.Tasks.Conditions.CheckEnum"},{"valueA":{"_type":"System.Enum","_name":"locationIWantToPhotograph","_targetVariableID":"4538c429-78e4-43b9-a576-1298fa1bea35"},"valueB":{"_type":"LocationRandomizer+Locations","_value":{"$content":11,"$type":"LocationRandomizer+Locations"}},"$type":"NodeCanvas.Tasks.Conditions.CheckEnum"}],"_position":{"x":73.0,"y":695.0},"$type":"NodeCanvas.DialogueTrees.MultipleConditionNode","$id":"5"},{"statement":{"_text":"I''ve
+    been itchin to back to school lately. I''ve never really been book-smart. But
+    it wouldn''t hurt to start."},"_position":{"x":-739.1936,"y":738.7883},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"6"},{"statement":{"_text":"
     I grew up here, I really loved the sandwhiches my mother used to make. It always
-    had the best bread."},"_position":{"x":-32.15073,"y":1115.441},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"7"},{"statement":{"_text":"You
-    ever read those creepy stories of ghosts? I wouldn''t want one haunting me!"},"_position":{"x":112.0795,"y":1023.933},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"8"},{"statement":{"_text":"
-    I didn''t eat breakfast today... Silly me."},"_position":{"x":207.0715,"y":1109.655},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"9"},{"statement":{"_text":"I
-    love taking pictures, I wonder what it would be like to have an office job though."},"_position":{"x":357.0953,"y":1036.147},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"10"},{"statement":{"_text":"I
-    wonder where the stores get their food from. Magic? Mabye..."},"_position":{"x":457.9604,"y":1124.147},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"11"},{"statement":{"_text":"My
+    had the best bread."},"_position":{"x":-711.5068,"y":827.3994},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"7"},{"statement":{"_text":"You
+    ever see those films of teens walking into scary buildings? Quite freaky."},"_position":{"x":-666.3794,"y":921.0244},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"8"},{"statement":{"_text":"I
+    love taking pictures, but I wonder what it would be like to have an office job
+    though."},"_position":{"x":-609.9954,"y":1003.511},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"9"},{"statement":{"_text":"
+    I didn''t eat breakfast today... Silly me."},"_position":{"x":-544.2316,"y":1085.336},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"10"},{"statement":{"_text":"I
+    love relaxing outside, especially when the weather\u2019s nice. I need to just
+    sit and watch the trees sway in the park."},"_position":{"x":-444.3376,"y":1180.531},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"11"},{"statement":{"_text":"My
     cousin was an architect, really rich guy. He even designed this amazing expensive
-    house. I could never live there though. My life is here."},"_position":{"x":590.8889,"y":1042.489},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"12"},{"statement":{"_text":"Oh
-    cool, where should I go to today?"},"_position":{"x":1021.075,"y":943.1001},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"13"},{"availableChoices":[{"statement":{"_text":"Sherriffs
-    Office"}},{"statement":{"_text":"Park"}},{"statement":{"_text":"Bakery"}},{"statement":{"_text":"Store"}},{"statement":{"_text":"Diner"}},{"statement":{"_text":"Library"}},{"statement":{"_text":"Courthouse"}},{"statement":{"_text":"Mansion"}},{"statement":{"_text":"Offices"}},{"statement":{"_text":"Farm"}},{"statement":{"_text":"Trail"}},{"statement":{"_text":"Forest"}}],"_position":{"x":1065.0,"y":1040.0},"$type":"NodeCanvas.DialogueTrees.MultipleChoiceNode","$id":"14"},{"statement":{"_text":"(Gained
+    house. I could never live there though. My life is here."},"_position":{"x":-347.067,"y":1264.701},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"12"},{"statement":{"_text":"I
+    wonder where the stores get their food from. Magic? Mabye..."},"_position":{"x":-221.4327,"y":1348.324},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"13"},{"statement":{"_text":"The
+    forest is pretty, but I can\u2019t shake the feeling that something\u2019s always
+    watching."},"_position":{"x":13.42961,"y":1351.193},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"14"},{"statement":{"_text":"Mabye
+    one day I''ll capture whatever or whoever it is on camera."},"_position":{"x":8.72326,"y":1444.646},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"15"},{"statement":{"_text":"Oh
+    cool, where should I go to today?"},"_position":{"x":534.4775,"y":928.0814},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"16"},{"availableChoices":[{"statement":{"_text":"Sherriffs
+    Office"}},{"statement":{"_text":"Park"}},{"statement":{"_text":"Bakery"}},{"statement":{"_text":"Store"}},{"statement":{"_text":"Diner"}},{"statement":{"_text":"Library"}},{"statement":{"_text":"Courthouse"}},{"statement":{"_text":"Mansion"}},{"statement":{"_text":"Offices"}},{"statement":{"_text":"Farm"}},{"statement":{"_text":"Trail"}},{"statement":{"_text":"Forest"}},{"statement":{"_text":"Rundown
+    House"}}],"_position":{"x":578.4025,"y":1025.981},"$type":"NodeCanvas.DialogueTrees.MultipleChoiceNode","$id":"17"},{"statement":{"_text":"(Gained
     Minor Favor)"},"_UID":"a8817f5b-45f2-4f1e-b10e-c25574953026","_tag":"Gain Minor
-    Favor","_position":{"x":-677.5238,"y":-205.9595},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"15"},{"_action":{"method":{"_baseInfo":"Dialuage|GainMinorFavor|System.Void","_paramsInfo":""},"parameters":[],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_UID":"77680b23-84b7-42e9-9e2e-b0d981c43560","_position":{"x":-672.6359,"y":-106.9592},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"16"},{"statement":{"_text":"(Gained
+    Favor","_position":{"x":-677.5238,"y":-205.9595},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"18"},{"_action":{"method":{"_baseInfo":"Dialuage|GainMinorFavor|System.Void","_paramsInfo":""},"parameters":[],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_UID":"77680b23-84b7-42e9-9e2e-b0d981c43560","_position":{"x":-672.6359,"y":-106.9592},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"19"},{"statement":{"_text":"(Gained
     Major Favor)"},"_UID":"40327d8b-68f2-4354-8ec5-9c2913c7354e","_name":"","_tag":"Gain
-    Major Favor","_position":{"x":-402.5286,"y":-209.6718},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"17"},{"_action":{"method":{"_baseInfo":"Dialuage|GainMajorFavor|System.Void","_paramsInfo":""},"parameters":[],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_UID":"5bad782e-c32e-4287-9415-fdb85f778278","_position":{"x":-397.6407,"y":-110.6715},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"18"},{"statement":{"_text":"(Lost
+    Major Favor","_position":{"x":-402.5286,"y":-209.6718},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"20"},{"_action":{"method":{"_baseInfo":"Dialuage|GainMajorFavor|System.Void","_paramsInfo":""},"parameters":[],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_UID":"5bad782e-c32e-4287-9415-fdb85f778278","_position":{"x":-397.6407,"y":-110.6715},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"21"},{"statement":{"_text":"(Lost
     Minor Favor)"},"_UID":"5b60f0a3-08f4-4b76-b228-0e4f2cdf9449","_tag":"Lost Minor
-    Favor","_position":{"x":-118.8461,"y":-204.0563},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"19"},{"_action":{"method":{"_baseInfo":"Dialuage|LoseMinorFavor|System.Void","_paramsInfo":""},"parameters":[],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_UID":"17bc70ec-9baf-4d27-8aec-ae00a4d7b68b","_position":{"x":-125.9582,"y":-107.0562},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"20"},{"statement":{"_text":"(Lost
+    Favor","_position":{"x":-118.8461,"y":-204.0563},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"22"},{"_action":{"method":{"_baseInfo":"Dialuage|LoseMinorFavor|System.Void","_paramsInfo":""},"parameters":[],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_UID":"17bc70ec-9baf-4d27-8aec-ae00a4d7b68b","_position":{"x":-125.9582,"y":-107.0562},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"23"},{"statement":{"_text":"(Lost
     Major Favor)"},"_UID":"645eea84-8a48-4326-ab4a-95676be01d55","_tag":"Lost Major
-    Favor","_position":{"x":142.1541,"y":-204.0563},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"21"},{"_action":{"method":{"_baseInfo":"Dialuage|LoseMajorFavor|System.Void","_paramsInfo":""},"parameters":[],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_UID":"7b31ca50-4016-4a02-b5cc-751bd0915d60","_position":{"x":137.0419,"y":-106.0562},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"22"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"5"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"13"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"8"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"9"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"10"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"11"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"12"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"13"},"_targetNode":{"$ref":"14"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"15"},"_targetNode":{"$ref":"16"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"17"},"_targetNode":{"$ref":"18"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"19"},"_targetNode":{"$ref":"20"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"21"},"_targetNode":{"$ref":"22"},"$type":"NodeCanvas.DialogueTrees.DTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}},"derivedData":{"actorParameters":[],"$type":"NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"}}'
+    Favor","_position":{"x":142.1541,"y":-204.0563},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"24"},{"_action":{"method":{"_baseInfo":"Dialuage|LoseMajorFavor|System.Void","_paramsInfo":""},"parameters":[],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_UID":"7b31ca50-4016-4a02-b5cc-751bd0915d60","_position":{"x":137.0419,"y":-106.0562},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"25"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"3"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"5"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"4"},"_targetNode":{"$ref":"16"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"6"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"7"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"8"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"9"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"10"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"11"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"12"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"13"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"5"},"_targetNode":{"$ref":"14"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"14"},"_targetNode":{"$ref":"15"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"16"},"_targetNode":{"$ref":"17"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"18"},"_targetNode":{"$ref":"19"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"20"},"_targetNode":{"$ref":"21"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"22"},"_targetNode":{"$ref":"23"},"$type":"NodeCanvas.DialogueTrees.DTConnection"},{"_sourceNode":{"$ref":"24"},"_targetNode":{"$ref":"25"},"$type":"NodeCanvas.DialogueTrees.DTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}},"derivedData":{"actorParameters":[],"$type":"NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"}}'
   _boundGraphObjectReferences: []
   _boundGraphSource:
     _version: 3.33
     _category: 
     _comments: 
-    _translation: {x: -424, y: -647}
-    _zoomFactor: 1
+    _translation: {x: 300, y: -414}
+    _zoomFactor: 0.9991859
   _firstActivation: 0
   _enableAction: 1
   _disableAction: 2
@@ -465,7 +477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inConvo: 0
   person: {fileID: 11400000, guid: 30454841f18150f4fb727fef27592faf, type: 2}
-  <favor>k__BackingField: {fileID: 11400000, guid: 1d08bb660e82bd44c9f438fb2c8de769, type: 2}
+  <favor>k__BackingField: {fileID: 11400000, guid: d97b5d00496e6064387157fcd3244c0c, type: 2}
 --- !u!114 &8691793057313305186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,18 +531,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locations:
   - Hotel
-  - Courthouse
-  - Bakery
-  - Office
-  - Store
-  - Farm
-  - Library
-  - Forest
-  - Forest Hideout
-  - Mansion
+  - Sherriffs
   - Park
-  - Sheriff's Office
-  - Rundown Building
+  - Bakery
+  - Store
+  - Diner
+  - Library
+  - Courthouse
+  - Mansion
+  - Offices
+  - Farm
+  - Forest
+  - Rundown House
+--- !u!114 &-2442088848572391889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5903264447225073114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbfd1047ba9149b45b372535eddc59f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locationIWantToPhotograph: 0
 --- !u!1 &7904466343369297884
 GameObject:
   m_ObjectHideFlags: 0
