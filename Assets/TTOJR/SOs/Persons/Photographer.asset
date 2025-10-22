@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4a967fdf03c8d3649896e4a8550d8295, type: 3}
-  m_Name: Town 2
+  m_Name: Photographer
   m_EditorClassIdentifier: 
-  _personName: Emily
+  _personName: Katie
   excludeSelfFromGetRandomPersonNamne: 0
-  role: 0
-  groupingTrait: 1
+  role: 4
+  groupingTrait: 2
+  myPersonITalkAbout: {fileID: 11400000, guid: 957baae8a79c5ca48a12fc5efae0b7b4, type: 2}

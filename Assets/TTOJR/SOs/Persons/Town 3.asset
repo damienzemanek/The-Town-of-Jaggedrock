@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: Town 3
   m_EditorClassIdentifier: 
   _personName: Elaine
+  excludeSelfFromGetRandomPersonNamne: 0
+  role: 0
+  groupingTrait: 1

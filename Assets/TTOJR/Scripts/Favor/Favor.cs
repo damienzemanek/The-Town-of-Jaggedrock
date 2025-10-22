@@ -3,7 +3,8 @@ using UnityEngine;
 using NodeCanvas;
 using ParadoxNotion.Design;
 
-public class Favor : MonoBehaviour
+[CreateAssetMenu(fileName = "New Favor", menuName = "ScriptableObjects/Favor")]
+public class SO_Favor : ScriptableObject
 {
     int minorFavorGain = 1;
     int majorFavorGain = 3;

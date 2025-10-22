@@ -9,15 +9,6 @@ using System;
 [RequireComponent(typeof(CallbackDetector))]
 public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
 {
-    public enum CharacterRole
-    {
-        Town,
-        Coven,
-        Sherrif,
-        LadyInBlack,
-        Photographer,
-        AssylumEscapee
-    }
 
     [Inject] EntityControls playerControls;
     [Inject] Interactor interactor;
@@ -25,10 +16,17 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
 
     [SerializeField] bool inConvo;
     [SerializeField] SO_Person person;
-    public CharacterRole role;
+    [field:SerializeField] public SO_Favor favor { get; private set; }
 
     public string personName { get => (person != null) ? person.personName : string.Empty; }
     public string randPersonName { get => (person != null) ? person.GetRandomPersonName() : string.Empty; }
+
+    public SO_Person.GroupingTrait myGroupingTrait { get => (person != null) ? person.groupingTrait : SO_Person.GroupingTrait.None; }
+
+    public string personITalkAboutsGroupingTrait { get => (person != null) ? person.GetMyPersonITalkAboutsGroupingTrait() : string.Empty; }
+    public string personITalkAboutsName { get => (person != null) ? person.GetMyPersonITalkAboutsName(): string.Empty; }
+
+    public SO_Favor.FavorStatus GetFavorStatus => favor.status;
 
     #region Privs
     CallbackDetector detector;
@@ -64,6 +62,11 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
         detector.useCallback.AddListener(() => interactor.ToggleCanInteract(false));
         detector.useCallback.AddListener(DialaugeUsage);
     }
+
+    public void GainMinorFavor() => favor.GainMinorFavor();
+    public void GainMajorFavor() => favor.GainMajorFavor();
+    public void LoseMinorFavor() => favor.LoseMinorFavor();
+    public void LoseMajorFavor() => favor.LoseMajorFavor();
 
     void DialaugeUsage()
     {
@@ -115,7 +118,8 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
         dialaugeController.StartDialogue(OnStopTalking);
     }
 
-    void AssignDialaugeActorName() => actor.AssignName(personName);
+    void AssignDialaugeActorName() => actor.AssignName(input_name: personName);
+
 
 }
 
