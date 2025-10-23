@@ -463,7 +463,7 @@ MonoBehaviour:
     the wind blows just right, you can smell the soil in the farm from here."},"_UID":"be4c60e4-b9aa-467c-ada7-39b216077a60","_position":{"x":1635.712,"y":-52.57397},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"77"},{"statement":{"_text":"The
     trail is quiet, nice for hearing nature and the birds."},"_UID":"e8031e51-65d3-4397-af97-50ec66e302e9","_position":{"x":1861.227,"y":-51.61182},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"78"},{"statement":{"_text":"Recently,
     I''ve listened to the forest''s whispers"},"_UID":"b75cab71-058c-4787-bada-4fd2aded5514","_position":{"x":1869.822,"y":-222.2134},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"79"},{"statement":{"_text":"Have
-    you been in the forest? I have. Its beutifull at night."},"_UID":"22c3cfda-befa-447c-8473-9f039ad045d7","_position":{"x":1866.778,"y":-134.2396},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"80"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_UID":"261fad8e-454e-4a5e-aea0-d139b9ad77ff","_tag":"Introspection:
+    you been in the forest? I have. Its beutifull at night."},"_UID":"22c3cfda-befa-447c-8473-9f039ad045d7","_position":{"x":1866.778,"y":-135.2398},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"80"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_UID":"261fad8e-454e-4a5e-aea0-d139b9ad77ff","_tag":"Introspection:
     Rain","_position":{"x":1929.02,"y":574.8128},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"81"},{"statement":{"_text":"I
     love the feel of cold rain on a hot day."},"_UID":"27c1cb80-fe21-4b2a-8ba4-7c90cb4018fd","_position":{"x":1595.238,"y":727.1334},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"82"},{"statement":{"_text":"I
     love when it''s going to rain."},"_UID":"13e0f2ae-5a0d-41de-bd51-ff2d3f783eaf","_position":{"x":1829.291,"y":726.0609},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"83"},{"statement":{"_text":"Rain
@@ -479,12 +479,12 @@ MonoBehaviour:
     part~\r\nWhen darkness comes"},"_UID":"07132ff6-c149-4d34-8fbf-3f941a051d5c","_position":{"x":2728.767,"y":627.0878},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"92"},{"statement":{"_text":"I''ve
     been known for my dance moves."},"_UID":"c3d4519d-2feb-4801-9a39-b8d0c27dbc0c","_position":{"x":2727.914,"y":712.6504},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"93"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_UID":"cd80251c-9532-4519-b2f2-5254f44e2b55","_tag":"Introspection:
     Other","_position":{"x":2515.02,"y":-36.18719},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"94"},{"statement":{"_text":"I
-    get too hot sometimes."},"_UID":"af4b1b99-23f8-4a9a-a287-a70fd540b1b6","_position":{"x":2713.335,"y":-26.51606},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"95"},{"statement":{"_text":"I
+    get too hot sometimes."},"_UID":"af4b1b99-23f8-4a9a-a287-a70fd540b1b6","_position":{"x":2713.335,"y":-25.51605},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"95"},{"statement":{"_text":"I
     love a chilly day. Keeps me feeling cool."},"_UID":"3421984e-0ac6-418f-8dbe-d5795638544e","_position":{"x":2715.969,"y":46.04681},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"96"},{"statement":{"_text":"Sometimes
-    I think I heard someone say something, I can''t be certain noone''s there."},"_UID":"0a7cc229-2d6e-4227-ac3d-2e5b3c7d6cb2","_position":{"x":2712.851,"y":-100.2071},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"97"},{"statement":{"_text":"I
+    I think I heard someone say something, I can''t be certain noone''s there."},"_UID":"0a7cc229-2d6e-4227-ac3d-2e5b3c7d6cb2","_position":{"x":2711.851,"y":-100.2071},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"97"},{"statement":{"_text":"I
     love looking at the stars at night"},"_UID":"af1fc820-b94d-4c97-b270-ab9262435961","_position":{"x":2718.367,"y":186.7993},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"98"},{"statement":{"_text":"I
     never break the law. Im a good person."},"_UID":"623f0ff5-3015-42f6-8a39-c987558ac9e1","_position":{"x":2719.421,"y":114.8298},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"99"},{"statement":{"_text":"I
-    need more money to buy bread for the birds."},"_UID":"96a8789f-2a3c-4a20-a50c-1394b593dcd1","_position":{"x":2713.579,"y":-173.7972},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"100"},{"statement":{"_text":"I
+    need more money to buy bread for the birds at the park."},"_UID":"96a8789f-2a3c-4a20-a50c-1394b593dcd1","_position":{"x":2713.579,"y":-172.7972},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"100"},{"statement":{"_text":"I
     had a pet cat once, he died."},"_UID":"7d4636a2-3f1f-449b-9ef4-6c6896c76887","_position":{"x":2719.287,"y":262.4786},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"101"},{"statement":{"_text":"(Gained
     Minor Favor)"},"_UID":"a8817f5b-45f2-4f1e-b10e-c25574953026","_tag":"Gain Minor
     Favor","_position":{"x":-677.5238,"y":-205.9595},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"102"},{"_action":{"method":{"_baseInfo":"Dialuage|GainMinorFavor|System.Void","_paramsInfo":""},"parameters":[],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_UID":"77680b23-84b7-42e9-9e2e-b0d981c43560","_position":{"x":-672.6359,"y":-106.9592},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"103"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_UID":"697d0993-31c5-4684-9b7a-0d8003cb55bf","_position":{"x":-1131.254,"y":2220.381},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"104"},{"statement":{"_text":"Been
@@ -502,8 +502,8 @@ MonoBehaviour:
     _version: 3.33
     _category: 
     _comments: 
-    _translation: {x: -1268, y: 527}
-    _zoomFactor: 0.75721955
+    _translation: {x: -1639, y: 408}
+    _zoomFactor: 0.82906145
   _firstActivation: 0
   _enableAction: 1
   _disableAction: 2
@@ -527,6 +527,8 @@ MonoBehaviour:
   inConvo: 0
   person: {fileID: 11400000, guid: fa5d8fa1c88af3a4099b5c726293322e, type: 2}
   <favor>k__BackingField: {fileID: 11400000, guid: 9c9487c2710354841a5539c92b7a7a08, type: 2}
+  willCompleteTalkingToAfterInitialDialauge: 1
+  completedTalkingTo: 0
 --- !u!114 &8691793057313305186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,18 +582,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locations:
   - Hotel
-  - Courthouse
-  - Bakery
-  - Office
-  - Store
-  - Farm
-  - Library
-  - Forest
-  - Forest Hideout
-  - Mansion
+  - Sherriffs
   - Park
-  - Sheriff's Office
-  - Rundown Building
+  - Bakery
+  - Store
+  - Diner
+  - Library
+  - Courthouse
+  - Mansion
+  - Offices
+  - Trail
+  - Farm
+  - Forest
+  - Rundown House
 --- !u!1 &7904466343369297884
 GameObject:
   m_ObjectHideFlags: 0

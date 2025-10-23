@@ -1,4 +1,7 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using DependencyInjection;
 using Sirenix.OdinInspector;
 using Unity.VisualScripting;
@@ -8,12 +11,41 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 public class TimeCycle : MonoBehaviour, IDependencyProvider
 {
+    [Serializable]
+    public class Period
+    {
+        public enum Type
+        {
+            Day,
+            Night
+        }
+        public Type type;
+        public bool inProgress;
+        public bool complete;
+
+        public Period(Type type)
+        {
+            this.type = type;
+            inProgress = true;
+            complete = false;
+        }
+        public void Complete()
+        {
+            inProgress = false;
+            complete = true;
+        }
+    }
+
+
     [Inject] EntityControls controls;
     [Provide] TimeCycle Provide() => this;
     public static TimeCycle instance;
     public Light dayLight;
     public float nightIntensity = 0f;
     float initialIntensity;
+
+    public List<Period> periods = new List<Period>();
+    public Period GetCurrentPeriod() => (periods.Count > 0) ? periods.Last() : null;
 
     public UnityEvent OnDayStart;
     public UnityEvent OnNightStart;
@@ -22,7 +54,9 @@ public class TimeCycle : MonoBehaviour, IDependencyProvider
     {
         instance = this;
         initialIntensity = dayLight.intensity;
+        periods = new List<Period>();
     }
+
 
 
     public float currentTime;
@@ -40,10 +74,7 @@ public class TimeCycle : MonoBehaviour, IDependencyProvider
     public bool timeFrozen = false;
     public bool transitioning = false;
 
-    private void Start()
-    {
-        isDay = true;
-    }
+    private void Start() => SetToDay();
 
     public void Update()
     {
@@ -53,6 +84,9 @@ public class TimeCycle : MonoBehaviour, IDependencyProvider
         if (isDay) CheckDay();
         if (!isDay) CheckNight();
     }
+
+    void NewDay() => periods.Add(new Period(Period.Type.Day));
+    void NewNight() => periods.Add(new Period(Period.Type.Night));
 
     void CheckDay()
     {
@@ -74,19 +108,24 @@ public class TimeCycle : MonoBehaviour, IDependencyProvider
         FadeScreen fade = controls.TryGet<FadeScreen>();
 
         fade.FadeInAndOutCallback((isDay) ? SetToNight : SetToDay);
-        isDay = !isDay;
         currentTime = 0;
     }
 
 
     void SetToNight()
     {
+        GetCurrentPeriod()?.Complete();
+        isDay = false;
+        NewNight();
         dayLight.intensity = nightIntensity;
         OnNightStart?.Invoke();
     }
 
     void SetToDay()
     {
+        GetCurrentPeriod()?.Complete();
+        isDay = true;
+        NewDay();
         dayLight.intensity = initialIntensity;
         OnDayStart?.Invoke();
     }
@@ -114,6 +153,5 @@ public class TimeCycle : MonoBehaviour, IDependencyProvider
             dayLight.intensity = Mathf.Lerp(nightIntensity, initialIntensity, t);
         }
     }
-
 
 }

@@ -23,10 +23,6 @@ public class NPC_Spawner : MonoBehaviour
             Debug.LogError("NPC_Spawner: Residents not set, put residents to spawn");
 
         if (spawnArea == null) throw new System.Exception("NPC_Spawner: spawn area not set");
-
-
-
-        StartSpawning();
     }
 
 
@@ -89,11 +85,9 @@ public class NPC_Spawner : MonoBehaviour
             despawner.SaveToBeDespawned(newNPC.gameObject);
         }
 
-        this.Log($"New NPC G.O. State: [{newNPC.gameObject.activeInHierarchy}]");
-        if (!newNPC.gameObject.activeInHierarchy) this.Error("New G.O. Is inactive!");
-
         SpawnNPCAtSpawnPoint(newNPC.gameObject);
-        newNPC.UseSpawnArea(spawnArea);
+        if (newNPC.isActiveAndEnabled) newNPC.UseSpawnArea(spawnArea);
+        else this.Log("New NPC was set false");
     }
 
     NPC_Movement InstantiateNPC(GameObject npcPrefab)

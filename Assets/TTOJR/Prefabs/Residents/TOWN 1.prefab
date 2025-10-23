@@ -435,7 +435,7 @@ MonoBehaviour:
     reminds me, We saw that photographer recently while at the shop across the road."},"_UID":"60aaa9c0-2e0b-4da2-9665-085707878bc2","_position":{"x":-940.1676,"y":3108.984},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"26"},{"statement":{"_text":"You
     should ask her to take photos of places to know whats going on around town."},"_UID":"2e189761-7c58-4b77-9387-3bb05a99ed37","_position":{"x":-933.5005,"y":3188.433},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"27"},{"statement":{"_text":"She
     usually has a place in mind though, You''d have to talk to her first to see where
-    she wants to take photos/"},"_position":{"x":-931.0,"y":3277.0},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"28"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_UID":"ccd05ec1-0005-43c0-90bc-99f9c6e8fef9","_tag":"","_position":{"x":-434.1534,"y":3023.624},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"29"},{"statement":{"_text":"Yeah,
+    she wants to take photos/"},"_UID":"ec960dab-a84f-4ed0-a44f-d17ad5ff8b09","_position":{"x":-931.0,"y":3277.0},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"28"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_UID":"ccd05ec1-0005-43c0-90bc-99f9c6e8fef9","_tag":"","_position":{"x":-434.1534,"y":3023.624},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"29"},{"statement":{"_text":"Yeah,
     the [RandLocExcludeHotel], its one of my favorites."},"_UID":"93463539-d4de-4f61-a434-d17f96a732d9","_name":"Grouping","_tag":"","_position":{"x":-618.5574,"y":3107.782},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"30"},{"statement":{"_text":"I
     go there all the time with my friend [personITalkAboutsName]."},"_UID":"cdbbade5-fbae-4fb1-9fc1-7bc982a9edc0","_position":{"x":-615.0564,"y":3177.656},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"31"},{"statement":{"_text":"You
     know they can be very [personITalkAboutsGroupingTrait] sometimes."},"_UID":"3243edd8-793d-4b36-b6fb-ecde02daafe7","_position":{"x":-615.0775,"y":3250.5},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"32"},{"statement":{"_text":"I
@@ -503,7 +503,7 @@ MonoBehaviour:
     are some fancy dancers in the town!"},"_UID":"c3d4519d-2feb-4801-9a39-b8d0c27dbc0c","_position":{"x":2996.781,"y":287.8097},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"107"},{"childOptions":[{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}},{"weight":{"_value":1.0}}],"_UID":"cd80251c-9532-4519-b2f2-5254f44e2b55","_tag":"Introspection:
     Other","_position":{"x":2783.886,"y":-459.5088},"$type":"NodeCanvas.DialogueTrees.ProbabilitySelector","$id":"108"},{"statement":{"_text":"Sometimes
     I think I heard someone say something, but I know for sure noones there."},"_UID":"0a7cc229-2d6e-4227-ac3d-2e5b3c7d6cb2","_position":{"x":2980.616,"y":-523.5287},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"109"},{"statement":{"_text":"I
-    need me some more money"},"_UID":"96a8789f-2a3c-4a20-a50c-1394b593dcd1","_position":{"x":2981.344,"y":-598.2199},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"110"},{"statement":{"_text":"The
+    need me some more money"},"_UID":"96a8789f-2a3c-4a20-a50c-1394b593dcd1","_position":{"x":2981.344,"y":-597.2199},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"110"},{"statement":{"_text":"The
     traffic has been quite good lately."},"_UID":"af1fc820-b94d-4c97-b270-ab9262435961","_position":{"x":2987.233,"y":-236.5223},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"111"},{"statement":{"_text":"I
     never break the law. Im a good person I swear."},"_UID":"623f0ff5-3015-42f6-8a39-c987558ac9e1","_position":{"x":2988.287,"y":-308.4918},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"112"},{"statement":{"_text":"[randPersonName]
     scares me."},"_UID":"af4b1b99-23f8-4a9a-a287-a70fd540b1b6","_position":{"x":2982.201,"y":-455.4962},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"113"},{"statement":{"_text":"The
@@ -537,8 +537,8 @@ MonoBehaviour:
     _version: 3.33
     _category: 
     _comments: 
-    _translation: {x: 1066.0306, y: -547.0687}
-    _zoomFactor: 0.38689545
+    _translation: {x: -567, y: 528}
+    _zoomFactor: 0.3740047
   _firstActivation: 0
   _enableAction: 1
   _disableAction: 2
@@ -562,6 +562,8 @@ MonoBehaviour:
   inConvo: 0
   person: {fileID: 11400000, guid: 5d62d39584c0ab6489866496d1a2f620, type: 2}
   <favor>k__BackingField: {fileID: 11400000, guid: 1d08bb660e82bd44c9f438fb2c8de769, type: 2}
+  willCompleteTalkingToAfterInitialDialauge: 1
+  completedTalkingTo: 0
 --- !u!114 &8691793057313305186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,8 +626,10 @@ MonoBehaviour:
   - Courthouse
   - Mansion
   - Offices
+  - Trail
   - Farm
   - Forest
+  - Rundown House
 --- !u!1 &7904466343369297884
 GameObject:
   m_ObjectHideFlags: 0

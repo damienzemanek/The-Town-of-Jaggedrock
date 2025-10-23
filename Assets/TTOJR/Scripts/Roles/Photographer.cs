@@ -1,34 +1,84 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using DependencyInjection;
+using NUnit.Framework;
 using UnityEngine;
 
-public class Photographer : MonoBehaviour
+public class Photographer : RuntimeInjectableMonoBehaviour
 {
+    [Inject] TimeCycle time;
+    [Inject] Despawner despawner;
+
+    [Serializable]
+    public class PhotographerDayData
+    {
+        public bool playerGaveCorrectLocation;
+        public LocationRandomizer.Locations correctLocation;
+
+        public PhotographerDayData(bool val, LocationRandomizer.Locations loc)
+        {
+            playerGaveCorrectLocation = val;
+            correctLocation = loc;
+        }
+    }
+
+
     public LocationRandomizer.Locations locationIWantToPhotograph;
     public LocationRandomizer.Locations locationGivenByPlayerToPhotograph;
+    [SerializeField] List<PhotographerDayData> playerGaveCorrectLocationOnDay;
+
 #pragma warning disable IDE0052 // Remove unread private members
     [SerializeField] bool givenLoc;
 #pragma warning restore IDE0052 // Remove unread private members
+    public bool givenCorrectLocation { get => GetWasGivenTheCorrectLocationOnThePreviousDay(); }
+    public LocationRandomizer.Locations theCorrectLocation { get => GetWasGivenTheCorrectLocationTheLocation(); }
 
 
     LocationRandomizer locations;
-    private void Awake()
+    protected override void OnInstantiate()
     {
+        base.OnInstantiate();
         locations = this.TryGet<LocationRandomizer>();
     }
 
-    private void Start()
+    private void OnEnable()
     {
+        if (WontShowUpAtNightAndIsNight()) return;
+        DetermineIfPlayerGaveCorrectLocation();
         SetNewLocationIWantToPhotograph();
     }
 
+    public bool GetWasGivenTheCorrectLocationOnThePreviousDay() 
+        => (playerGaveCorrectLocationOnDay.Count > 0) ? playerGaveCorrectLocationOnDay.Last().playerGaveCorrectLocation : false;
+    public LocationRandomizer.Locations GetWasGivenTheCorrectLocationTheLocation()
+        => (playerGaveCorrectLocationOnDay.Count > 0) ? playerGaveCorrectLocationOnDay.Last().correctLocation : LocationRandomizer.Locations.Hotel;
 
-    void SetNewLocationIWantToPhotograph()
+
+    void SetNewLocationIWantToPhotograph() => locationIWantToPhotograph = locations.GetRandomLocationExcludeHotel();
+    public void PlayerGivenPhotographerALocation() => givenLoc = true;
+
+    bool WontShowUpAtNightAndIsNight()
     {
-        locationIWantToPhotograph = locations.GetRandomLocationExcludeHotel();
+        if (time.GetCurrentPeriod().type == TimeCycle.Period.Type.Night)
+        {
+            despawner.DisableNPC(gameObject);
+            return true;
+        }
+        return false;
     }
 
-    public void PlayerGivenPhotographerALocation()
+    void DetermineIfPlayerGaveCorrectLocation()
     {
-        givenLoc = true;
+        if (time.periods.Count <= 1) return;
+        if (time.GetCurrentPeriod().type == TimeCycle.Period.Type.Night) return;
+
+        bool correct = (locationIWantToPhotograph == locationGivenByPlayerToPhotograph);
+        PhotographerDayData newPhotographerData = new PhotographerDayData(correct, locationGivenByPlayerToPhotograph);
+        playerGaveCorrectLocationOnDay.Add(newPhotographerData);
+
+        givenLoc = false;
     }
 
 }

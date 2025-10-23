@@ -49,27 +49,33 @@ public class Despawner : MonoBehaviour, IDependencyProvider
 
     }
 
+    public void DisableNPC(GameObject npc)
+    {
+        if (!npc) return;
+
+        GameObject match = spawnedNPCs.FirstOrDefault(x => x.gameObject == npc);
+        if (!match) this.Error($"Did not find {npc.TryGet<Dialuage>().personName} in spawnedNPC list");
+
+        match.SetActive(false);
+        disabledNPCs.Add(match);
+        spawnedNPCs.Remove(match);
+    }
+
     public bool TryGetFromPool(GameObject prefab, out GameObject match)
     {
-        this.Log("1");
         match = null;
         if (!prefab) return false;
-        this.Log("2");
 
         if (disabledNPCs.Count <= 0) return false;
         string lookingForName = prefab.TryGet<Dialuage>().personName;
 
-        this.Log($"3, looking for name {lookingForName}");
 
         match = disabledNPCs.FirstOrDefault(npc => 
             npc != null && 
             npc.name.StartsWith(lookingForName));
 
         if (!match) return false;
-        this.Log("4");
-
-        this.Log($"Pool Get found match {match} using name {lookingForName}");
-
+        this.Log($"TryGetFromPool() match is {match} using name {lookingForName}");
         disabledNPCs.Remove(match);
         spawnedNPCs.Add(match);
         return true;

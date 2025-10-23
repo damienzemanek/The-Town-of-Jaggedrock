@@ -5,6 +5,9 @@ using NUnit;
 using NodeCanvas.Framework;
 using NodeCanvas.DialogueTrees;
 using System;
+using ParadoxNotion.Design;
+using Sirenix.OdinInspector;
+using ShowIfAttribute = Sirenix.OdinInspector.ShowIfAttribute;
 
 [RequireComponent(typeof(CallbackDetector))]
 public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
@@ -29,6 +32,9 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
     public string personITalkAboutsGroupingTrait { get => (person != null) ? person.GetMyPersonITalkAboutsGroupingTrait() : string.Empty; }
     public string personITalkAboutsName { get => (person != null) ? person.GetMyPersonITalkAboutsName(): string.Empty; }
 
+    public bool willCompleteTalkingToAfterInitialDialauge;
+    public bool completedTalkingTo;
+
     public SO_Favor.FavorStatus GetFavorStatus => favor.status;
 
     #region Privs
@@ -52,6 +58,11 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
         AssignValuesForCallbackDetector();
     }
 
+    private void OnEnable()
+    {
+        completedTalkingTo = false;
+    }
+
     private void Start()
     {
         AssignDialaugeActorName();
@@ -73,6 +84,7 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
 
     void DialaugeUsage()
     {
+        if (completedTalkingTo) return;
         StartDialauge();
         DisableMyMovement();
         LookAtWhoImTalkingTo();
@@ -119,9 +131,15 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
         inConvo = false;
 
         FreezeTime(false);
+        PotentiallyCompleteDialauge();
     }
     void AssignDialaugeActorName() => actor.AssignName(input_name: personName);
     void FreezeTime(bool val) => TimeCycle.instance.timeFrozen = val;
+    void PotentiallyCompleteDialauge()
+    {
+        if (willCompleteTalkingToAfterInitialDialauge) CompleteDialague();
+    }
 
+    public void CompleteDialague() => completedTalkingTo = true;
 }
 
