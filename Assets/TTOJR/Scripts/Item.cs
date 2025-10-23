@@ -382,3 +382,52 @@ class Gun : ItemFunctionality<Gun.Data>
     public override bool VariantsAllowUse(out ItemVariationData data1, out ItemVariationData data2) => throw new NotImplementedException();
 
 }
+
+
+[Serializable]
+class DialaugeItem : ItemFunctionality<DialaugeItem.Data>
+{
+    [field: SerializeReference] public override Data data { get; set; }
+    [Serializable]
+#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
+    public class Data
+#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
+    {
+        //[field: SerializeField] public Destination useDestination { get; private set; }
+        //public void SetUseLocation(Destination val) => useDestination = val;
+    }
+
+    public override bool VariantsAllowUse()
+    {
+        return true;
+    }
+
+    public override bool CanUse_ThenUse(UnityEvent callback = null)
+    {
+        if (!VariantsAllowUse()) return false;
+
+        Debug.Log($"Item: Successfully Using {GetType()}");
+
+        //Variation Utilization
+
+
+        //Functionality Utilization
+        callback?.Invoke();
+        //if (data.useDestination == null) throw new System.Exception(
+        //    "Item: (Destination User) does not have a destination set");
+
+        //if (!data.useDestination.preventContact)
+        //    data.useDestination.MakeContact();
+
+        return true;
+    }
+
+    public override void UpdateFunctionalityData(object input)
+    {
+        var newData = (DialaugeItem.Data)input;
+        //data.SetUseLocation(newData.useDestination);
+    }
+
+    public override bool VariantsAllowUse(out ItemVariationData data) => throw new NotImplementedException();
+    public override bool VariantsAllowUse(out ItemVariationData data1, out ItemVariationData data2) => throw new NotImplementedException();
+}

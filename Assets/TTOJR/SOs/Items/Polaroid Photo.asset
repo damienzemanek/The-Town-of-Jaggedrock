@@ -13,11 +13,20 @@ MonoBehaviour:
   m_Name: Polaroid Photo
   m_EditorClassIdentifier: 
   <type>k__BackingField: 5
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 60dc8921c0d28834bb01904183f3ad2c, type: 3}
   functionality:
-    rid: -2
+    rid: 5167629298686493067
+  canHold: 0
+  itemObj: {fileID: 0}
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 5167629298686493067
+      type: {class: DialaugeItem, ns: , asm: Assembly-CSharp}
+      data:
+        <variations>k__BackingField: []
+        <data>k__BackingField:
+          rid: 5167629298686493068
+    - rid: 5167629298686493068
+      type: {class: DialaugeItem/Data, ns: , asm: Assembly-CSharp}
+      data: 
