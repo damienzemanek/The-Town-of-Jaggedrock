@@ -3,15 +3,20 @@ using DependencyInjection;
 using Sirenix.OdinInspector;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Experimental.GlobalIllumination;
 
-public class TimeCycle : MonoBehaviour
+public class TimeCycle : MonoBehaviour, IDependencyProvider
 {
     [Inject] EntityControls controls;
+    [Provide] TimeCycle Provide() => this;
     public static TimeCycle instance;
     public Light dayLight;
     public float nightIntensity = 0f;
     float initialIntensity;
+
+    public UnityEvent OnDayStart;
+    public UnityEvent OnNightStart;
 
     private void Awake()
     {
@@ -77,11 +82,13 @@ public class TimeCycle : MonoBehaviour
     void SetToNight()
     {
         dayLight.intensity = nightIntensity;
+        OnNightStart?.Invoke();
     }
 
     void SetToDay()
     {
         dayLight.intensity = initialIntensity;
+        OnDayStart?.Invoke();
     }
 
     void FadeDayLightToNight()

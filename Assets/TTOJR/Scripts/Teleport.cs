@@ -14,17 +14,12 @@ public class Teleport : MonoBehaviour
     private void Awake()
     {
         detector = GetComponent<Detector>();
+        if (!tpLoc) this.Error($"Did not set a variable: " + "tpLoc: {tpLoc}");
     }
-
-    public void DoTeleport(GameObject GO)
-    {
-        objToTeleport = GO;
-        objToTeleport.transform.position = tpLoc.position;
-    }
-
     public void DoTeleport()
     {
         if (teleporting) return;
+
         teleporting = true;
         print("Teleport: Attempting TP");
         if (objToTeleport == null) SetObjectToTeleportFromDetector();
@@ -32,34 +27,23 @@ public class Teleport : MonoBehaviour
         if (objToTeleport.TryGetComponent<FadeScreen>(out FadeScreen fade))
             FadeTeleport(fade);
         else
-            TpImplementation();
-    }
-
-    public void FadeTeleport(FadeScreen fade) => fade.FadeInAndOutCallback(TpImplementation);
-    void TpImplementation()
-    {
-        bool foundTpLocOnNavMesh = NavMeshUtility.NearestLocOnNavMesh(tpLoc.position, 5f, out Vector3 tpLocOnNavMesh);
-        if(objToTeleport.gameObject.TryGetComponent<NavMeshAgent>(out NavMeshAgent agent))
         {
-            if (foundTpLocOnNavMesh) agent.Warp(tpLocOnNavMesh);
-            else
-            {
-                agent.enabled = false;
-                objToTeleport.transform.position = tpLoc.position;
-                agent.enabled = true;
-            }
+            NavigationExtensions.Teleport(tpLoc, objToTeleport, out bool _teleporting);
+            teleporting = _teleporting;
         }
-        else
-            objToTeleport.transform.position = foundTpLocOnNavMesh ? tpLocOnNavMesh : tpLoc.position;
-
-        teleporting = false;
     }
 
-
-    public void SetObjectToTeleport(GameObject GO)
+    public void FadeTeleport(FadeScreen fade)
     {
-        objToTeleport = GO;
+        fade.FadeInAndOutCallback(() => 
+        {
+            if (!tpLoc || !objToTeleport) { teleporting = false; return; }
+            NavigationExtensions.Teleport(tpLoc, objToTeleport, out bool _teleporting);
+            teleporting = _teleporting;
+        });
     }
+
+    public void SetObjectToTeleport(GameObject GO) => objToTeleport = GO;
     public void SetObjectToTeleportFromDetector()
     {
         if (detector.colliderObject == null)

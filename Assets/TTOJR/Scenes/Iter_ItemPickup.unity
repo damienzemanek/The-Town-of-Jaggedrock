@@ -22546,6 +22546,7 @@ Transform:
   - {fileID: 501336077}
   - {fileID: 2146752681}
   - {fileID: 1614152008}
+  - {fileID: 1804202370}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &714698318
@@ -47383,6 +47384,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1804202370}
   - component: {fileID: 1804202369}
+  - component: {fileID: 1804202371}
   m_Layer: 0
   m_Name: TimeCycle
   m_TagString: Untagged
@@ -47404,11 +47406,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dayLight: {fileID: 166108582}
   nightIntensity: 0
+  OnDayStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNightStart:
+    m_PersistentCalls:
+      m_Calls: []
   currentTime: 0
   dayFadeStartPercent: 78
   nightFadeStartPercent: 88
-  dayLengthInMinutes: 1
-  nightLengthInMinutes: 0.5
+  dayLengthInMinutes: 0.4
+  nightLengthInMinutes: 0.4
   isDay: 0
   timeFrozen: 0
   transitioning: 0
@@ -47420,13 +47428,27 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804202368}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 219.43214, y: 108.46358, z: -129.48799}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 244.5667, y: 105.39146, z: -148.1597}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 714291089}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1804202371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804202368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 146e8e7202187184d8d76abc28182f13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnedNPCs: []
+  disabledNPCs: []
 --- !u!1 &1804276721
 GameObject:
   m_ObjectHideFlags: 0
@@ -57038,5 +57060,4 @@ SceneRoots:
   - {fileID: 714291089}
   - {fileID: 1635944459}
   - {fileID: 2034095588}
-  - {fileID: 1804202370}
   - {fileID: 1772246068}

@@ -18,6 +18,7 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
     [SerializeField] bool inConvo;
 #pragma warning restore IDE0052 // Remove unread private members
     [SerializeField] SO_Person person;
+
     [field:SerializeField] public SO_Favor favor { get; private set; }
 
     public string personName { get => (person != null) ? person.personName : string.Empty; }

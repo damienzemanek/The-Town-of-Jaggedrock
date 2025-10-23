@@ -11,7 +11,6 @@ public static class DebugExtensions
         else 
             Debug.Log($"[SCRIPT: {obj.GetType().Name}]: {msg}");
     }
-
     public static void Warn(this object obj, string msg = "")
     {
         if (obj == null)
@@ -21,7 +20,6 @@ public static class DebugExtensions
         else
             Debug.LogWarning($"SCRIPT: [{obj.GetType().Name}]: {msg}");
     }
-
     public static void Error(this object obj, string msg = "")
     {
         if (obj == null)

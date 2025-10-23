@@ -19,7 +19,7 @@ public class NPC_Movement : MonoBehaviour
     [ReadOnly] public NPC_Area lastAreaInContact;
 
 
-    public void SpawnAtLocation(NPC_Area spawnArea)
+    public void UseSpawnArea(NPC_Area spawnArea)
     {
         lastAreaInContact = spawnArea;
         StartCoroutine(UseArea(spawnArea));
