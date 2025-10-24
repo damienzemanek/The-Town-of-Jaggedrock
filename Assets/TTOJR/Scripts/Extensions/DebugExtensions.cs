@@ -2,31 +2,38 @@ using UnityEngine;
 
 public static class DebugExtensions 
 {
+    static string Colorize(string text, string colorHex) => $"<color={colorHex}>{text}</color>";
+    static string Bold(string text) => $"<b>{text}</b>";
+
+
     public static void Log(this object obj, string msg = "")
     {
         if (obj == null)
-            Debug.Log($"[<null>]: {msg}");
+            Debug.Log($"{Colorize("[<null>]", "#AAAAAA")}: {msg}");
         else if (obj is Object unityObj)
-            Debug.Log(message: $"[SCRIPT: {unityObj.GetType()}] [G.O.: {unityObj.name}]: {msg}");
-        else 
-            Debug.Log($"[SCRIPT: {obj.GetType().Name}]: {msg}");
+            Debug.Log($"{Colorize($"[SCRIPT: {Bold(unityObj.GetType().Name)}]", "#00FF00")} " +
+                      $"{Colorize($"[G.O.: {Bold(unityObj.name)}]", "#FFA500")}: {msg}");
+        else
+            Debug.Log($"{Colorize($"[SCRIPT: {Bold(obj.GetType().Name)}]", "#00FF00")}: {msg}");
     }
     public static void Warn(this object obj, string msg = "")
     {
         if (obj == null)
-            Debug.LogWarning($"[<null>]: {msg}");
+            Debug.LogWarning($"{Colorize("[<null>]", "#AAAAAA")}: {msg}");
         else if (obj is Object unityObj)
-            Debug.LogWarning(message: $"[SCRIPT: {unityObj.GetType()}] [G.O.: {unityObj.name}]: {msg}");
+            Debug.LogWarning($"{Colorize($"[SCRIPT: {Bold(unityObj.GetType().Name)}]", "#00FF00")} " +
+                             $"{Colorize($"[G.O.: {Bold(unityObj.name)}]", "#FFA500")}: {msg}");
         else
-            Debug.LogWarning($"SCRIPT: [{obj.GetType().Name}]: {msg}");
+            Debug.LogWarning($"{Colorize($"[SCRIPT: {Bold(obj.GetType().Name)}]", "#00FF00")}: {msg}");
     }
     public static void Error(this object obj, string msg = "")
     {
         if (obj == null)
-            Debug.LogError($"[<null>]: {msg}");
+            Debug.LogError($"{Colorize("[<null>]", "#AAAAAA")}: {msg}");
         else if (obj is Object unityObj)
-            Debug.LogError(message: $"[SCRIPT: {unityObj.GetType()}] [G.O.: {unityObj.name}]: {msg}");
+            Debug.LogError($"{Colorize($"[SCRIPT: {Bold(unityObj.GetType().Name)}]", "#00FF00")} " +
+                         $"{Colorize($"[G.O.: {Bold(unityObj.name)}]", "#FFA500")}: {msg}");
         else
-            Debug.LogError($"[SCRIPT: {obj.GetType().Name}]: {msg}");
+            Debug.LogError($"{Colorize($"[SCRIPT: {Bold(obj.GetType().Name)}]", "#00FF00")}: {msg}");
     }
 }

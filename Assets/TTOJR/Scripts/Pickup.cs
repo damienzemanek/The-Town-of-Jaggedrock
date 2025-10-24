@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using DependencyInjection;
 using Sirenix.OdinInspector;
@@ -15,6 +16,8 @@ public class Pickup : RuntimeInjectableMonoBehaviour, ICallbackUser
     public UnityEvent pickedUpEvent;
     CallbackDetector cbDetector;
 
+    public Action<Inventory, Item> assignBindings;
+
     protected override void OnInstantiate()
     {
         base.OnInstantiate();
@@ -30,7 +33,7 @@ public class Pickup : RuntimeInjectableMonoBehaviour, ICallbackUser
         item.functionality = presetItem.functionality?.Clone();
         item.icon = presetItem.icon;
         item.functionality.variations?.ForEach(v => v.Reset());
-        item.canHold = presetItem.canHold;
+        item.canPhysicallyHold = presetItem.canPhysicallyHold;
         item.itemObj = presetItem.itemObj;
 
         gameObject.layer = 7;
@@ -46,23 +49,7 @@ public class Pickup : RuntimeInjectableMonoBehaviour, ICallbackUser
             .ToList()
             .ForEach(u => u.inv = inv);
 
-        //Gun functionality apply rerferences
-        if(item.functionality is Gun gun)
-        {
-            Gun.Data data = new Gun.Data();
-
-            if (!inv.gameObject.TryGetComponent<Raycaster>(out Raycaster caster))
-                throw new System.Exception("Pickup: (Gun) No Caster found to use Gun");
-
-            if (!inv.gameObject.TryGetComponent<EntityControls>(out EntityControls controls))
-                throw new System.Exception("Pickup: (Gun) No controls found to bind to");
-
-            print(controls);
-
-            data.SetCaster(caster);
-            data.SetControlsWithGun(controls, (Gun)item.functionality);
-            gun.UpdateFunctionalityData(data);
-        }
+        assignBindings?.Invoke(inv, item);
 
         pickedUpEvent?.Invoke();
         Destroy(gameObject, 0.1f);

@@ -121,30 +121,30 @@ public class EntityControls : MonoBehaviour, IDependencyProvider
 
     void Interact()
     {
-        print("Controls: Player pressed E");
+        this.Log("Player pressed E");
         interact?.Invoke();
     }
 
     void StartHold()
     {
         holding = true;
-        print("Player HOLDING... ");
+        this.Log("Player HOLDING... ");
         StopCoroutine(InteractHoldValueIncrease(0.1f));
         StartCoroutine(routine: InteractHoldValueIncrease(0.1f));
     }
     public void ForceStopHold() => StopHold();
     void StopHold()
     {
-        print("Player HOLDING CANCLED ");
+        this.Log("Player HOLDING CANCLED ");
         holding = false;
     }
 
     IEnumerator InteractHoldValueIncrease(float delay)
     {
-        print("Controls: Attempting to increase HOLD value");
+        this.Log("Attempting to increase HOLD value");
         while (holding)
         {
-            print("Controls: Interact Holding...");
+            this.Log("Controls: Interact Holding...");
             yield return new WaitForSeconds(delay);
             interactHold?.Invoke();
         }

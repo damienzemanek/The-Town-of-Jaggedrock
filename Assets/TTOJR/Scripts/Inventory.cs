@@ -166,7 +166,7 @@ public class Inventory : MonoBehaviour, IDependencyProvider
             ItemHolder holder = GetComponent<ItemHolder>() ?? throw new Exception("Inv: No Item holder found");
             holder.DisableAllObjects();
             if (item == null) return;
-            if (!item.canHold) return;
+            if (!item.canPhysicallyHold) return;
             holder.UseItem(num, item);
         }
 

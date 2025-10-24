@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 6086725159264214563}
   - component: {fileID: 8473524233264472507}
   - component: {fileID: 2894081986583399003}
+  - component: {fileID: -9081513114324658879}
   m_Layer: 7
   m_Name: Pickup_ Revolver
   m_TagString: Untagged
@@ -351,3 +352,15 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!114 &-9081513114324658879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773609196172311516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84f67715e555e8f47bcdfa15f4ce6ef0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

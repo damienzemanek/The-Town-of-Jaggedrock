@@ -37,13 +37,13 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
         public SubtitleDelays subtitleDelays = new SubtitleDelays();
         public List<AudioClip> typingSounds;
         private AudioSource playSource;
+        public Transform dialaugeLocation;
 
         //Group...
         [Header("Multiple Choice")]
         public RectTransform optionsGroup;
         public Button optionButton;
         private Dictionary<Button, int> cachedButtons;
-        private Vector2 originalSubsPosition;
         private bool isWaitingChoice;
 
         private AudioSource _localSource;
@@ -80,7 +80,6 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
             optionsGroup.gameObject.SetActive(false);
             optionButton.gameObject.SetActive(false);
             waitInputIndicator.gameObject.SetActive(false);
-            originalSubsPosition = subtitlesGroup.transform.position;
         }
 
         void OnDialogueStarted(DialogueTree dlg) {
@@ -122,7 +121,7 @@ namespace NodeCanvas.DialogueTrees.UI.Examples
             var actor = info.actor;
 
             subtitlesGroup.gameObject.SetActive(true);
-            subtitlesGroup.position = originalSubsPosition;
+            subtitlesGroup.position = dialaugeLocation.position;
             actorSpeech.text = "";
 
             actorName.text = actor.name;

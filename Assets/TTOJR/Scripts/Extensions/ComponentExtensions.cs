@@ -36,6 +36,39 @@ public static class ComponentExtensions
 
     }
 
+    public static bool TryGet<T>(this Object obj, out T result) where T : Component
+    {
+        result = null;
+        string thisType = typeof(T).Name;
+
+        switch (obj)
+        {
+            case Component comp:  return TryOnComponent(comp, out result);
+            case GameObject go: return TryOnGameObject(go, out result);
+            default: return (T)CannotTryGet(obj, thisType);
+        }
+
+        bool TryOnComponent(Component comp, out T found)
+        {
+            if (comp.TryGetComponent<T>(out found)) return true;
+            comp.Error($"Failed to TryGet {thisType} on {comp.name}");
+            return false;
+        }
+
+        bool TryOnGameObject(GameObject go, out T found)
+        {
+            if (go.TryGetComponent<T>(out found)) return true;
+            go.Error($"Failed to TryGet {thisType} on {go.name}");
+            return false;
+        }
+
+        object CannotTryGet(object badObj, string type)
+        {
+            badObj.Error($"Failed to TryGet {type} on {badObj}");
+            return null;
+        }
+    }
+
 
 
 }

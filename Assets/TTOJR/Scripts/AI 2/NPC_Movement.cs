@@ -46,7 +46,7 @@ public class NPC_Movement : MonoBehaviour
 
         yield return new WaitForSeconds(delayUseArea);
 
-        if (area == null) throw new System.Exception("NPC_Movement: No area found to use");
+        if (area == null) this.Error("No area found to use");
         print("NPC_Movement: Using Area");
         area.RemoveAgentToActions();
         area.SetAgentInAllActions(agent);
@@ -94,12 +94,12 @@ public class NPC_Movement : MonoBehaviour
 
     void StopInArea()
     {
-        if (lastAreaInContact == null) Debug.LogError("NPC_Movement: Stopped in area that is null");
+        if (lastAreaInContact == null) this.Error("StopInArea failed, lastAreaInContact is NULL");
         if (lastAreaInContact.whoIsHere != null)
             if (!lastAreaInContact.whoIsHere.Contains(this))
                 lastAreaInContact.whoIsHere.Add(this);
 
-        print("NPC_Movement: Stopped");
+        this.Log("Stopped Moving");
         stopped = true;
     }
 
@@ -129,3 +129,5 @@ public class NPC_Movement : MonoBehaviour
 
 
 }
+
+

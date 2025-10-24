@@ -39,7 +39,7 @@ public class Detector : MonoBehaviour
         if (!onEnter) return;
         if (!IsInLayer(other)) return;
         obj = other.gameObject;
-        print("Detector: Enter");
+        this.Log("Trigger ENTER");
         EnterImplementationChild(other);
         Enter?.Invoke();
     }
@@ -52,7 +52,7 @@ public class Detector : MonoBehaviour
         somethingCollided = true;
         if (!onStay) return;
         obj = other.gameObject;
-        print("Detector: Stay");
+        this.Log("Trigger STAY");
         StayImplementationChild(other);
         Stay?.Invoke();
     }
@@ -63,7 +63,7 @@ public class Detector : MonoBehaviour
         if (!collisionDetector) return;
         if (!onExit) return;
         if (!IsInLayer(other)) return;
-        print("Detector: Exit");
+        this.Log("Trigger EXIT");
         ExitImplementationChild(other);
         Exit?.Invoke();
         obj = null;
@@ -98,7 +98,7 @@ public class Detector : MonoBehaviour
         raycasted = true;
 
         Enter?.Invoke();
-        print("raycast enter");
+        this.Log("Raycast ENTER");
     }
 
     public virtual void OnRaycastedStay(GameObject caster)
@@ -111,7 +111,7 @@ public class Detector : MonoBehaviour
 
         if (!onStay) return;
         if (!CasterInLayer(other: caster)) return;
-        print("raycast stay");
+        this.Log("Raycast STAY");
         obj = caster.gameObject;
         casterBuffer = caster;
         raycasted = true;
@@ -122,10 +122,10 @@ public class Detector : MonoBehaviour
 
     public virtual void OnRaycastedExit(GameObject caster)
     {
-        print(message: "Detector: attempting to raycast exit");
+        this.Log("Attempting to raycast exit");
         if (!rayCastDetector) return;
         if (!onExit) return;
-        print(message: "Detector: raycast exit");
+        this.Log("Raycast EXIT");
         Exit?.Invoke();
         obj = null;
         raycasted = false;
@@ -134,7 +134,7 @@ public class Detector : MonoBehaviour
 
     void DisableRaycasted()
     {
-        print($"Disabling raycast with casterbuffer {casterBuffer}");
+        this.Log($"Disabling raycast with casterbuffer {casterBuffer}");
         OnRaycastedExit(caster: casterBuffer);
     }
 

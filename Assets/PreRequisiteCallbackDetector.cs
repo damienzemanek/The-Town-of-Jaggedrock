@@ -28,11 +28,11 @@ public class PreRequisiteCallbackDetector : CallbackDetector
 
     void SetPreRequisite(Item item, bool val)
     {
-        print("Inv: Attempting to set prereq");
+        this.Log("Inv: Attempting to set prereq");
         if (item == null) 
         { 
             _preRequisite = false;
-            print("Resseting Prereqs");
+            this.Log("Resseting Prereqs");
             return; 
         }
         if (lookingForChangesToItem == null) return;
@@ -42,7 +42,6 @@ public class PreRequisiteCallbackDetector : CallbackDetector
     protected override void OnTriggerEnter(Collider other)
     {
         if (!_preRequisite) return;
-        print(message: "PreReq: OnTrigger Enter");
         base.OnTriggerEnter(other);
     }
 
@@ -50,7 +49,7 @@ public class PreRequisiteCallbackDetector : CallbackDetector
     {
         if (obj != null && !_preRequisite) base.OnTriggerExit(other);
         if (!_preRequisite) return;
-        if (somethingCollided && obj == null) { print("Something collided"); OnTriggerEnter(other); }
+        if (somethingCollided && obj == null) { this.Log("Something collided"); OnTriggerEnter(other); }
         base.OnTriggerStay(other);
     }
 

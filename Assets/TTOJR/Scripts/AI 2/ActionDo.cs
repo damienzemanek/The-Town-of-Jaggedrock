@@ -28,7 +28,7 @@ public class StandHere : ActionDo
 
     IEnumerator Stand(NPC_Area area)
     {
-        Debug.Log($"ActionDo: (Standing) at area {area.gameObject.name}");
+        this.Log($"(Standing) at area {area.gameObject.name}");
         agent.isStopped = true;
         agent.velocity = Vector3.zero;
         float standFor = UnityEngine.Random.Range(minInclusive: timeStanding.x, timeStanding.y);
@@ -45,7 +45,7 @@ public class WalkTo : ActionDo
     [field:Required] [field:SerializeField] public NPC_Area destination { get; protected set; }
     public override void Execute(NPC_Area area)
     {
-        Debug.Log($"ActionDo: (Walking) to area {destination} from area {area}");
+        this.Log($"(Walking) to area {destination} from area {area}");
         Walk();
     }
 
