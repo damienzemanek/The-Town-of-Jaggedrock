@@ -154,4 +154,7 @@ public class TimeCycle : MonoBehaviour, IDependencyProvider
         }
     }
 
+    public bool IsDay() => (GetCurrentPeriod().type == TimeCycle.Period.Type.Day);
+    public bool IsNight() => (GetCurrentPeriod().type == TimeCycle.Period.Type.Night);
+
 }

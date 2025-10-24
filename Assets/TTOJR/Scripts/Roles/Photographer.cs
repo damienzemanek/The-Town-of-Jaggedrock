@@ -8,8 +8,11 @@ using UnityEngine;
 
 public class Photographer : RuntimeInjectableMonoBehaviour
 {
+    #region Privates
     [Inject] TimeCycle time;
     [Inject] Despawner despawner;
+    LocationRandomizer locations;
+    #endregion
 
     [Serializable]
     public class PhotographerDayData
@@ -35,8 +38,7 @@ public class Photographer : RuntimeInjectableMonoBehaviour
     public bool givenCorrectLocation { get => GetWasGivenTheCorrectLocationOnThePreviousDay(); }
     public LocationRandomizer.Locations theCorrectLocation { get => GetWasGivenTheCorrectLocationTheLocation(); }
 
-
-    LocationRandomizer locations;
+#region Class Methods 
     protected override void OnInstantiate()
     {
         base.OnInstantiate();
@@ -49,7 +51,9 @@ public class Photographer : RuntimeInjectableMonoBehaviour
         DetermineIfPlayerGaveCorrectLocation();
         SetNewLocationIWantToPhotograph();
     }
+#endregion
 
+#region Methods
     public bool GetWasGivenTheCorrectLocationOnThePreviousDay() 
         => (playerGaveCorrectLocationOnDay.Count > 0) ? playerGaveCorrectLocationOnDay.Last().playerGaveCorrectLocation : false;
     public LocationRandomizer.Locations GetWasGivenTheCorrectLocationTheLocation()
@@ -61,7 +65,7 @@ public class Photographer : RuntimeInjectableMonoBehaviour
 
     bool WontShowUpAtNightAndIsNight()
     {
-        if (time.GetCurrentPeriod().type == TimeCycle.Period.Type.Night)
+        if (time.IsNight())
         {
             despawner.DisableNPC(gameObject);
             return true;
@@ -80,5 +84,6 @@ public class Photographer : RuntimeInjectableMonoBehaviour
 
         givenLoc = false;
     }
+#endregion
 
 }

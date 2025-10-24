@@ -32,6 +32,8 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
     public string personITalkAboutsGroupingTrait { get => (person != null) ? person.GetMyPersonITalkAboutsGroupingTrait() : string.Empty; }
     public string personITalkAboutsName { get => (person != null) ? person.GetMyPersonITalkAboutsName(): string.Empty; }
 
+    public bool initialChatComplete = false;
+
     public bool willCompleteTalkingToAfterInitialDialauge;
     public bool completedTalkingTo;
 

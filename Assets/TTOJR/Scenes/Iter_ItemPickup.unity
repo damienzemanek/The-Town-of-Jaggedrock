@@ -1396,7 +1396,7 @@ MonoBehaviour:
   icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   functionality:
     rid: 5167628900989665490
-  canHold: 0
+  canPhysicallyHold: 0
   itemObj: {fileID: 0}
   references:
     version: 2
@@ -1542,7 +1542,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: ef60c1bcaa1b8d347879b174ad482ccc, type: 3}
   functionality:
     rid: 5167628944432955494
-  canHold: 0
+  canPhysicallyHold: 0
   itemObj: {fileID: 0}
   references:
     version: 2
@@ -9504,7 +9504,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 901a0a3cc4d664849afdcbd9dda381bf, type: 3}
   functionality:
     rid: 5167629129394684085
-  canHold: 0
+  canPhysicallyHold: 0
   itemObj: {fileID: 0}
   references:
     version: 2
@@ -12656,10 +12656,10 @@ MonoBehaviour:
   actorPortrait: {fileID: 4477938853081724605}
   waitInputIndicator: {fileID: 4413276371823288469}
   subtitleDelays:
-    characterDelay: 0.03
-    sentenceDelay: 0.24
+    characterDelay: 0.02
+    sentenceDelay: 0.2
     commaDelay: 0.1
-    finalDelay: 1
+    finalDelay: 0.5
   typingSounds:
   - {fileID: 8300000, guid: a0d9ccf1ea0e87d4794965b3fa230c65, type: 3}
   - {fileID: 8300000, guid: 5e5452015663bd141a0af3ff478c7272, type: 3}
@@ -16150,7 +16150,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 9b8aca84f8869e446a5ab44b450ffb0c, type: 3}
   functionality:
     rid: 5167628900989665495
-  canHold: 0
+  canPhysicallyHold: 0
   itemObj: {fileID: 0}
   references:
     version: 2
@@ -16389,7 +16389,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 901a0a3cc4d664849afdcbd9dda381bf, type: 3}
   functionality:
     rid: 5167629129394684091
-  canHold: 0
+  canPhysicallyHold: 0
   itemObj: {fileID: 0}
   references:
     version: 2
@@ -21185,7 +21185,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 901a0a3cc4d664849afdcbd9dda381bf, type: 3}
   functionality:
     rid: 5167629129394684087
-  canHold: 0
+  canPhysicallyHold: 0
   itemObj: {fileID: 0}
   references:
     version: 2
@@ -21716,7 +21716,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 9b8aca84f8869e446a5ab44b450ffb0c, type: 3}
   functionality:
     rid: 5167628900989665492
-  canHold: 0
+  canPhysicallyHold: 0
   itemObj: {fileID: 0}
   references:
     version: 2
@@ -24435,7 +24435,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 901a0a3cc4d664849afdcbd9dda381bf, type: 3}
   functionality:
     rid: 5167629129394684100
-  canHold: 0
+  canPhysicallyHold: 0
   itemObj: {fileID: 0}
   references:
     version: 2
@@ -25445,7 +25445,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 901a0a3cc4d664849afdcbd9dda381bf, type: 3}
   functionality:
     rid: 5167629129394684102
-  canHold: 0
+  canPhysicallyHold: 0
   itemObj: {fileID: 0}
   references:
     version: 2
@@ -34076,7 +34076,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 901a0a3cc4d664849afdcbd9dda381bf, type: 3}
   functionality:
     rid: 5167629129394684098
-  canHold: 0
+  canPhysicallyHold: 0
   itemObj: {fileID: 0}
   references:
     version: 2
@@ -34107,7 +34107,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 901a0a3cc4d664849afdcbd9dda381bf, type: 3}
   functionality:
     rid: 5167628944432955502
-  canHold: 0
+  canPhysicallyHold: 0
   itemObj: {fileID: 0}
   references:
     version: 2
@@ -35865,7 +35865,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 901a0a3cc4d664849afdcbd9dda381bf, type: 3}
   functionality:
     rid: 5167629129394684096
-  canHold: 0
+  canPhysicallyHold: 0
   itemObj: {fileID: 0}
   references:
     version: 2
@@ -35896,7 +35896,7 @@ MonoBehaviour:
   icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   functionality:
     rid: 5167628900989665487
-  canHold: 0
+  canPhysicallyHold: 0
   itemObj: {fileID: 0}
   references:
     version: 2
@@ -41114,7 +41114,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: ef60c1bcaa1b8d347879b174ad482ccc, type: 3}
   functionality:
     rid: 5167628944432955492
-  canHold: 0
+  canPhysicallyHold: 0
   itemObj: {fileID: 0}
   references:
     version: 2
@@ -48727,7 +48727,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 901a0a3cc4d664849afdcbd9dda381bf, type: 3}
   functionality:
     rid: 5167629129394684089
-  canHold: 0
+  canPhysicallyHold: 0
   itemObj: {fileID: 0}
   references:
     version: 2
@@ -51707,7 +51707,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 901a0a3cc4d664849afdcbd9dda381bf, type: 3}
   functionality:
     rid: 5167628944432955504
-  canHold: 0
+  canPhysicallyHold: 0
   itemObj: {fileID: 0}
   references:
     version: 2

@@ -140,10 +140,10 @@ GameObject:
   - component: {fileID: 2748782247982346700}
   - component: {fileID: 8691793057313305186}
   - component: {fileID: 622850279409869296}
-  - component: {fileID: -2442088848572391889}
   - component: {fileID: 2261850633766986948}
+  - component: {fileID: 1316212875097786116}
   m_Layer: 8
-  m_Name: PHOTOGRAPHER
+  m_Name: THE LADY IN BLACK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -537,8 +537,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inConvo: 0
-  person: {fileID: 11400000, guid: 30454841f18150f4fb727fef27592faf, type: 2}
-  <favor>k__BackingField: {fileID: 11400000, guid: d97b5d00496e6064387157fcd3244c0c, type: 2}
+  person: {fileID: 11400000, guid: c98db9532ae26f64cb7b6f9dd13ef1cd, type: 2}
+  <favor>k__BackingField: {fileID: 11400000, guid: 0583c81ab33d08d42bf243bc8dd59a4f, type: 2}
   initialChatComplete: 0
   willCompleteTalkingToAfterInitialDialauge: 0
   completedTalkingTo: 0
@@ -608,22 +608,6 @@ MonoBehaviour:
   - Farm
   - Forest
   - Rundown House
---- !u!114 &-2442088848572391889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5903264447225073114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbfd1047ba9149b45b372535eddc59f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  locationIWantToPhotograph: 0
-  locationGivenByPlayerToPhotograph: 0
-  playerGaveCorrectLocationOnDay: []
-  givenLoc: 0
 --- !u!114 &2261850633766986948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,6 +625,18 @@ MonoBehaviour:
   prefab: {fileID: 7019842021708274137, guid: 46aa968959496b145821ba9430eb4967, type: 3}
   prefabs: []
   location: {fileID: 5697004476810092418}
+--- !u!114 &1316212875097786116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5903264447225073114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f65e6e2952159964e8be2218e8fb80a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7904466343369297884
 GameObject:
   m_ObjectHideFlags: 0
