@@ -130,6 +130,6 @@ public class CallbackDetector : Detector
 
     void DebugUse()
     {
-        print("Callback Detector: Use was called");
+        this.Log("Use was called");
     }
 }
