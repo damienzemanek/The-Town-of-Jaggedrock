@@ -328,7 +328,7 @@ public class Gun : ItemFunctionality<Gun.Data>
 
 
 [Serializable]
-class InventoryUsable : ItemFunctionality<InventoryUsable.Data>
+public class InventoryUsable : ItemFunctionality<InventoryUsable.Data>
 {
     [field: SerializeReference] public override Data data { get; set; }
 
@@ -340,6 +340,13 @@ class InventoryUsable : ItemFunctionality<InventoryUsable.Data>
         [field: ReadOnly] [field: SerializeField] public Item requiredItem { get; set; }
         [field: ReadOnly] [field: SerializeField] public Use use { get; set; }
         [field: ReadOnly] [field: SerializeField] public EntityControls controls { get; set; }
+
+        public enum Type
+        {
+            Polaroid
+        }
+        public Type type { get; set; }
+
 
         private InventoryUsable pickedUpInvUsable;
         private Func<bool> CanBeUsed;
@@ -388,7 +395,8 @@ class InventoryUsable : ItemFunctionality<InventoryUsable.Data>
         callback?.Invoke();
 
         if (!data.use) this.Error("No Use variable Found");
-        data.use.UseActions();
+
+        data.use.UseAction(data.type);
 
         return true;
     }

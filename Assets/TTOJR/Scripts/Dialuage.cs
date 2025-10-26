@@ -58,6 +58,7 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
         dialaugeChooser = this.TryGet<DialaugeChooser>();
         actor = this.TryGet<DialogueActor>();
         AssignValuesForCallbackDetector();
+        AssignDialaugeActorName();
     }
 
     private void OnEnable()
@@ -65,10 +66,6 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
         completedTalkingTo = false;
     }
 
-    private void Start()
-    {
-        AssignDialaugeActorName();
-    }
 
     public void AssignValuesForCallbackDetector()
     {

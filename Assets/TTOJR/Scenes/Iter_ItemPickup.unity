@@ -44382,6 +44382,7 @@ MonoBehaviour:
   - {fileID: 5903264447225073114, guid: c2743ae1c26f9ff4086c6a566e6cfc29, type: 3}
   - {fileID: 5903264447225073114, guid: 34feb906cef92e449a1eed04f5e31b56, type: 3}
   - {fileID: 5903264447225073114, guid: d07a7cb48b1113a4bbc47f531371f62f, type: 3}
+  - {fileID: 5903264447225073114, guid: 113dae4b024b46f46b4ce335004b3f78, type: 3}
   delayBetweenSpawns: 1.4
   currentSpawnedResidents: 0
 --- !u!4 &1614152008

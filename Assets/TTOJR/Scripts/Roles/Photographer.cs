@@ -6,9 +6,10 @@ using DependencyInjection;
 using NUnit.Framework;
 using UnityEngine;
 
-public class Photographer : RuntimeInjectableMonoBehaviour
+public class Photographer : RuntimeInjectableMonoBehaviour, IDependencyProvider, IEventRecipient
 {
     #region Privates
+    [Provide] Photographer Provide() => this;
     [Inject] TimeCycle time;
     [Inject] Despawner despawner;
     LocationRandomizer locations;
@@ -84,6 +85,15 @@ public class Photographer : RuntimeInjectableMonoBehaviour
 
         givenLoc = false;
     }
+    #endregion
+
+    #region LadyInBlackLinks
+
+    public bool willGiveASpecialItem { get => maniaQuestGiveSpecialItem || false; }
+
+    public bool maniaQuestInitial = false;
+    public bool maniaQuestGiveSpecialItem = false;
+       
 #endregion
 
 }

@@ -54,7 +54,7 @@ public class Despawner : MonoBehaviour, IDependencyProvider
         if (!npc) return;
 
         GameObject match = spawnedNPCs.FirstOrDefault(x => x.gameObject == npc);
-        if (!match) this.Error($"Did not find {npc.TryGet<Dialuage>().personName} in spawnedNPC list");
+        if (!match) { spawnedNPCs.Add(npc); DisableNPC(npc);  return; }
 
         match.SetActive(false);
         disabledNPCs.Add(match);

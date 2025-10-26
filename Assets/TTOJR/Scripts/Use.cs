@@ -18,6 +18,12 @@ public class Use : MonoBehaviour
         additionalActions?.Invoke();
         actions.ForEach(a => a.Execute());
     }
+
+    public void UseAction(InventoryUsable.Data.Type itemType)
+    {
+        additionalActions?.Invoke();
+        actions[(int)itemType].Execute();
+    }
 }
 
 [Serializable]

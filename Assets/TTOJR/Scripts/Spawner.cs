@@ -4,16 +4,24 @@ using Sirenix.Utilities;
 
 public class Spawner : MonoBehaviour
 {
-    public bool single;
-    public bool multiple;
+    [BoxGroup("Spawn Choice")] public bool single;
+    [BoxGroup("Spawn Choice")] public bool multi;
+    [ShowIf("multi")] public bool multiSpawnAllAtOnce;
+    [ShowIf("multi")] public bool multiSpawnSelectSingle;
+
     [ShowIf("single")] public GameObject prefab;
-    [ShowIf("multiple")] public GameObject[] prefabs;
+    [ShowIf("multi")] public GameObject[] prefabs;
     public Transform location;
 
-    public void Spawn()
+    public void Spawn(int index = 0)
     {
+        if (multi)
+            if (!multiSpawnAllAtOnce && !multiSpawnSelectSingle)
+                this.Error("Please select one of the multi spawn options");
+
         if (single) SingleSpawn();
-        if (multiple) MultiSpawn();
+        if (multiSpawnAllAtOnce) SpawnAllAtOnce();
+        if (multiSpawnSelectSingle) SpawnSelect(index);
     }
 
     void SingleSpawn()
@@ -26,7 +34,7 @@ public class Spawner : MonoBehaviour
         );
     }
 
-    void MultiSpawn()
+    void SpawnAllAtOnce()
     {
         prefabs.ForEach(p => Instantiate(
             p,
@@ -34,5 +42,15 @@ public class Spawner : MonoBehaviour
             Quaternion.identity,
             null
             ));
+    }
+
+    void SpawnSelect(int index)
+    {
+        Instantiate(
+            prefabs[index],
+            location.position,
+            Quaternion.identity,
+            null
+        );
     }
 }

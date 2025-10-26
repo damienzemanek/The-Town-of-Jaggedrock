@@ -8,6 +8,9 @@ namespace DependencyInjection
     {
         protected virtual void OnInstantiate()
         {
+            if (this is IDependencyProvider)
+                Injector.Instance.RuntimeProvide(this as IDependencyProvider);
+
             Injector.Instance.RuntimeInject(this);
         }
         protected virtual void Awake() => OnInstantiate();

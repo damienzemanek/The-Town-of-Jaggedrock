@@ -51,7 +51,7 @@ namespace DependencyInjection
             // 2 Register each found IDependencyProvider into our dictionary
             foreach (var provider in providers)
             {
-                print("DI: Regitering a provider: " + provider);
+                print("DI: (1) Regitering a provider: " + provider);
                 RegisterProvider(provider);
             }
             Debug.Log($"DI: Registered all Providers");
@@ -79,16 +79,16 @@ namespace DependencyInjection
             var injectableFields = type.GetFields(k_bindingFlags)
                 .Where(member => Attribute.IsDefined(member, typeof(InjectAttribute)));
 
-            foreach(var injectableField in injectableFields)
+            foreach(var field in injectableFields)
             {
-                var fieldType = injectableField.FieldType;
+                var fieldType = field.FieldType;
                 Debug.Log($"DI: Field Injecting into Injectable Field {fieldType.Name} into {type.Name}");
 
                 var resolvedInstance = Resolve(fieldType);
                 if (resolvedInstance == null)
                     throw new Exception($"Failed to resolve {fieldType.Name} into {type.Name}");
 
-                injectableField.SetValue(injectable, resolvedInstance);
+                field.SetValue(injectable, resolvedInstance);
                 Debug.Log($"DI: Field Injected {fieldType.Name} into {type.Name}");
             }
 
@@ -118,6 +118,12 @@ namespace DependencyInjection
             Inject(inject);
             Debug.Log($"DI: Runtime Injected {inject}");
         }
+
+        public void RuntimeProvide(IDependencyProvider provide)
+        {
+            RegisterProvider(provide);
+            Debug.Log($"DI: Runtime Provided {provide}");
+        }
         object Resolve(Type type)
         {
             registry.TryGetValue(type, out var resolvedInstance);
@@ -139,7 +145,7 @@ namespace DependencyInjection
         //         annotated with a [Provide] Attribute 
         void RegisterProvider(IDependencyProvider provider)
         {
-            Debug.Log($"DI: Attempting To Register Provider {provider.GetType().Name}");
+            Debug.Log($"DI: (2)     Attempting To Register Provider {provider.GetType().Name}");
 
             //Store for all the methods of the provider
             var methods = provider.GetType().GetMethods(k_bindingFlags);
@@ -160,10 +166,10 @@ namespace DependencyInjection
                 if (providedInstance != null)
                 {
                     registry.Add(returnType, providedInstance);
-                    Debug.Log($"DI: Registered {returnType.Name} from {provider.GetType().Name}");
+                    Debug.Log($"DI: (3)         Registered {returnType.Name} from {provider.GetType().Name}");
                 }
                 else //Otherwise throw an expection
-                    throw new Exception($"DI: Provider {provider.GetType().Name} returned null for {returnType.Name}");
+                    throw new Exception($"DI: (4) FAIL :Provider {provider.GetType().Name} returned null for {returnType.Name}");
             }
         }
 
@@ -172,7 +178,9 @@ namespace DependencyInjection
         // Purpose: Return us all of the Monobehaviors in the scene
         static MonoBehaviour[] FindMonoBehaviors()
         {
-            return FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.InstanceID);
+            return FindObjectsByType<MonoBehaviour>(
+                FindObjectsInactive.Include,
+                FindObjectsSortMode.InstanceID);
         }
 
 
