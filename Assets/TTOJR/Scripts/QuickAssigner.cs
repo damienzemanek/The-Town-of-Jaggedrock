@@ -1,5 +1,5 @@
-using NUnit;
 using UnityEngine;
+using Extensions;
 
 [RequireComponent(typeof(Pickup))]
 public class QuickAssigner : MonoBehaviour

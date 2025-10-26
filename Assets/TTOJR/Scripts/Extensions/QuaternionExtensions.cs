@@ -1,10 +1,13 @@
 using UnityEngine;
 
-public static class QuaternionExtensions
+namespace Extensions
 {
-    public static Quaternion WithEuler(this Quaternion quaternion, float? x = null, float? y = null, float? z = null)
+    public static class QuaternionExtensions
     {
-        var euler = quaternion.eulerAngles;
-        return Quaternion.Euler(x ?? euler.x, y ?? euler.y, z ?? euler.z);
+        public static Quaternion WithEuler(this Quaternion quaternion, float? x = null, float? y = null, float? z = null)
+        {
+            var euler = quaternion.eulerAngles;
+            return Quaternion.Euler(x ?? euler.x, y ?? euler.y, z ?? euler.z);
+        }
     }
 }

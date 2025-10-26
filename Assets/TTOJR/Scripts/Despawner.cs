@@ -3,6 +3,7 @@ using System.Linq;
 using DependencyInjection;
 using Sirenix.Utilities;
 using UnityEngine;
+using Extensions;
 
 [DefaultExecutionOrder(300)]
 [RequireComponent(typeof(TimeCycle))]

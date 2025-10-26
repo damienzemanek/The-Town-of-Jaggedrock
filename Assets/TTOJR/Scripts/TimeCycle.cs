@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using DependencyInjection;
 using Sirenix.OdinInspector;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Experimental.GlobalIllumination;
+using Extensions;
 
 public class TimeCycle : MonoBehaviour, IDependencyProvider
 {

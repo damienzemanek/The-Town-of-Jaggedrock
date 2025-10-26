@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DependencyInjection;
-using NUnit.Framework;
 using UnityEngine;
+using Extensions;
 
 public class Photographer : RuntimeInjectableMonoBehaviour, IDependencyProvider, IEventRecipient
 {
@@ -61,7 +61,7 @@ public class Photographer : RuntimeInjectableMonoBehaviour, IDependencyProvider,
         => (playerGaveCorrectLocationOnDay.Count > 0) ? playerGaveCorrectLocationOnDay.Last().correctLocation : LocationRandomizer.Locations.Hotel;
 
 
-    void SetNewLocationIWantToPhotograph() => locationIWantToPhotograph = locations.GetRandomLocationExcludeHotel();
+    void SetNewLocationIWantToPhotograph() => locationIWantToPhotograph = locations.RandLocEnumExclude(LocationRandomizer.Locations.Hotel);
     public void PlayerGivenPhotographerALocation() => givenLoc = true;
 
     bool WontShowUpAtNightAndIsNight()

@@ -1,11 +1,15 @@
 using System;
 using UnityEngine;
 
-public static class ObjectExtensions 
+namespace Extensions
 {
-    public static void NullCheck(this object script, object input)
+    public static class ObjectExtensions
     {
-        if (input == null) script.Error($"Null Check FAILED. {input} resulted in NULL value");
+        //doenst work atm
+        public static void NullCheck(this object script, object input)
+        {
+            if (input == null) script.Error($"Null Check FAILED. {input} resulted in NULL value");
 
+        }
     }
 }

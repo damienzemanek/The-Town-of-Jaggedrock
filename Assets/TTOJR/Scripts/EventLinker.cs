@@ -5,6 +5,7 @@ using DependencyInjection;
 using NUnit.Framework;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Extensions;
 
 public class EventLinker : MonoBehaviour
 {

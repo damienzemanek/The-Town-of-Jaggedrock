@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 using Sirenix.OdinInspector;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using Extensions;
 
 public class PreRequisiteCallbackDetector : CallbackDetector
 {

@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 using static DialaugeChooser;
+using Extensions;
 
 public class DialaugeChooser : MonoBehaviour
 {

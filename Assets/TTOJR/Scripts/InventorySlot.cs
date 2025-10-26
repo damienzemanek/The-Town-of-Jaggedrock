@@ -3,6 +3,7 @@ using DependencyInjection;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UI;
+using Extensions;
 
 public class InventorySlot : RuntimeInjectableMonoBehaviour
 {

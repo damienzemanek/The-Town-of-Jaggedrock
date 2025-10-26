@@ -8,6 +8,7 @@ using System;
 using ParadoxNotion.Design;
 using Sirenix.OdinInspector;
 using ShowIfAttribute = Sirenix.OdinInspector.ShowIfAttribute;
+using Extensions;
 
 [RequireComponent(typeof(CallbackDetector))]
 public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser

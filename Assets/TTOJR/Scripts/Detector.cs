@@ -3,6 +3,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 using ReadOnlyAttribute = Sirenix.OdinInspector.ReadOnlyAttribute;
+using Extensions;
 
 public class Detector : MonoBehaviour
 {

@@ -1,6 +1,7 @@
 using DependencyInjection;
 using Sirenix.OdinInspector;
 using System;
+using Extensions;
 
 [Serializable]
 public sealed class Mania_ONE : QuestEvent<Photographer>

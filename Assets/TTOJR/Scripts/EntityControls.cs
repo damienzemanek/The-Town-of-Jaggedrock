@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using DependencyInjection;
 using System.Collections.Generic;
 using System.Collections;
+using Extensions;
 
 [DefaultExecutionOrder(-500)]
 public class EntityControls : MonoBehaviour, IDependencyProvider

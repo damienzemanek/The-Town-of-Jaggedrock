@@ -1,11 +1,14 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public static class GameObjectExtensions
+namespace Extensions
 {
-    public static GameObject SetActiveThen(this GameObject gameObject, bool val)
+    public static class GameObjectExtensions
     {
-        gameObject.SetActive(val);
-        return gameObject;
+        public static GameObject SetActiveThen(this GameObject gameObject, bool val)
+        {
+            gameObject.SetActive(val);
+            return gameObject;
+        }
     }
+
 }

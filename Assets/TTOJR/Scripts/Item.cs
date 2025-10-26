@@ -9,6 +9,7 @@ using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using Extensions;
 
 [Serializable]
 public abstract class ItemVariationData 

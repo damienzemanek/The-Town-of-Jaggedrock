@@ -3,6 +3,7 @@ using Sirenix.Utilities;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using Extensions;
 
 public class CallbackDetector : Detector
 {

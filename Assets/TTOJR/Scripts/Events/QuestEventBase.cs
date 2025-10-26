@@ -1,4 +1,5 @@
 using DependencyInjection;
+using Extensions;
 
 public abstract class QuestEventBase : RuntimeInjectableMonoBehaviour
 {

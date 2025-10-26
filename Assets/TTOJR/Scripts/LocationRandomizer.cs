@@ -4,10 +4,10 @@ using System.Text.RegularExpressions;
 using ParadoxNotion.Design;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Extensions;
 
 public class LocationRandomizer : MonoBehaviour
 {
-
     public enum Locations
     {
         Hotel,
@@ -28,6 +28,29 @@ public class LocationRandomizer : MonoBehaviour
 
     public string[] locations; //Display Names
 
+    public string[] activities =
+    {
+        "went shopping",
+        "visited some family",
+        "met some new friends",
+        "watched the sunrise",
+        "got some groceries",
+        "tried some new food",
+        "went on a walk",
+        "was almost late to work",
+        "saw some people dancing in the forest",
+        "saw a faint glow in the forest",
+        "heard some whispering in the room next to me at night",
+        "took a nice shower",
+        "did my laundry",
+        "ate breakfast",
+        "heard some lovely singing on my walk",
+        "saw some crows eating bread",
+        "went stargazing",
+        "stayed up late doing some work"
+    };
+
+
     private void Awake() => SetLocs();
     private void OnValidate() => SetLocs();
     static string ConvertLocEnumToFormattedString(Locations loc) =>
@@ -38,22 +61,14 @@ public class LocationRandomizer : MonoBehaviour
                         .Select(ConvertLocEnumToFormattedString)
                         .ToArray();
 
+    public string RandLoc { get => locations.Rand(); }
+    public string RandLocExcludeHotel => locations[(int)RandLocEnumExclude(Locations.Hotel)];
+    public Locations RandLocEnumExclude(params Locations[] exclude) => EnumExtensions<Locations>.Rand(exclude);
+    public Locations RandLocEnum() => EnumExtensions<Locations>.Rand();
+    public string RandAct => activities.Rand();
 
-    public string RandLoc { get => GetRandomLocation(); }
-    public string RandLocExcludeHotel { get => GetRandomLocationExclude(Locations.Hotel).ToString(); }
 
 
-    public string GetRandomLocation() => locations[Random.Range(0, locations.Length)];
+    //  public string RandActivity { get => }
 
-    public Locations GetRandomLocationExcludeHotel() => GetRandomLocationExclude(Locations.Hotel);
-
-    public Locations GetRandomLocationExclude(Locations exclude)
-    {
-        var include = Enum.GetValues(typeof(Locations))
-            .Cast<Locations>()
-            .Where(loc => loc != exclude)
-            .ToArray();
-
-        return include[Random.Range(0, include.Length)];
-    }
 }

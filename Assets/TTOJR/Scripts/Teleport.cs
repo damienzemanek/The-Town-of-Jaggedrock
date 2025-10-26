@@ -3,6 +3,7 @@ using System.ComponentModel;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
+using Extensions;
 
 public class Teleport : MonoBehaviour
 {

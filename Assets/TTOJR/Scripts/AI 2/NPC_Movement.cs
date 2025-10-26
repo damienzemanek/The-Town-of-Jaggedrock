@@ -4,6 +4,7 @@ using Sirenix.OdinInspector;
 using UnityEditor.Experimental;
 using UnityEngine;
 using UnityEngine.AI;
+using Extensions;
 
 public class NPC_Movement : MonoBehaviour
 {
