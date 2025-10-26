@@ -13,32 +13,34 @@ using Extensions;
 [RequireComponent(typeof(CallbackDetector))]
 public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
 {
-
+    #region Privates
     [Inject] EntityControls playerControls;
     [Inject] Interactor interactor;
+    #endregion
 
 
 #pragma warning disable IDE0052 // Remove unread private members
-    [SerializeField] bool inConvo;
+    [TabGroup("Readonly")] [ReadOnly] [SerializeField] bool inConvo;
 #pragma warning restore IDE0052 // Remove unread private members
-    [SerializeField] SO_Person person;
+    [TabGroup("Parameters")][SerializeField] SO_Person person;
+    [field:TabGroup("Parameters")][field:SerializeField] public SO_Favor favor { get; private set; }
 
-    [field:SerializeField] public SO_Favor favor { get; private set; }
+    [TabGroup("Parameters")] public bool willCompleteTalkingToAfterInitialDialauge;
+    [TabGroup("Parameters")] public bool completedTalkingTo;
+    [TabGroup("Parameters")] public bool initialChatComplete = false;
 
+
+    #region Node Canvas Connections----------------------
     public string personName { get => (person != null) ? person.personName : string.Empty; }
     public string randPersonName { get => (person != null) ? person.GetRandomPersonName() : string.Empty; }
 
     public SO_Person.GroupingTrait myGroupingTrait { get => (person != null) ? person.groupingTrait : SO_Person.GroupingTrait.None; }
 
     public string personITalkAboutsGroupingTrait { get => (person != null) ? person.GetMyPersonITalkAboutsGroupingTrait() : string.Empty; }
-    public string personITalkAboutsName { get => (person != null) ? person.GetMyPersonITalkAboutsName(): string.Empty; }
-
-    public bool initialChatComplete = false;
-
-    public bool willCompleteTalkingToAfterInitialDialauge;
-    public bool completedTalkingTo;
-
+    public string personITalkAboutsName { get => (person != null) ? person.GetMyPersonITalkAboutsName() : string.Empty; }
     public SO_Favor.FavorStatus GetFavorStatus => favor.status;
+
+    #endregion--------------------------------------------
 
     #region Privs
     CallbackDetector detector;
