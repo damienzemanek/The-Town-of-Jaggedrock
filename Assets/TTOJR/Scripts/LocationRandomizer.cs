@@ -63,8 +63,8 @@ public class LocationRandomizer : MonoBehaviour
 
     public string RandLoc { get => locations.Rand(); }
     public string RandLocExcludeHotel => locations[(int)RandLocEnumExclude(Locations.Hotel)];
-    public Locations RandLocEnumExclude(params Locations[] exclude) => EnumExtensions<Locations>.Rand(exclude);
-    public Locations RandLocEnum() => EnumExtensions<Locations>.Rand();
+    public Locations RandLocEnumExclude(params Locations[] exclude) => EnumEX<Locations>.Rand(exclude);
+    public Locations RandLocEnum() => EnumEX<Locations>.Rand();
     public string RandAct => activities.Rand();
 
 

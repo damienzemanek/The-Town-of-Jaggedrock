@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Extensions
 {
-    public static class ComponentExtensions
+    public static class ComponentEX
     {
         public static T TryGet<T>(this Object obj) where T : Component
         {

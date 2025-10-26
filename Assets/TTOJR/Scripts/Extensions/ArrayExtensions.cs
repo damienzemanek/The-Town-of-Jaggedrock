@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Extensions
 {
-    public static class ArrayExtensions
+    public static class ArrayEX
     {
         //pass in an empty lambda with the const call like
         // Populate( () => new Class() )

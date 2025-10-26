@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 namespace Extensions
 {
-    public static class NavigationExtensions
+    public static class NavEX
     {
 
         public static void Teleport(Transform tpLoc, GameObject objToTeleport, out bool teleporting)

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Extensions
 {
-    public static class TransformExtensions
+    public static class TransformEX
     {
         public static Transform LookAtPosThenMyTransform(this Transform transform, Vector3 pos)
         {

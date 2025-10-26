@@ -106,7 +106,7 @@ public class NPC_Spawner : MonoBehaviour
         return pooledNPC.SetActiveThen(true).TryGet<NPC_Movement>();
     }
 
-    void SpawnNPCAtSpawnPoint(GameObject newNPC) => NavigationExtensions.Teleport(spawnPoint, newNPC, out _);
+    void SpawnNPCAtSpawnPoint(GameObject newNPC) => NavEX.Teleport(spawnPoint, newNPC, out _);
 
     void AssignSpawnEvents()
     {

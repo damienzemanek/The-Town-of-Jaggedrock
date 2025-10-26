@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Extensions
 {
-    public static class GameObjectExtensions
+    public static class GameObjectEX
     {
         public static GameObject SetActiveThen(this GameObject gameObject, bool val)
         {

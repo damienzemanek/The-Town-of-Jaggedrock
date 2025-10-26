@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Extensions
 {
-    public static class QuaternionExtensions
+    public static class QuaternionEX
     {
         public static Quaternion WithEuler(this Quaternion quaternion, float? x = null, float? y = null, float? z = null)
         {

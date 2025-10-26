@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Extensions
 {
-    public static class ObjectExtensions
+    public static class ObjectEX
     {
         //doenst work atm
         public static void NullCheck(this object script, object input)

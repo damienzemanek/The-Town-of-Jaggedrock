@@ -29,7 +29,7 @@ public class Teleport : MonoBehaviour
             FadeTeleport(fade);
         else
         {
-            NavigationExtensions.Teleport(tpLoc, objToTeleport, out bool _teleporting);
+            NavEX.Teleport(tpLoc, objToTeleport, out bool _teleporting);
             teleporting = _teleporting;
         }
     }
@@ -39,7 +39,7 @@ public class Teleport : MonoBehaviour
         fade.FadeInAndOutCallback(() => 
         {
             if (!tpLoc || !objToTeleport) { teleporting = false; return; }
-            NavigationExtensions.Teleport(tpLoc, objToTeleport, out bool _teleporting);
+            NavEX.Teleport(tpLoc, objToTeleport, out bool _teleporting);
             teleporting = _teleporting;
         });
     }

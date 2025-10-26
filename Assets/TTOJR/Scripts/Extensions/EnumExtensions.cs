@@ -1,10 +1,11 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using static Questing.Town;
 
 namespace Extensions
 {
-    public class EnumExtensions<T> where T : Enum
+    public class EnumEX<T> where T : Enum
     {
         public static T Rand()
         {
@@ -13,7 +14,7 @@ namespace Extensions
                 .ToArray();
 
             if (include.Length <= 0) return default;
-            return EnumerationExtensions.Rand(include);
+            return EnumerateEX.Rand(include);
         }
 
         public static T Rand(params T[] exclude)
@@ -27,8 +28,11 @@ namespace Extensions
                 
             if (include.Length <= 0) return default;
 
-            return EnumerationExtensions.Rand(include);
+            return EnumerateEX.Rand(include);
         }
+        public static int townQuestsCount { get => Enum.GetValues(typeof(TownQuest)).Length; }
+
+        public static int Size() => Enum.GetValues(typeof(T)).Length;
 
     }
 }

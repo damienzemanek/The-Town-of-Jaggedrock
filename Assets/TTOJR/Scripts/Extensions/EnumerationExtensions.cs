@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Extensions
 {
-    public static class EnumerationExtensions
+    public static class EnumerateEX
     {
 
         #region Privates

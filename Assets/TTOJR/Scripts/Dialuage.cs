@@ -19,15 +19,16 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
     #endregion
 
 
-#pragma warning disable IDE0052 // Remove unread private members
-    [TabGroup("Readonly")] [ReadOnly] [SerializeField] bool inConvo;
-#pragma warning restore IDE0052 // Remove unread private members
+#pragma warning disable IDE0052 
+    [TabGroup("Readonly"), ReadOnly, SerializeField] bool inConvo = false;
+    [TabGroup("Readonly"), ReadOnly, SerializeField] public bool initialChatComplete = false;
+    [TabGroup("Readonly"), ReadOnly, SerializeField] bool completedTalkingTo = false;
+
+#pragma warning restore IDE0052 
+
     [TabGroup("Parameters")][SerializeField] SO_Person person;
     [field:TabGroup("Parameters")][field:SerializeField] public SO_Favor favor { get; private set; }
-
     [TabGroup("Parameters")] public bool willCompleteTalkingToAfterInitialDialauge;
-    [TabGroup("Parameters")] public bool completedTalkingTo;
-    [TabGroup("Parameters")] public bool initialChatComplete = false;
 
 
     #region Node Canvas Connections----------------------

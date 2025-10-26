@@ -46,57 +46,57 @@ public class LadyInBlack : RuntimeInjectableMonoBehaviour
         return false;
     }
 
-    public void ActivateNewQuest(Quest.Type type)
-    {
-        if (type == Quest.Type.TOWN)
-        {
-            int random = Random.Range(0, townQuests.Count);
-            if (townQuests[random] == null) this.Error($"Activating a new quest FAILED, did not find one at index {random}");
-            townQuests[random].Activate();
-        }
-        else if (type == Quest.Type.HOTEL)
-        {
-            int random = Random.Range(0, hotelQuests.Count);
-            if (hotelQuests[random] == null) this.Error($"Activating a new quest FAILED, did not find one at index {random}");
-            hotelQuests[random].Activate();
-        }
-        else
-            this.Error($"Activating a new quest FAILED, did not find a quest type to activate with given {type}");
-    }
+    //public void ActivateNewQuest(Quest.Type type)
+    //{
+    //    if (type == Quest.Type.TOWN)
+    //    {
+    //        int random = Random.Range(0, townQuests.Count);
+    //        if (townQuests[random] == null) this.Error($"Activating a new quest FAILED, did not find one at index {random}");
+    //        townQuests[random].Activate();
+    //    }
+    //    else if (type == Quest.Type.HOTEL)
+    //    {
+    //        int random = Random.Range(0, hotelQuests.Count);
+    //        if (hotelQuests[random] == null) this.Error($"Activating a new quest FAILED, did not find one at index {random}");
+    //        hotelQuests[random].Activate();
+    //    }
+    //    else
+    //        this.Error($"Activating a new quest FAILED, did not find a quest type to activate with given {type}");
+    //}
 
-    [Button]
-    public void CreateNewHotelQuest(Quest.HotelQuest hotelQuest)
-    {
-        Quest.Type type = Quest.Type.HOTEL;
-        int length = hotelQuestProgressionLengths[(int)hotelQuest];
+    //[Button]
+    //public void CreateNewHotelQuest(Quest.HotelQuest hotelQuest)
+    //{
+    //    Quest.Type type = Quest.Type.HOTEL;
+    //    int length = hotelQuestProgressionLengths[(int)hotelQuest];
 
-        ProgressionEvent[] newProgression = new ProgressionEvent[length]
-            .Populate(() => new ProgressionEvent());
+    //    ProgressionEvent[] newProgression = new ProgressionEvent[length]
+    //        .Populate(() => new ProgressionEvent());
 
-        Quest newQuest = new Quest(type)
-            .WithHotelQuest(hotelQuest)
-            .WithProgression(newProgression);
+    //    Quest newQuest = new Quest(type)
+    //        .WithHotelQuest(hotelQuest)
+    //        .WithProgression(newProgression);
 
-        hotelQuests.Add(newQuest);
+    //    hotelQuests.Add(newQuest);
 
-    }
+    //}
 
 
-    [Button]
-    public void CreateNewTownQuest(Quest.TownQuest townQuest)
-    {
-        Quest.Type type = Quest.Type.TOWN;
-        int length = townQuestProgressionLengths[(int)townQuest];
+    //[Button]
+    //public void CreateNewTownQuest(Quest.TownQuest townQuest)
+    //{
+    //    Quest.Type type = Quest.Type.TOWN;
+    //    int length = townQuestProgressionLengths[(int)townQuest];
 
-        ProgressionEvent[] newProgression = new ProgressionEvent[length]
-            .Populate(() => new ProgressionEvent());
+    //    ProgressionEvent[] newProgression = new ProgressionEvent[length]
+    //        .Populate(() => new ProgressionEvent());
 
-        Quest newQuest = new Quest(type)
-            .WithTownQuest(townQuest)
-            .WithProgression(newProgression);
+    //    Quest newQuest = new Quest(type)
+    //        .WithTownQuest(townQuest)
+    //        .WithProgression(newProgression);
 
-        townQuests.Add(newQuest);
-    }
+    //    townQuests.Add(newQuest);
+    //}
 
 
     public bool hasAnActiveQuest => hasAnActiveTownQuest || hasAnActiveHotelQuest;
@@ -122,13 +122,13 @@ public class LadyInBlack : RuntimeInjectableMonoBehaviour
 
     }
 
-    public Quest.HotelQuest currentHotelQuest => (hasAnActiveHotelQuest)
-        ? hotelQuests.First(q => q.active).hotelQuest
-        : Quest.HotelQuest.None;
+    //public Quest.HotelQuest currentHotelQuest => (hasAnActiveHotelQuest)
+    //    ? hotelQuests.First(q => q.active).hotelQuest
+    //    : Quest.HotelQuest.None;
 
-    public Quest.TownQuest currentTownQuest => (hasAnActiveTownQuest)
-            ? townQuests.First(q => q.active).townQuest
-            : Quest.TownQuest.None;
+    //public Quest.TownQuest currentTownQuest => (hasAnActiveTownQuest)
+    //        ? townQuests.First(q => q.active).townQuest
+    //        : Quest.TownQuest.None;
 
     public int progressLevelOfCurrentQuest =>
         currentQuestReferece?.currentProggressLevel ?? 0;
