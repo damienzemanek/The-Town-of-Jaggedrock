@@ -642,12 +642,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b045267dda96ea446a76cd1e387948ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  single: 1
-  multi: 0
+  single: 0
+  multi: 1
   multiSpawnAllAtOnce: 0
-  multiSpawnSelectSingle: 0
+  multiSpawnSelectSingle: 1
   prefab: {fileID: 7019842021708274137, guid: 46aa968959496b145821ba9430eb4967, type: 3}
-  prefabs: []
+  prefabs:
+  - {fileID: 7019842021708274137, guid: 46aa968959496b145821ba9430eb4967, type: 3}
   location: {fileID: 5697004476810092418}
 --- !u!1 &7904466343369297884
 GameObject:

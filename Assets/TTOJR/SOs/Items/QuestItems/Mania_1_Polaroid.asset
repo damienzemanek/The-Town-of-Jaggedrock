@@ -24,12 +24,19 @@ MonoBehaviour:
     - rid: 5167629325063422047
       type: {class: InventoryUsable, ns: , asm: Assembly-CSharp}
       data:
-        <variations>k__BackingField: []
+        <variations>k__BackingField:
+        - rid: 5167629374436147410
         <data>k__BackingField:
           rid: 5167629325063422049
-        <requiredItem>k__BackingField: {fileID: 11400000}
     - rid: 5167629325063422049
       type: {class: InventoryUsable/Data, ns: , asm: Assembly-CSharp}
       data:
+        <requiredItem>k__BackingField: {fileID: 0}
         <use>k__BackingField: {fileID: 0}
         <controls>k__BackingField: {fileID: 0}
+        <type>k__BackingField: 0
+    - rid: 5167629374436147410
+      type: {class: PolaroidImage, ns: , asm: Assembly-CSharp}
+      data:
+        usable: 1
+        sprite: {fileID: -8318277596760801014, guid: 215687feeab0b7445b4a1cd86c82c2e1, type: 3}

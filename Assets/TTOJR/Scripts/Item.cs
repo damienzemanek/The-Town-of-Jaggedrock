@@ -8,17 +8,21 @@ using Sirenix.OdinInspector.Editor.Drawers;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 [Serializable]
 public abstract class ItemVariationData 
 {
+    public bool usable = false;
+
     protected Interactor interactor;
     public virtual ItemVariationData Clone()
         => (ItemVariationData)CloneUtility.DeepClonePolymorph(this);
-    public abstract void Reset();
-    public abstract ItemVariationData UpdateValueThenGet(ItemVariationData newVariationData = null);
-    public abstract bool AllowUse();
+    public virtual void Reset() { }
+    public virtual ItemVariationData UpdateValueThenGet(ItemVariationData newVariationData = null) => this;
+    public virtual bool AllowUse() => true;
     public virtual void SetInteractor(Interactor interactor) => this.interactor = interactor;
+    public virtual object UseVariantGetData(List<ItemVariationData> variations) => throw new NotImplementedException();
 }
 
 
@@ -58,6 +62,20 @@ public sealed class Uses : ItemVariationData
         Debug.Log("Item: VARIATION Uses out of uses");
     }
     public void UsesInit() { uses = initialUses; usedUp = false; }
+}
+
+[Serializable]
+public sealed class PolaroidImage : ItemVariationData
+{
+    [field: SerializeField] public Sprite sprite;
+
+    public override object UseVariantGetData(List<ItemVariationData> variations)
+    {
+        this.Log("Using variant");
+        return variations?.OfType<PolaroidImage>()
+            .FirstOrDefault()
+            .sprite;
+    }
 }
 
 
@@ -337,15 +355,15 @@ public class InventoryUsable : ItemFunctionality<InventoryUsable.Data>
     public class Data
 #pragma warning restore CS0108 // Member hides inherited member; missing new keyword
     {
+        public enum Type
+        {
+            Polaroid,
+        }
+
         [field: ReadOnly] [field: SerializeField] public Item requiredItem { get; set; }
         [field: ReadOnly] [field: SerializeField] public Use use { get; set; }
         [field: ReadOnly] [field: SerializeField] public EntityControls controls { get; set; }
-
-        public enum Type
-        {
-            Polaroid
-        }
-        public Type type { get; set; }
+        [field:SerializeField] public Type type { get; set; }
 
 
         private InventoryUsable pickedUpInvUsable;
@@ -386,18 +404,22 @@ public class InventoryUsable : ItemFunctionality<InventoryUsable.Data>
     {
         if (!VariantsAllowUse()) return false;
 
-        this.Log($"Successfully Using {GetType()}");
+        this.Log($"Successfully Using {GetType().Name}");
 
+        
         //Variation Utilization
-
+        object useInput = variations?
+            .Where(v => v.usable)
+            .Select(v => useInput = v.UseVariantGetData(variations))
+            .FirstOrDefault(x => x != null);
+        
 
         //Functionality Utilization
         callback?.Invoke();
 
-        if (!data.use) this.Error("No Use variable Found");
+        if (!data.use) { this.Error("No Use variable Found"); return false; }
 
-        data.use.UseAction(data.type);
-
+        data.use.UseAction(data.type, useInput);
         return true;
     }
 
