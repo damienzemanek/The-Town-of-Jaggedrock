@@ -527,7 +527,7 @@ MonoBehaviour:
     they tore the judge''s carcass limb from limb. And feasted on his remains"},"_position":{"x":-954.3771,"y":2004.503},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"20"},{"statement":{"_text":"A
     sacrifice to their forsaken god."},"_position":{"x":-948.3787,"y":2090.504},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"21"},{"statement":{"_text":"..."},"_position":{"x":-523.6044,"y":2340.073},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"22"},{"statement":{"_text":"The
     wickedness grows."},"_position":{"x":-574.8663,"y":2432.073},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"23"},{"statement":{"_text":"Expose
-    the darkness, or succumb to its vile malefactors."},"_position":{"x":-590.6044,"y":2533.066},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"24"},{"_action":{"method":{"_baseInfo":"LadyInBlack|IncreaseProgressionOfCurrentQuest|System.Void","_paramsInfo":""},"parameters":[],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_position":{"x":-588.9839,"y":2628.48},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"25"},{"statement":{"_text":"The
+    the darkness, or succumb to its vile malefactors."},"_position":{"x":-590.6044,"y":2533.066},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"24"},{"_action":{"method":{"_baseInfo":"LadyInBlack|StartQuestProgress|System.Void","_paramsInfo":""},"parameters":[],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_position":{"x":-588.9839,"y":2628.48},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"25"},{"statement":{"_text":"The
     wickedness grows."},"_position":{"x":-609.5836,"y":1593.322},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"26"},{"statement":{"_text":"Fear
     not the sword they wield."},"_position":{"x":-639.5601,"y":1676.74},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"27"},{"statement":{"_text":"Even
     though his mind was corrupted before. He will do no harm now."},"_position":{"x":-640.6917,"y":1759.79},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"28"},{"statement":{"_text":"They
@@ -572,7 +572,7 @@ MonoBehaviour:
     _version: 3.33
     _category: 
     _comments: 
-    _translation: {x: 806.133, y: -623.46716}
+    _translation: {x: 442.32614, y: -897.13324}
     _zoomFactor: 0.49999338
   _firstActivation: 0
   _enableAction: 1

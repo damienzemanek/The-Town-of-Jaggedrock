@@ -81,6 +81,8 @@ public class TimeCycle : MonoBehaviour, IDependencyProvider
         if (timeFrozen || transitioning) return;
         currentTime += Time.deltaTime;
 
+        if (Input.GetKeyDown(KeyCode.KeypadMultiply)) currentTime += 9999999f;
+
         if (isDay) CheckDay();
         if (!isDay) CheckNight();
     }

@@ -133,6 +133,8 @@ public class LadyInBlack : RuntimeInjectableMonoBehaviour
     public int progressLevelOfCurrentQuest =>
         currentQuestReferece?.currentProggressLevel ?? 0;
 
+    public void StartQuestProgress() => currentQuestReferece.progression[0].compeleted = true;
+
     public void IncreaseProgressionOfCurrentQuest()
         => currentQuestReferece.progression.FirstOrDefault(p => p.compeleted == false).Complete();
 
