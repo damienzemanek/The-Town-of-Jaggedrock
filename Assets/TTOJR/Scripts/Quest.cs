@@ -18,15 +18,23 @@ public static class Questing
         HOTEL,
         HOTELACTIVITY,
     }
-
     public abstract class QuestType
     {
         public abstract Enum quest { get; set; }
     }
+    public abstract class QuestType<TEnum> : QuestType where TEnum : Enum
+    {
+        public TEnum TypedQuest;
+        public override Enum quest
+        {
+            get => TypedQuest;
+            set => TypedQuest = value is TEnum e ? e : default;
+        }
+    }
 
 
     [Serializable]
-    public class Town : QuestType
+    public class Town : QuestType<TownQuest>
     {
         public enum TownQuest
         {
@@ -35,15 +43,10 @@ public static class Questing
             CORRUPTED_ROOTS,
             SACRIFICIAL_LAMBS
         }
-        TownQuest _quest { get; set; }
+
         public static int size { get => EnumEX<TownQuest>.Size(); }
         public static int[] progressionLengths = { 0, 3, 3, 3 };
-        public override Enum quest 
-        { 
-            get => _quest;
-            set => _quest = value is TownQuest q ? TownQuest.None : default;
-        }
-
+        public Town() { }
         public Town(TownQuest _quest)
         {
            quest = _quest;
@@ -51,7 +54,7 @@ public static class Questing
     }
 
     [Serializable]
-    public class Hotel : QuestType
+    public class Hotel : QuestType<HotelQuest>
     {
         public enum HotelQuest
         {
@@ -60,15 +63,11 @@ public static class Questing
             BLOOD_IN_THE_WATER,
             SOLUS_IMMUNIS
         }
-        HotelQuest _quest;
+
         public static int size { get => EnumEX<HotelQuest>.Size(); }
         public static int[] progressionLengths = { 0, 3, 3, 3 };
-        public override Enum quest
-        {
-            get => _quest;
-            set => _quest = value is HotelQuest q ? q : HotelQuest.None;
-        }
 
+        public Hotel() { }
         public Hotel(HotelQuest q)
         {
             quest = q;
@@ -76,7 +75,7 @@ public static class Questing
     }
 
     [Serializable]
-    public class Activity : QuestType
+    public class Activity : QuestType<ActivityQuest>
     {
         public enum ActivityQuest
         {
@@ -84,15 +83,10 @@ public static class Questing
             CLEANROOM,
             REPAIRELECTRICITY,
         }
-        ActivityQuest _quest;
         public static int size { get => EnumEX<ActivityQuest>.Size(); }
         public static int[] progressionLengths = { 0, 3, 3, 3 };
-        public override Enum quest
-        {
-            get => _quest;
-            set => _quest = value is ActivityQuest q ? q : ActivityQuest.None;
-        }
 
+        public Activity() { }
         public Activity(ActivityQuest q)
         {
             quest = q;
@@ -114,15 +108,15 @@ public class Quest
     [Serializable]
     public class ProgressionEvent
     {
-        public bool compeleted;
+        public bool completed;
         public UnityEvent completeEvent;
         public ProgressionEvent()
         {
-            compeleted = false;
+            completed = false;
         }
         public void Complete()
         {
-            compeleted = true;
+            completed = true;
             completeEvent?.Invoke();
         }
     
@@ -172,12 +166,12 @@ public class Quest
         return type;
     }
 
-    public bool isComplete { get => (progression.Last().compeleted == true); }
+    public bool isComplete { get => (progression.Last().completed == true); }
     public int currentProggressLevel
     {
         get
         {
-            int index = Array.FindIndex(progression, p => p.compeleted == true);
+            int index = Array.FindIndex(progression, p => p.completed == true);
             return (index == -1) ? 0 : index;
         }
     }
