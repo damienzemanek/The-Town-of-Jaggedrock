@@ -30,8 +30,6 @@ namespace Extensions
 
             return EnumerateEX.Rand(include);
         }
-        public static int townQuestsCount { get => Enum.GetValues(typeof(TownQuest)).Length; }
-
         public static int Size() => Enum.GetValues(typeof(T)).Length;
 
     }

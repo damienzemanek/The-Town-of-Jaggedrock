@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DependencyInjection;
-using Sirenix.Utilities;
+
 using UnityEngine;
 using Extensions;
 

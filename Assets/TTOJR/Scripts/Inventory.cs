@@ -5,7 +5,7 @@ using DependencyInjection;
 using NUnit.Framework;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor.Drawers;
-using Sirenix.Utilities;
+
 using Unity.VisualScripting;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;

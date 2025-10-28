@@ -387,6 +387,7 @@ MonoBehaviour:
     Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"givenCorrectLocation":{"_propertyPath":"Photographer.givenCorrectLocation","_name":"givenCorrectLocation","_id":"2433e589-6861-4451-b44a-4dc614272b21","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"theCorrectLocation":{"_propertyPath":"Photographer.theCorrectLocation","_name":"theCorrectLocation","_id":"6cc7eff6-1807-42e6-9c9a-a8e92434ead7","$type":"NodeCanvas.Framework.Variable`1[[LocationRandomizer+Locations,
     Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"initialChatComplete":{"_propertyPath":"Dialuage.initialChatComplete","_name":"initialChatComplete","_id":"40409604-bf35-4aa3-b497-7b813b17a93c","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
+    mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"completedTalkingTo":{"_propertyPath":"Dialuage.completedTalkingTo","_name":"completedTalkingTo","_id":"a8053147-9263-4dcd-8e17-33f1aa682aed","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}}}'
   _objectReferences:
   - {fileID: 0}
@@ -431,6 +432,9 @@ MonoBehaviour:
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"}'
     _references: []
   - _json: '{"_propertyPath":"Dialuage.initialChatComplete","_name":"initialChatComplete","_id":"40409604-bf35-4aa3-b497-7b813b17a93c","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
+    _references: []
+  - _json: '{"_propertyPath":"Dialuage.completedTalkingTo","_name":"completedTalkingTo","_id":"a8053147-9263-4dcd-8e17-33f1aa682aed","$type":"NodeCanvas.Framework.Variable`1[[System.Boolean,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"}'
     _references: []
 --- !u!114 &2217963900361797958
@@ -501,7 +505,7 @@ MonoBehaviour:
     mister"},"_UID":"19690d71-6555-487e-bcfc-b5482d3190a2","_position":{"x":555.6702,"y":438.3342},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"48"},{"statement":{"_text":"Oh
     Hey! "},"_UID":"d83d7518-306e-4a46-b4fb-d68d1701136f","_tag":"Correct","_position":{"x":891.0,"y":416.0},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"49"},{"statement":{"_text":"Thanks
     for telling me about the [theCorrectLocation] yesterday. I got some great photos."},"_UID":"cbdf76eb-f6ba-420b-8f9a-23135249e2d9","_position":{"x":804.0,"y":496.0},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"50"},{"statement":{"_text":"Heres
-    a polaroid I snapped, mabye you can put it to good use."},"_UID":"8b0269ad-9b36-4bbd-9881-ac7da4cc8991","_position":{"x":802.2745,"y":597.6686},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"51"},{"conditions":[{"valueA":{"_name":"willGiveASpecialItem","_targetVariableID":"6731cadc-6f8a-4a5e-a321-cb388bd325e2"},"valueB":{},"$type":"NodeCanvas.Tasks.Conditions.CheckBoolean"},{"valueA":{"_name":"maniaQuestGiveSpecialItem","_targetVariableID":"cbf3892b-2a74-4841-ae58-6e8ad4c869ef"},"valueB":{"_value":true},"$type":"NodeCanvas.Tasks.Conditions.CheckBoolean"}],"_UID":"0cc34265-3162-40eb-8313-6693814f7b88","_position":{"x":1270.506,"y":537.2692},"$type":"NodeCanvas.DialogueTrees.MultipleConditionNode","$id":"52"},{"_action":{"actions":[{"boolVariable":{"_name":"completedTalkingTo"},"$type":"NodeCanvas.Tasks.Actions.SetBoolean"},{"method":{"_baseInfo":"Spawner|Spawn|System.Void","_paramsInfo":"System.Int32"},"parameters":[{"_type":"System.Int32","_value":{"$content":0,"$type":"System.Int32"}}],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"}],"$type":"NodeCanvas.Framework.ActionList"},"_UID":"900eef29-1a22-4dec-8433-501af4847d39","_position":{"x":828.0417,"y":804.6595},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"53"},{"_action":{"actions":[{"boolVariable":{"_name":"completedTalkingTo"},"$type":"NodeCanvas.Tasks.Actions.SetBoolean"},{"method":{"_baseInfo":"Spawner|Spawn|System.Void","_paramsInfo":"System.Int32"},"parameters":[{"_type":"System.Int32","_value":{"$content":1,"$type":"System.Int32"}}],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"}],"$type":"NodeCanvas.Framework.ActionList"},"_UID":"904d08d8-369a-4cd5-b567-f46fe6d567b2","_position":{"x":1208.049,"y":821.5112},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"54"},{"_action":{"boolVariable":{"_name":"maniaQuestGiveSpecialItem","_targetVariableID":"cbf3892b-2a74-4841-ae58-6e8ad4c869ef"},"setTo":0,"$type":"NodeCanvas.Tasks.Actions.SetBoolean"},"_UID":"69d5b6fd-92ab-44b9-b280-e997fb77cdfb","_position":{"x":1209.476,"y":952.1005},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"55"},{"statement":{"_text":"(Gained
+    a polaroid I snapped, mabye you can put it to good use."},"_UID":"8b0269ad-9b36-4bbd-9881-ac7da4cc8991","_position":{"x":802.2745,"y":597.6686},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"51"},{"conditions":[{"valueA":{"_name":"willGiveASpecialItem","_targetVariableID":"6731cadc-6f8a-4a5e-a321-cb388bd325e2"},"valueB":{},"$type":"NodeCanvas.Tasks.Conditions.CheckBoolean"},{"valueA":{"_name":"maniaQuestGiveSpecialItem","_targetVariableID":"cbf3892b-2a74-4841-ae58-6e8ad4c869ef"},"valueB":{"_value":true},"$type":"NodeCanvas.Tasks.Conditions.CheckBoolean"}],"_UID":"0cc34265-3162-40eb-8313-6693814f7b88","_position":{"x":1270.506,"y":537.2692},"$type":"NodeCanvas.DialogueTrees.MultipleConditionNode","$id":"52"},{"_action":{"actions":[{"method":{"_baseInfo":"Spawner|Spawn|System.Void","_paramsInfo":"System.Int32"},"parameters":[{"_type":"System.Int32","_value":{"$content":0,"$type":"System.Int32"}}],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"boolVariable":{"_name":"completedTalkingTo","_targetVariableID":"a8053147-9263-4dcd-8e17-33f1aa682aed"},"$type":"NodeCanvas.Tasks.Actions.SetBoolean"}],"$type":"NodeCanvas.Framework.ActionList"},"_UID":"900eef29-1a22-4dec-8433-501af4847d39","_position":{"x":835.8386,"y":806.8756},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"53"},{"_action":{"actions":[{"method":{"_baseInfo":"Spawner|Spawn|System.Void","_paramsInfo":"System.Int32"},"parameters":[{"_type":"System.Int32","_value":{"$content":1,"$type":"System.Int32"}}],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"boolVariable":{"_name":"completedTalkingTo","_targetVariableID":"a8053147-9263-4dcd-8e17-33f1aa682aed"},"$type":"NodeCanvas.Tasks.Actions.SetBoolean"}],"$type":"NodeCanvas.Framework.ActionList"},"_UID":"904d08d8-369a-4cd5-b567-f46fe6d567b2","_position":{"x":1213.388,"y":822.579},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"54"},{"_action":{"boolVariable":{"_name":"maniaQuestGiveSpecialItem","_targetVariableID":"cbf3892b-2a74-4841-ae58-6e8ad4c869ef"},"setTo":0,"$type":"NodeCanvas.Tasks.Actions.SetBoolean"},"_UID":"69d5b6fd-92ab-44b9-b280-e997fb77cdfb","_position":{"x":1209.476,"y":952.1005},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"55"},{"statement":{"_text":"(Gained
     Minor Favor)"},"_UID":"a8817f5b-45f2-4f1e-b10e-c25574953026","_tag":"Gain Minor
     Favor","_position":{"x":-677.5238,"y":-205.9595},"$type":"NodeCanvas.DialogueTrees.StatementNode","$id":"56"},{"_action":{"method":{"_baseInfo":"Dialuage|GainMinorFavor|System.Void","_paramsInfo":""},"parameters":[],"returnValue":{},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},"_UID":"77680b23-84b7-42e9-9e2e-b0d981c43560","_position":{"x":-672.6359,"y":-106.9592},"$type":"NodeCanvas.DialogueTrees.ActionNode","$id":"57"},{"statement":{"_text":"(Gained
     Major Favor)"},"_UID":"40327d8b-68f2-4354-8ec5-9c2913c7354e","_name":"","_tag":"Gain
@@ -518,8 +522,8 @@ MonoBehaviour:
     _version: 3.33
     _category: 
     _comments: 
-    _translation: {x: 1081.5961, y: -2117.5686}
-    _zoomFactor: 0.8970788
+    _translation: {x: -479.0643, y: 450.54034}
+    _zoomFactor: 0.2856812
   _firstActivation: 0
   _enableAction: 1
   _disableAction: 2
@@ -541,11 +545,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inConvo: 0
+  initialChatComplete: 0
+  completedTalkingTo: 0
   person: {fileID: 11400000, guid: 30454841f18150f4fb727fef27592faf, type: 2}
   <favor>k__BackingField: {fileID: 11400000, guid: d97b5d00496e6064387157fcd3244c0c, type: 2}
-  initialChatComplete: 0
   willCompleteTalkingToAfterInitialDialauge: 0
-  completedTalkingTo: 0
 --- !u!114 &8691793057313305186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,6 +616,25 @@ MonoBehaviour:
   - Farm
   - Forest
   - Rundown House
+  activities:
+  - went shopping
+  - visited some family
+  - met some new friends
+  - watched the sunrise
+  - got some groceries
+  - tried some new food
+  - went on a walk
+  - was almost late to work
+  - saw some people dancing in the forest
+  - saw a faint glow in the forest
+  - heard some whispering in the room next to me at night
+  - took a nice shower
+  - did my laundry
+  - ate breakfast
+  - heard some lovely singing on my walk
+  - saw some crows eating bread
+  - went stargazing
+  - stayed up late doing some work
 --- !u!114 &-2442088848572391889
 MonoBehaviour:
   m_ObjectHideFlags: 0

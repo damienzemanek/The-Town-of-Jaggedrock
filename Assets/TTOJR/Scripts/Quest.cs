@@ -7,16 +7,20 @@ using static Questing.Hotel;
 using static Questing.Town;
 using static Questing.Activity;
 using Extensions;
+using NUnit.Framework;
+using System.Collections.Generic;
+using UnityEditor.PackageManager.Requests;
+using Sirenix.OdinInspector;
 
 
 public static class Questing
 {
-    public enum Type
+    public enum Section
     {
         None,
         TOWN,
         HOTEL,
-        HOTELACTIVITY,
+        ACTIVITY,
     }
     public abstract class QuestType
     {
@@ -30,13 +34,18 @@ public static class Questing
             get => TypedQuest;
             set => TypedQuest = value is TEnum e ? e : default;
         }
+
+        public QuestType(TEnum typedQuest)
+        {
+           TypedQuest = typedQuest;
+        }
     }
 
 
     [Serializable]
-    public class Town : QuestType<TownQuest>
+    public class Town : QuestType<Town.Quest>
     {
-        public enum TownQuest
+        public enum Quest
         {
             None,
             MANIA_OF_INJUSTICE,
@@ -44,19 +53,16 @@ public static class Questing
             SACRIFICIAL_LAMBS
         }
 
-        public static int size { get => EnumEX<TownQuest>.Size(); }
+        public static int size { get => EnumEX<Quest>.Size(); }
         public static int[] progressionLengths = { 0, 3, 3, 3 };
-        public Town() { }
-        public Town(TownQuest _quest)
-        {
-           quest = _quest;
-        }
+        public Town() : base(default) { }
+        public Town(Quest q) : base(q) { }
     }
 
     [Serializable]
-    public class Hotel : QuestType<HotelQuest>
+    public class Hotel : QuestType<Hotel.Quest>
     {
-        public enum HotelQuest
+        public enum Quest
         {
             None,
             THE_DEVILS_NUMBER,
@@ -64,33 +70,27 @@ public static class Questing
             SOLUS_IMMUNIS
         }
 
-        public static int size { get => EnumEX<HotelQuest>.Size(); }
+        public static int size { get => EnumEX<Quest>.Size(); }
         public static int[] progressionLengths = { 0, 3, 3, 3 };
 
-        public Hotel() { }
-        public Hotel(HotelQuest q)
-        {
-            quest = q;
-        }
+        public Hotel() : base(default){ }
+        public Hotel(Quest q) : base(q) { }
     }
 
     [Serializable]
-    public class Activity : QuestType<ActivityQuest>
+    public class Activity : QuestType<Activity.Quest>
     {
-        public enum ActivityQuest
+        public enum Quest
         {
             None,
             CLEANROOM,
             REPAIRELECTRICITY,
         }
-        public static int size { get => EnumEX<ActivityQuest>.Size(); }
+        public static int size { get => EnumEX<Quest>.Size(); }
         public static int[] progressionLengths = { 0, 3, 3, 3 };
 
-        public Activity() { }
-        public Activity(ActivityQuest q)
-        {
-            quest = q;
-        }
+        public Activity() : base(default) { }
+        public Activity(Quest q) : base(q) { }
     }
 
 
@@ -114,6 +114,8 @@ public class Quest
         {
             completed = false;
         }
+
+        [Button]
         public void Complete()
         {
             completed = true;
@@ -123,39 +125,49 @@ public class Quest
     }
 
     public bool active = false;
-    public Questing.Type type = Questing.Type.None;
-    public Questing.QuestType quest;
+    public Questing.Section section = Questing.Section.None;
+    [SerializeReference] public Questing.QuestType type;
 
     [SerializeReference] public ProgressionEvent[] progression;
 
-    public Quest(Questing.Type _type)
+    public class QuestBuilder
     {
-        active = false;
-        type = _type;
-    }
+        Quest quest;
+        public QuestBuilder() => quest = new Quest();
+        public static QuestBuilder Start() { return new QuestBuilder(); }
 
-    public Quest WithTownQuest(TownQuest q)
-    {
-        quest = new Questing.Town(q);
-        return this;
-    }
+        public QuestBuilder WithSection(Questing.Section s)
+        {
+            quest.active = false;
+            quest.section = s;
+            return this;
+        }
 
-    public Quest WithHotelQuest(HotelQuest q)
-    {
-        quest = new Questing.Hotel(q);
-        return this;
-    }
+        public QuestBuilder WithTownQuest(Questing.Town.Quest q)
+        {
+            quest.type = new Questing.Town(q);
+            return this;
+        }
 
-    public Quest WithActivity(ActivityQuest q)
-    {
-        quest = new Questing.Activity(q);
-        return this;
-    }
+        public QuestBuilder WithHotelQuest(Questing.Hotel.Quest q)
+        {
+            quest.type = new Questing.Hotel(q);
+            return this;
+        }
 
-    public Quest WithProgression(ProgressionEvent[] _progression)
-    {
-        progression = _progression;
-        return this;
+        public QuestBuilder WithActivity(Questing.Activity.Quest q)
+        {
+            quest.type = new Questing.Activity(q);
+            return this;
+        }
+
+        public QuestBuilder WithProgression(ProgressionEvent[] _progression)
+        {
+            quest.progression = _progression;
+            return this;
+        }
+        public Quest Build() => quest;
+
     }
 
     public static T GetRandomQuest<T>(out int index) where T : Enum
@@ -166,7 +178,10 @@ public class Quest
         return type;
     }
 
-    public bool isComplete { get => (progression.Last().completed == true); }
+    public bool isComplete => (progression != null) ? 
+        progression.Last().completed == true : 
+        false;
+
     public int currentProggressLevel
     {
         get
@@ -176,12 +191,65 @@ public class Quest
         }
     }
 
-    public void Activate()
-    {
-        active = true;
-    }
+    public void Activate() => active = true;
+
 
     #region Methods
+
+    public static Quest CreateNewQuest<TEnum>(Questing.Section s, Enum enumType, List<Quest> quests = null)
+    {
+        int length = 0;
+        Quest quest = null;
+
+        //Hotel Quest
+        if(enumType is Questing.Hotel.Quest hotel)
+        {
+            length = Questing.Hotel.progressionLengths[(int)hotel];
+
+            ProgressionEvent[] progression = new ProgressionEvent[length]
+                .Populate(() => new ProgressionEvent());
+
+            quest = QuestBuilder.Start()
+                .WithSection(s)
+                .WithHotelQuest(hotel)
+                .WithProgression(progression)
+                .Build();
+        }
+
+        //Town Quest
+        if (enumType is Questing.Town.Quest town)
+        {
+            length = Questing.Town.progressionLengths[(int)town];
+
+            ProgressionEvent[] progression = new ProgressionEvent[length]
+                .Populate(() => new ProgressionEvent());
+
+            quest = QuestBuilder.Start()
+                .WithSection(s)
+                .WithTownQuest(town)
+                .WithProgression(progression)
+                .Build();
+        }
+
+        //Activity
+        if (enumType is Questing.Activity.Quest activity)
+        {
+            length = Questing.Activity.progressionLengths[(int)activity];
+
+            ProgressionEvent[] progression = new ProgressionEvent[length]
+                .Populate(() => new ProgressionEvent());
+
+            quest = QuestBuilder.Start()
+                .WithSection(s)
+                .WithActivity(activity)
+                .WithProgression(progression)
+                .Build();
+
+        }
+
+        quests?.Add(quest);
+        return quest;
+    }
 
     #endregion
 }

@@ -1,0 +1,6 @@
+﻿[*.cs]
+
+# Default severity for analyzer diagnostics with category 'Style'
+dotnet_naming_rule.capitalization_for_properties.severity = none
+dotnet_diagnostic.IDE1006.severity = none
+

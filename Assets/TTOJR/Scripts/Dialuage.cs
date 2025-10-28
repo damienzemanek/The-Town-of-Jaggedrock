@@ -22,7 +22,7 @@ public class Dialuage : RuntimeInjectableMonoBehaviour, ICallbackUser
 #pragma warning disable IDE0052 
     [TabGroup("Readonly"), ReadOnly, SerializeField] bool inConvo = false;
     [TabGroup("Readonly"), ReadOnly, SerializeField] public bool initialChatComplete = false;
-    [TabGroup("Readonly"), ReadOnly, SerializeField] bool completedTalkingTo = false;
+    [TabGroup("Readonly"), ReadOnly, SerializeField] public bool completedTalkingTo = false;
 
 #pragma warning restore IDE0052 
 

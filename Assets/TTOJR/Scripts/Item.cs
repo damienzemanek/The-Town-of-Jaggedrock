@@ -115,12 +115,11 @@ public class Item : ScriptableObject
         key19,
         key20,
     }
-    [field:SerializeField] public ItemType type { get; set; }
-    public Sprite icon;
 
+    [field: DisableInInlineEditors] [field:SerializeField] public ItemType type { get; set; }
+    [DisableInInlineEditors] public Sprite icon;
     [field: SerializeReference] public IItemFunctionality functionality;
-
-    public bool canPhysicallyHold = false;
+    [DisableInInlineEditors] public bool canPhysicallyHold = false;
 
     [ShowIf("canPhysicallyHold")] public GameObject itemObj;
     
@@ -193,8 +192,8 @@ class Placeable : ItemFunctionality<Placeable.Data>
 #pragma warning restore CS0108 // Member hides inherited member; missing new keyword
     {
         public GameObject objectToPlace;
-        [SerializeReference] [ReadOnly] public Transform placeLocation;
-        [SerializeReference] [ReadOnly] public GameObject locationDetector;
+        [SerializeReference, GUIColor("RGB(0, 1, 0)"), ReadOnly] public Transform placeLocation;
+        [SerializeReference, GUIColor("RGB(0, 1, 0)"), ReadOnly] public GameObject locationDetector;
         public void SetPlaceLocation(Transform val) => placeLocation = val;
         public void SetLocationDetector(GameObject val) => locationDetector = val;
 
@@ -243,7 +242,7 @@ class DestinationUser : ItemFunctionality<DestinationUser.Data>
     public class Data
 #pragma warning restore CS0108 // Member hides inherited member; missing new keyword
     {
-        [field:SerializeField]  public Destination useDestination { get; private set; }
+        [field:SerializeField, GUIColor("RGB(0, 1, 0)")]  public Destination useDestination { get; private set; }
         public void SetUseLocation(Destination val) => useDestination = val;
     }
 
